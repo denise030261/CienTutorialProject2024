@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Piloto Studio/Shaders/PreviewScene.unity
+- path: Assets/Piloto Studio/Characters/017_ShooterRobot/Overview.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
