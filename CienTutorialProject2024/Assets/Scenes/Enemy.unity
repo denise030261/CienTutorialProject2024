@@ -489,7 +489,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7010780069197500311, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4791656
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 7010780069197500311, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
       propertyPath: m_LocalPosition.y
@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010780069197500311, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2658105
+      value: 3.76
       objectReference: {fileID: 0}
     - target: {fileID: 7010780069197500311, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
       propertyPath: m_LocalRotation.w
@@ -541,6 +541,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7638276460097541421, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685734572}
+    - targetCorrespondingSourceObject: {fileID: 7638276460097541421, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1685734574}
   m_SourcePrefab: {fileID: 100100000, guid: 90ee93ce69e0a42438af50077cf65d78, type: 3}
 --- !u!1 &1685734569 stripped
 GameObject:
@@ -581,6 +584,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b58861dd0fe01b4e92335f10fd74c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1685734574
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685734569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a6d8ba6729c84f449d5db2328ccd185, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1955651537
 PrefabInstance:
   m_ObjectHideFlags: 0
