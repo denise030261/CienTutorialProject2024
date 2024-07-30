@@ -11,16 +11,16 @@ public class EnemyAI : MonoBehaviour
     NavMeshAgent nav;
     GameObject target;
     Animator animator;
+    LayerMask targetMask;
     float playerDist;
-    float noMoveDist=1f;
     bool isTarget;
     bool isWall = false;
     EnemyBomb enemyBomb = null;
+    EnemyLongAttack enemyLongAttack = null;
 
     [Range(0f, 360f)][SerializeField] float ViewAngle = 0f;
     [SerializeField] float ViewRadius = 1f;
-    LayerMask targetMask;
-    public LayerMask obstacleMask;
+    [SerializeField] float noMoveDist = 1f;
 
     Vector3 AngleToDir(float angle)
     {
@@ -30,39 +30,12 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        // 레이어 이름으로 LayerMask 생성
-        int layer = LayerMask.NameToLayer("Wall");
-        if (layer == -1)
-        {
-            //Debug.LogError("Layer 'Wall' not found.");
-            return;
-        }
-
-        // 씬의 모든 게임 오브젝트를 찾음
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        List<GameObject> wallObjects = new List<GameObject>();
-
-        // 레이어를 가진 오브젝트 필터링
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.layer == layer)
-            {
-                wallObjects.Add(obj);
-            }
-        }
-
-        // Wall 레이어를 가진 모든 오브젝트를 출력
-        foreach (GameObject wallObj in wallObjects)
-        {
-            Debug.Log("Found Wall object: " + wallObj.name);
-        }
-
         nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         enemyBomb = GetComponent<EnemyBomb>();
+        enemyLongAttack = GetComponent<EnemyLongAttack>();
         target = GameObject.Find("Player");
         targetMask = LayerMask.GetMask("Player");
-        //obstacleMask = LayerMask.GetMask("Wall"); // 벽 레이어 마스크 설정
     }
 
     private void Update()
@@ -143,6 +116,10 @@ public class EnemyAI : MonoBehaviour
             {
                 enemyBomb.Bomb();
                 isTarget = false;
+            }
+            else if(enemyLongAttack!=null) 
+            {
+                enemyLongAttack.LongAttack();
             }
         }
         else if(!isTarget)
