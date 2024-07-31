@@ -9,18 +9,19 @@ using Debug = UnityEngine.Debug;
 public class EnemyAI : MonoBehaviour
 {
     NavMeshAgent nav;
-    GameObject target;
     Animator animator;
     LayerMask targetMask;
     float playerDist;
     bool isTarget;
     bool isWall = false;
+    bool shootTarget = false;
     EnemyBomb enemyBomb = null;
     EnemyLongAttack enemyLongAttack = null;
 
     [Range(0f, 360f)][SerializeField] float ViewAngle = 0f;
     [SerializeField] float ViewRadius = 1f;
     [SerializeField] float noMoveDist = 1f;
+    public GameObject target;
 
     Vector3 AngleToDir(float angle)
     {
@@ -42,7 +43,6 @@ public class EnemyAI : MonoBehaviour
     {
         isTarget = false;
         ViewOfField();
-        ChaseTarget();
 
         ViewOfFieldDebug();
     }
@@ -93,6 +93,14 @@ public class EnemyAI : MonoBehaviour
             {
                 Debug.Log("플레이어 발견!");
                 isTarget = true;
+                ChaseTarget();
+            }
+            else if(enemyLongAttack != null)
+            {
+                if(enemyLongAttack.enabled == true)
+                {
+                    enemyLongAttack.enabled = false;
+                }
             }
         }
     }
@@ -100,6 +108,10 @@ public class EnemyAI : MonoBehaviour
     void ChaseTarget()
     {
         playerDist = Vector3.Distance(transform.position, target.transform.position);
+
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 
         if (playerDist >= noMoveDist && isTarget)
         {
@@ -119,7 +131,12 @@ public class EnemyAI : MonoBehaviour
             }
             else if(enemyLongAttack!=null) 
             {
-                enemyLongAttack.LongAttack();
+                isTarget = false;
+                Debug.Log("공격");
+                if(enemyLongAttack.enabled==false)
+                {
+                    enemyLongAttack.enabled = true;
+                }
             }
         }
         else if(!isTarget)
@@ -128,5 +145,4 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("isWalk", false);
         }
     }
-
 }

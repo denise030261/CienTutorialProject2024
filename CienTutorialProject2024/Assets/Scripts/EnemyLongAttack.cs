@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class EnemyLongAttack : MonoBehaviour
 {
-    GameObject target;
-    public EnemyProjectile projectile;
+    [SerializeField] GameObject target;
+    public GameObject projectileObject;
+    private EnemyProjectile projectile;
+    private EnemyAI ai;
+    bool isFirstEnable = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Player");
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        if(isFirstEnable)
+        {
+            isFirstEnable = false;
+            return;
+        }
+        StartCoroutine(LongAttack());
     }
 
-    public void LongAttack()
+    IEnumerator LongAttack()
     {
-        //projectile.targetTransform
-        Instantiate(projectile);
+        Vector3 shootPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.4f, transform.localPosition.z);
+        Debug.Log("start");
+        yield return new WaitForSeconds(0.833f);
+        Instantiate(projectileObject, shootPosition, Quaternion.identity);
+        projectile=projectileObject.GetComponent<EnemyProjectile>();
+        projectile.targetTransform = target.transform;
     }
 }
