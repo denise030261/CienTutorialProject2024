@@ -9,6 +9,7 @@ public class EnemyBomb : MonoBehaviour
     [SerializeField] GameObject visualObject;
 
     bool isBomb;
+    bool isDamage = false;
     Animator animator;
     List<GameObject> Effects = new List<GameObject>();
   
@@ -59,6 +60,13 @@ public class EnemyBomb : MonoBehaviour
     {
         yield return new WaitForSeconds(Effects[1].GetComponent<ParticleSystem>().main.duration+1f);
         Destroy(gameObject);
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player") && isDamage)
+        {
+            // 공격받는 코드
+        }
     }
 }

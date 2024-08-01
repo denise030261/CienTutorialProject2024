@@ -297,6 +297,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &819175485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5417485943416989464, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+  m_PrefabInstance: {fileID: 1429418226871130532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +883,10 @@ PrefabInstance:
     - target: {fileID: 4484111761750686190, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484111761750686190, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4507022178543547693, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
       propertyPath: m_Layer
@@ -1463,8 +1472,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5417485943416989464, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1429418226871130539}
   m_SourcePrefab: {fileID: 100100000, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+--- !u!135 &1429418226871130539
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819175485}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1433060052593601790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,6 +6709,7 @@ GameObject:
   - component: {fileID: 8242412478980374117}
   - component: {fileID: 7016301088134646576}
   - component: {fileID: 8705193571235834962}
+  - component: {fileID: 8705193571235834963}
   m_Layer: 0
   m_Name: LongDistamceEnemy
   m_TagString: Untagged
@@ -17199,6 +17233,20 @@ MonoBehaviour:
   target: {fileID: 331442509}
   shoot: {fileID: 295303476}
   projectileObject: {fileID: 1888238686076217868, guid: c592311308ab03e4582caa1edf16ab93, type: 3}
+--- !u!114 &8705193571235834963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802001801016306433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 50
+  curHp: 0
 --- !u!1 &8926560763714815377
 GameObject:
   m_ObjectHideFlags: 0

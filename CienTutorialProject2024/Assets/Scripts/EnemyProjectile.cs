@@ -32,4 +32,14 @@ public class EnemyProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            // 체력 깎는 코드
+            Debug.Log("명중");
+            Destroy(gameObject);
+        }
+    }
 }

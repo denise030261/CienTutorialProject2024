@@ -91,7 +91,6 @@ public class EnemyAI : MonoBehaviour
 
             if (targetAngle <= ViewAngle * 0.5f && !isWall)
             {
-                Debug.Log("플레이어 발견!");
                 isTarget = true;
                 ChaseTarget();
             }
@@ -132,7 +131,6 @@ public class EnemyAI : MonoBehaviour
             else if(enemyLongAttack!=null) 
             {
                 isTarget = false;
-                Debug.Log("공격");
                 if(enemyLongAttack.enabled==false)
                 {
                     enemyLongAttack.enabled = true;

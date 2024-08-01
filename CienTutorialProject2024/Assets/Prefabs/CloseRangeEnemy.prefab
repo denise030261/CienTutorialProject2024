@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 977075265856172668}
   - component: {fileID: 2212184512186648361}
   - component: {fileID: 3269412955464560775}
+  - component: {fileID: 6904624191286984315}
   m_Layer: 0
   m_Name: CloseRangeEnemy
   m_TagString: Untagged
@@ -906,9 +907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ViewAngle: 70
   ViewRadius: 5
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 64
+  noMoveDist: 1
+  target: {fileID: 0}
 --- !u!95 &2212184512186648361
 Animator:
   serializedVersion: 5
@@ -944,6 +944,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectObject: {fileID: 7138615788552981750}
   visualObject: {fileID: 5629834035263921688}
+--- !u!114 &6904624191286984315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5417485943416989464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5629834035263921688
 GameObject:
   m_ObjectHideFlags: 0
