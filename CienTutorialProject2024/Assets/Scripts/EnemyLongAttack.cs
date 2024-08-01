@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyLongAttack : MonoBehaviour
 {
     [SerializeField] GameObject target;
+    [SerializeField] GameObject shoot;
     public GameObject projectileObject;
     private EnemyProjectile projectile;
     private EnemyAI ai;
@@ -28,11 +29,11 @@ public class EnemyLongAttack : MonoBehaviour
 
     IEnumerator LongAttack()
     {
-        Vector3 shootPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.4f, transform.localPosition.z);
         Debug.Log("start");
-        yield return new WaitForSeconds(0.833f);
-        Instantiate(projectileObject, shootPosition, Quaternion.identity);
+        yield return new WaitForSeconds(0.753f);
+        Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
         projectile=projectileObject.GetComponent<EnemyProjectile>();
         projectile.targetTransform = target.transform;
+        StartCoroutine(LongAttack());
     }
 }
