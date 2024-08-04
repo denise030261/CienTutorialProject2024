@@ -8,10 +8,11 @@ public class TimeRecall : MonoBehaviour
     bool isReload = true;
     ParticleSystem useEffect;
 
-    private List<Vector3> positionHistory; // 그림자오브젝트를 만들어 따라가게 만든다
+    private List<Vector3> positionHistory; 
     private float recordInterval = 0.1f; 
     private float rewindDelay = 3f; 
     private int maxHistoryLength;
+    Vector3 originPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class TimeRecall : MonoBehaviour
         positionHistory = new List<Vector3>();
         maxHistoryLength = Mathf.CeilToInt(rewindDelay / recordInterval);
         StartCoroutine(RecordPosition());
+        originPosition = transform.parent.gameObject.transform.position;
 
         useEffect = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         useEffect.Stop();
@@ -62,13 +64,17 @@ public class TimeRecall : MonoBehaviour
             useEffect.Play();
             Invoke("ReLoad", reloadTime);
             isReload = false;
-            // 3초 전의 위치로 이동
             transform.parent.gameObject.transform.position = positionHistory[maxHistoryLength - 1];
-            // 이동 후 기록 초기화 (원한다면)
             positionHistory.Clear();
+            originPosition = transform.parent.gameObject.transform.position;
         }
         else
         {
+            useEffect.Play();
+            Invoke("ReLoad", reloadTime);
+            isReload = false;
+            transform.parent.gameObject.transform.position = originPosition;
+            positionHistory.Clear();
             Debug.Log("기록된 위치가 충분하지 않습니다.");
         }
     }
