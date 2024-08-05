@@ -93,6 +93,10 @@ public class EnemyAI : MonoBehaviour
                 isTarget = true;
                 ChaseTarget();
             }
+            else if(targetAngle> ViewAngle * 0.5f)
+            {
+                ;
+            }
             else if(enemyLongAttack != null)
             {
                 if(enemyLongAttack.enabled == true)

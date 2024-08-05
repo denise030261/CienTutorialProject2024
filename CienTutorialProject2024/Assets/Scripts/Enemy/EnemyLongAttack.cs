@@ -35,5 +35,5 @@ public class EnemyLongAttack : MonoBehaviour
         projectile=projectileObject.GetComponent<EnemyProjectile>();
         projectile.targetTransform = target.transform;
         StartCoroutine(LongAttack());
-    }
+    } // rotation 방향대로 쏘게 만들기
 }
