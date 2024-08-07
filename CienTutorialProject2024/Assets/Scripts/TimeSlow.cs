@@ -2,33 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeSlow : MonoBehaviour
+public class TimeSlow : TimeSkill
 {
-    ParticleSystem useEffect;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float slowTime = 0.5f;
+    [SerializeField] float slowStateTime = 5f;
+    TimeRecall timeRecall;
+
+    private void Start()
     {
-        useEffect = transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
-        useEffect.Stop();
+        timeRecall=GetComponent<TimeRecall>();
+        reloadTime += slowStateTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) && isReload)
         {
-            useEffect.Play();
+            timeRecall.isReload = false;
+            SlowState();
+            SkillUse();
+            Invoke("OriginTime", slowStateTime);
         }
+    }
 
-        if(Input.GetKey(KeyCode.F))
-        {
-            Time.timeScale = 0.5f;
+    void SlowState()
+    {
+        Debug.Log("시간 느리게");
+        Time.timeScale = slowTime;
+    }
 
-        }
-        else if(Input.GetKeyUp(KeyCode.F)) 
-        {
-            Time.timeScale = 1f;
-            useEffect.Stop();
-        }
+    void OriginTime()
+    {
+        timeRecall.isReload = true;
+        Time.timeScale = 1f;
+        useEffect.Stop();
     }
 }

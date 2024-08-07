@@ -70,7 +70,11 @@ public class EnemyAI : MonoBehaviour
 
         Collider[] Targets = Physics.OverlapSphere(transform.position, ViewRadius, targetMask);
 
-        if (Targets.Length == 0) return;
+        if (Targets.Length == 0)
+        {
+            animator.SetBool("isWalk", false);
+            return;
+        }
         foreach (Collider targetCollider in Targets)
         {
             Vector3 targetPos = targetCollider.transform.position;
@@ -95,7 +99,8 @@ public class EnemyAI : MonoBehaviour
             }
             else if(targetAngle> ViewAngle * 0.5f)
             {
-                ;
+                nav.SetDestination(transform.position);
+                animator.SetBool("isWalk", false);
             }
             else if(enemyLongAttack != null)
             {

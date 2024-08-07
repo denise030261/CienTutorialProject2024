@@ -360,6 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadTime: 3
+  useEffect: {fileID: 1003260424}
+  isReload: 1
 --- !u!114 &875285952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +374,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39844e5b20974f34ba592c2a61e96b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadTime: 10
+  useEffect: {fileID: 1608611263}
+  isReload: 1
+  slowTime: 0.5
+  slowStateTime: 5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +503,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &990660893
 BoxCollider:
@@ -584,6 +591,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1003260424 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3891973445508218817, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+  m_PrefabInstance: {fileID: 1086095167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1063221446
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +779,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+--- !u!198 &1608611263 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6642199199589531581, guid: 354b6251e950209409c75ab984acf000, type: 3}
+  m_PrefabInstance: {fileID: 1989453917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1955651537
 PrefabInstance:
   m_ObjectHideFlags: 0
