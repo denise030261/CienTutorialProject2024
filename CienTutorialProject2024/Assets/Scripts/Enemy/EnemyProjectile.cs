@@ -7,19 +7,15 @@ public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] float dist = 2f;
     [SerializeField] float speed = 2f;
-    public Transform targetTransform;
 
-    Vector3 targetPos;
-    Vector3 targetDir;
+    public Vector3 targetDir;
     Vector3 originPos;
 
     // Start is called before the first frame update
     void Start()
     {
         originPos = transform.position;
-        targetPos = targetTransform.position;
-        targetPos.y=transform.position.y;
-        targetDir = (targetPos - transform.position).normalized;
+        Debug.Log(targetDir);
     }
 
     // Update is called once per frame

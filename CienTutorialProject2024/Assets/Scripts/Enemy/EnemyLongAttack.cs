@@ -10,11 +10,17 @@ public class EnemyLongAttack : MonoBehaviour
     private EnemyProjectile projectile;
     private EnemyAI ai;
     bool isFirstEnable = true;
+    [Range(0f, 360f)] float ViewAngle;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        ViewAngle=transform.eulerAngles.y;
     }
 
     private void OnEnable()
@@ -29,11 +35,11 @@ public class EnemyLongAttack : MonoBehaviour
 
     IEnumerator LongAttack()
     {
-        Debug.Log("start");
+        Debug.Log(ViewAngle);
         yield return new WaitForSeconds(0.753f);
         Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
         projectile=projectileObject.GetComponent<EnemyProjectile>();
-        projectile.targetTransform = target.transform;
-        StartCoroutine(LongAttack());
+        projectile.targetDir = transform.forward;
+        this.enabled = false;
     } // rotation 방향대로 쏘게 만들기
 }

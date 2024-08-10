@@ -124,6 +124,7 @@ public class EnemyAI : MonoBehaviour
         {
             nav.SetDestination(target.transform.position);
             animator.SetBool("isWalk", true);
+            nav.autoBraking = false; 
         }
         else if (playerDist < noMoveDist && isTarget)
         {
@@ -149,6 +150,7 @@ public class EnemyAI : MonoBehaviour
         {
             nav.SetDestination(transform.position);
             animator.SetBool("isWalk", false);
+            nav.autoBraking = true;
         }
     }
 }
