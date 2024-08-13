@@ -15,7 +15,6 @@ public class EnemyProjectile : MonoBehaviour
     void Start()
     {
         originPos = transform.position;
-        Debug.Log(targetDir);
     }
 
     // Update is called once per frame

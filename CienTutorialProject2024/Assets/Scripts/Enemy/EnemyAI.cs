@@ -101,6 +101,7 @@ public class EnemyAI : MonoBehaviour
             {
                 nav.SetDestination(transform.position);
                 animator.SetBool("isWalk", false);
+                animator.SetBool("isAttack", false);
             }
             else if(enemyLongAttack != null)
             {
@@ -116,23 +117,31 @@ public class EnemyAI : MonoBehaviour
     {
         playerDist = Vector3.Distance(transform.position, target.transform.position);
 
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
         if (playerDist >= noMoveDist && isTarget)
         {
-            nav.SetDestination(target.transform.position);
+            Debug.Log("추적");
             animator.SetBool("isWalk", true);
-            nav.autoBraking = false; 
+            animator.SetBool("isAttack", false);
+            nav.SetDestination(target.transform.position);
+            MoveRotation();
+            nav.autoBraking = false;
+            if (enemyLongAttack != null)
+            {
+                if (enemyLongAttack.enabled == true)
+                {
+                    enemyLongAttack.enabled = false;
+                }
+            }
         }
         else if (playerDist < noMoveDist && isTarget)
         {
+            Debug.Log("공격");
             animator.SetBool("isAttack", true);
             animator.SetBool("isWalk", false);
             nav.SetDestination(transform.position);
-            
-            if(enemyBomb!=null)
+            MoveRotation();
+
+            if (enemyBomb!=null)
             {
                 enemyBomb.Bomb();
                 isTarget = false;
@@ -148,9 +157,18 @@ public class EnemyAI : MonoBehaviour
         }
         else if(!isTarget)
         {
+            Debug.Log("목표를 찾지 못함");
             nav.SetDestination(transform.position);
             animator.SetBool("isWalk", false);
+            animator.SetBool("isAttack", false);
             nav.autoBraking = true;
         }
+    }
+
+    void MoveRotation()
+    {
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 }

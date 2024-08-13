@@ -15,7 +15,7 @@ public class EnemyLongAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(LongAttack());
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class EnemyLongAttack : MonoBehaviour
 
     IEnumerator LongAttack()
     {
-        Debug.Log(ViewAngle);
+        Debug.Log("น฿ป็");
         yield return new WaitForSeconds(0.753f);
         Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
         projectile=projectileObject.GetComponent<EnemyProjectile>();
