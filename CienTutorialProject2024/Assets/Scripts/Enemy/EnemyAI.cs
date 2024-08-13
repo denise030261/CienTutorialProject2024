@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     Animator animator;
     LayerMask targetMask;
     float playerDist;
-    bool isTarget;
+    public bool isTarget;
     bool isWall = false;
     EnemyBomb enemyBomb = null;
     EnemyLongAttack enemyLongAttack = null;
@@ -94,6 +94,7 @@ public class EnemyAI : MonoBehaviour
 
             if (targetAngle <= ViewAngle * 0.5f && !isWall)
             {
+                Debug.Log("타겟 확인");
                 isTarget = true;
                 ChaseTarget();
             }
@@ -102,13 +103,6 @@ public class EnemyAI : MonoBehaviour
                 nav.SetDestination(transform.position);
                 animator.SetBool("isWalk", false);
                 animator.SetBool("isAttack", false);
-            }
-            else if(enemyLongAttack != null)
-            {
-                if(enemyLongAttack.enabled == true)
-                {
-                    enemyLongAttack.enabled = false;
-                }
             }
         }
     }
@@ -125,50 +119,57 @@ public class EnemyAI : MonoBehaviour
             nav.SetDestination(target.transform.position);
             MoveRotation();
             nav.autoBraking = false;
-            if (enemyLongAttack != null)
-            {
-                if (enemyLongAttack.enabled == true)
-                {
-                    enemyLongAttack.enabled = false;
-                }
-            }
+            enemyLongAttack.isDist = false;
         }
         else if (playerDist < noMoveDist && isTarget)
         {
-            Debug.Log("공격");
-            animator.SetBool("isAttack", true);
-            animator.SetBool("isWalk", false);
-            nav.SetDestination(transform.position);
-            MoveRotation();
-
             if (enemyBomb!=null)
             {
+                EnemyAttackAnimation();
+                MoveRotation();
                 enemyBomb.Bomb();
-                isTarget = false;
             }
             else if(enemyLongAttack!=null) 
             {
-                isTarget = false;
-                if(enemyLongAttack.enabled==false)
+                enemyLongAttack.isDist = true;
+
+                if (enemyLongAttack.isReload && !enemyLongAttack.isShoot)
                 {
-                    enemyLongAttack.enabled = true;
+                    enemyLongAttack.isReload = false;
+                    enemyLongAttack.isShoot = true;
+                    StartCoroutine(enemyLongAttack.LongAttack());
+                    EnemyAttackAnimation();
+                }
+                else if(!enemyLongAttack.isReload && !enemyLongAttack.isShoot)
+                {
+                    MoveRotation();
+                    animator.SetBool("isWalk", true);
+                    animator.SetBool("isAttack", false);
                 }
             }
+            isTarget = false;
         }
         else if(!isTarget)
         {
-            Debug.Log("목표를 찾지 못함");
             nav.SetDestination(transform.position);
             animator.SetBool("isWalk", false);
             animator.SetBool("isAttack", false);
             nav.autoBraking = true;
+            enemyLongAttack.isDist = false;
         }
     }
 
-    void MoveRotation()
+    public void MoveRotation()
     {
         Vector3 direction = (target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * 100f);
+    }
+
+    void EnemyAttackAnimation()
+    {
+        animator.SetBool("isAttack", true);
+        animator.SetBool("isWalk", false);
+        nav.SetDestination(transform.position);
     }
 }

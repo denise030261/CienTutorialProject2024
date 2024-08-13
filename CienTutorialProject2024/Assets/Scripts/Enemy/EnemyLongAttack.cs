@@ -6,40 +6,50 @@ public class EnemyLongAttack : MonoBehaviour
 {
     [SerializeField] GameObject target;
     [SerializeField] GameObject shoot;
+    [SerializeField] float reloadTime = 1f;
     public GameObject projectileObject;
     private EnemyProjectile projectile;
     private EnemyAI ai;
-    bool isFirstEnable = true;
-    [Range(0f, 360f)] float ViewAngle;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool isReload = true;
+    public bool isDist = false;
+    public bool isShoot = false;
+    public Vector3 shootRotation;
+
+    private void Start()
     {
-        StartCoroutine(LongAttack());
+        ai = GetComponent<EnemyAI>();    
     }
 
     private void Update()
     {
-        ViewAngle=transform.eulerAngles.y;
+        Debug.DrawLine(transform.position, target.transform.position, Color.red);
     }
 
-    private void OnEnable()
-    {
-        if(isFirstEnable)
-        {
-            isFirstEnable = false;
-            return;
-        }
-        StartCoroutine(LongAttack());
-    }
-
-    IEnumerator LongAttack()
+    public IEnumerator LongAttack()
     {
         Debug.Log("발사");
-        yield return new WaitForSeconds(0.753f);
-        Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
-        projectile=projectileObject.GetComponent<EnemyProjectile>();
-        projectile.targetDir = transform.forward;
-        this.enabled = false;
-    } // rotation 방향대로 쏘게 만들기
+
+        // 타겟을 향한 방향 계산
+        Vector3 direction = target.transform.position - transform.position;
+        Vector3 shootRotation = direction.normalized;
+
+        // 총 쏘는 애니메이션 대기 시간
+        yield return new WaitForSeconds(0.833f);
+
+        // 발사체 생성 및 회전 방향 설정
+        GameObject projectileInstance = Instantiate(projectileObject, shoot.transform.position, Quaternion.LookRotation(shootRotation));
+
+        // 발사체의 방향 설정
+        projectile = projectileInstance.GetComponent<EnemyProjectile>();
+        projectile.targetDir = shootRotation;
+
+        Debug.Log(projectile.targetDir);
+
+        isShoot = false;
+
+        // 재장전 대기 시간
+        yield return new WaitForSeconds(reloadTime);
+        isReload = true;
+    }
 }
