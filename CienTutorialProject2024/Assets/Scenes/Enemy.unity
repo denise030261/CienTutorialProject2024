@@ -17501,7 +17501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 331442509}
   shoot: {fileID: 295303476}
-  reloadTime: 3
+  reloadTime: 0.5
   projectileObject: {fileID: 1888238686076217868, guid: c592311308ab03e4582caa1edf16ab93, type: 3}
   isReload: 1
   isDist: 0

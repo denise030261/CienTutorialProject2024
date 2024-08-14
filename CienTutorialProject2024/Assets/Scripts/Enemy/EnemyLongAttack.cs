@@ -9,17 +9,11 @@ public class EnemyLongAttack : MonoBehaviour
     [SerializeField] float reloadTime = 1f;
     public GameObject projectileObject;
     private EnemyProjectile projectile;
-    private EnemyAI ai;
 
     public bool isReload = true;
     public bool isDist = false;
     public bool isShoot = false;
     public Vector3 shootRotation;
-
-    private void Start()
-    {
-        ai = GetComponent<EnemyAI>();    
-    }
 
     private void Update()
     {
@@ -37,10 +31,8 @@ public class EnemyLongAttack : MonoBehaviour
         // 총 쏘는 애니메이션 대기 시간
         yield return new WaitForSeconds(0.833f);
 
-        // 발사체 생성 및 회전 방향 설정
         GameObject projectileInstance = Instantiate(projectileObject, shoot.transform.position, Quaternion.LookRotation(shootRotation));
 
-        // 발사체의 방향 설정
         projectile = projectileInstance.GetComponent<EnemyProjectile>();
         projectile.targetDir = shootRotation;
 
