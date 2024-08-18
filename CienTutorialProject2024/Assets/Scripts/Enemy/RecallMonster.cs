@@ -8,7 +8,7 @@ public class RecallMonster : MonoBehaviour
     [SerializeField] List<GameObject> enemies = new List<GameObject>();
     [SerializeField] GameObject recallEffect;
     [SerializeField] GameObject recallingEffect;
-    [SerializeField] GameObject recallField;
+    [SerializeField] GameObject recallFields;
     Animator animator;
 
 
@@ -23,21 +23,32 @@ public class RecallMonster : MonoBehaviour
 
     void RecallingMonster()
     {
-        if(recallField!=null)
+        if(recallFields != null)
         {
-            Vector3 recallPosition = new Vector3(recallField.transform.position.x + Random.Range(-recallField.transform.localScale.x / 2, recallField.transform.localScale.x / 2),
-                recallField.transform.position.y + recallField.transform.localScale.y,
-                recallField.transform.position.z + Random.Range(-recallField.transform.localScale.z / 2, recallField.transform.localScale.z / 2));
-            animator.SetBool("recallMonster", true);
-            Invoke("OnAnimationEnd", 2.33f);
-            Instantiate(enemies[Random.Range(0, 2)], recallPosition, Quaternion.identity);
-            Instantiate(recallEffect, recallPosition, Quaternion.identity);
-            Invoke("RecallingMonster", recallTime);
+            for(int i=0;i< recallFields.transform.childCount;i++)
+            {
+                GameObject field = recallFields.transform.GetChild(i).gameObject;
+                if(field.transform.childCount == 0)
+                {
+                    Debug.Log(field.transform.position);
+                    RecallField(field.transform.position);
+                    break;
+                }
+            }
         }
         else
         {
             Debug.Log("필드를 선정하지 않았습니다");
         }
+    }
+
+    void RecallField(Vector3 recallPosition)
+    {
+        animator.SetBool("recallMonster", true);
+        Invoke("OnAnimationEnd", 2.33f);
+        Instantiate(enemies[Random.Range(0, 2)], recallPosition, Quaternion.identity);
+        Instantiate(recallEffect, recallPosition, Quaternion.identity);
+        Invoke("RecallingMonster", recallTime);
     }
 
     public void OnAnimationStart()
