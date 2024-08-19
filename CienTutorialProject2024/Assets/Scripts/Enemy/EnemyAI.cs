@@ -42,7 +42,6 @@ public class EnemyAI : MonoBehaviour
     {
         isTarget = false;
         ViewOfField();
-
         ViewOfFieldDebug();
     }
 
@@ -116,18 +115,25 @@ public class EnemyAI : MonoBehaviour
     {
         playerDist = Vector3.Distance(transform.position, target.transform.position);
 
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
         if (playerDist >= noMoveDist && isTarget)
         {
-            nav.SetDestination(target.transform.position);
-            animator.SetBool("isWalk", true);
-            nav.autoBraking = false; 
+            bool isAttack = animator.GetBool("isAttack");
+            if (!animator.GetBool("isAttack"))
+            {
+                nav.SetDestination(target.transform.position);
+                animator.SetBool("isWalk", true);
+                nav.autoBraking = false;
+            }
+            else
+            {
+                ChaseRotation();
+                animator.SetBool("isWalk", false);
+                nav.SetDestination(transform.position);
+            }
         }
         else if (playerDist < noMoveDist && isTarget)
         {
+            ChaseRotation();
             animator.SetBool("isAttack", true);
             animator.SetBool("isWalk", false);
             nav.SetDestination(transform.position);
@@ -136,6 +142,7 @@ public class EnemyAI : MonoBehaviour
             {
                 enemyBomb.Bomb();
                 isTarget = false;
+                this.enabled = false;
             }
             else if(enemyLongAttack!=null) 
             {
@@ -148,9 +155,29 @@ public class EnemyAI : MonoBehaviour
         }
         else if(!isTarget)
         {
+            ChaseRotation();
             nav.SetDestination(transform.position);
             animator.SetBool("isWalk", false);
             nav.autoBraking = true;
         }
+    }
+
+    void ChaseRotation()
+    {
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    void OnDisable()
+    {
+        if (nav != null)
+        {
+            nav.updateRotation = false;
+        } // 자동 회전 끄기
+
+        Quaternion currentRotation = transform.rotation;
+        transform.rotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0f);
+        // 회전 상태 고정
     }
 }

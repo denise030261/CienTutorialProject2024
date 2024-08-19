@@ -7,18 +7,15 @@ public class EnemyBomb : MonoBehaviour
 {
     [SerializeField] GameObject effectObject;
     [SerializeField] GameObject visualObject;
+    [SerializeField] float bombTime = 1.0f;
 
-    bool isBomb;
     bool isDamage = false;
-    Animator animator;
     List<GameObject> Effects = new List<GameObject>();
   
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-
         for (int i = 0; i < effectObject.transform.childCount; i++) 
         {
             Effects.Add(effectObject.transform.GetChild(i).gameObject);
@@ -28,22 +25,8 @@ public class EnemyBomb : MonoBehaviour
 
     public void Bomb()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         Effects[0].SetActive(true);
-
-        // Bomb 상태가 활성화된 경우
-        if (stateInfo.IsName("Bomb"))
-        {
-            isBomb = true;
-        }
-        if (isBomb)
-        {
-            // Bomb 상태에서 다른 상태로 전환된 경우
-            isBomb = false;
-
-            // Bomb 상태가 종료되었으므로 오브젝트 제거
-            SelfDestructEnd();
-        }
+        Invoke("SelfDestructEnd", bombTime);
     }
 
     void SelfDestructEnd()
