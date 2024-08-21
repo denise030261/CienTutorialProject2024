@@ -62,8 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\ArtResourses\Script\Player Akane.cs" />
     <Compile Include="Assets\ArtResourses\Script\CameraFollow.cs" />
+    <Compile Include="Assets\ArtResourses\Script\Weapon.cs" />
     <Compile Include="Assets\ArtResourses\Character\Player\DemoScene\Scripts\Emotions.cs" />
     <Compile Include="Assets\ArtResourses\Character\Player\DemoScene\Scripts\Akane_CharacterController.cs" />
+    <Compile Include="Assets\ArtResourses\Script\Bullet.cs" />
+    <Compile Include="Assets\ArtResourses\Script\item.cs" />
     <Compile Include="Assets\ArtResourses\Character\Player\DemoScene\Scripts\MyLightSc.cs" />
     <Compile Include="Assets\ArtResourses\Character\Player\DemoScene\Scripts\Akane_CameraScript.cs" />
   </ItemGroup>

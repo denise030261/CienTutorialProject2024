@@ -356,8 +356,11 @@
 "Assets/ArtResourses/Character/Player/DemoScene/Scripts/Akane_CharacterController.cs"
 "Assets/ArtResourses/Character/Player/DemoScene/Scripts/Emotions.cs"
 "Assets/ArtResourses/Character/Player/DemoScene/Scripts/MyLightSc.cs"
+"Assets/ArtResourses/Script/Bullet.cs"
 "Assets/ArtResourses/Script/CameraFollow.cs"
+"Assets/ArtResourses/Script/item.cs"
 "Assets/ArtResourses/Script/Player Akane.cs"
+"Assets/ArtResourses/Script/Weapon.cs"
 -langversion:9.0
 /deterministic
 /optimize+
