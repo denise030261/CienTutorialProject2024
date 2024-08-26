@@ -31,7 +31,7 @@ public class EnemyParabolaAttack : MonoBehaviour
         startPoint = gameObject.transform;
         animator = GetComponent<Animator>();
         particleSystem= particleObject.GetComponent<ParticleSystem>();
-        Invoke("StopParticle", 0.5f);
+        Invoke("StopParticle", 1f);
     }
 
 

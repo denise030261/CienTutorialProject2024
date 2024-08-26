@@ -65,7 +65,7 @@ public class BossStageCamera : MonoBehaviour
             else
             {
                 Vector3 currentPosition = AllSceneCamera.transform.position;
-                currentPosition.y += Time.deltaTime * cameraMoveSpeed*2;
+                currentPosition.y += Time.deltaTime * cameraMoveSpeed*3;
                 AllSceneCamera.transform.position = currentPosition;
             }
         }

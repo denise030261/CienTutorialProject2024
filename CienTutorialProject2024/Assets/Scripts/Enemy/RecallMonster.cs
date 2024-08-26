@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecallMonster : MonoBehaviour
 {
     [SerializeField] float recallTime = 10f;
-    [SerializeField] List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] GameObject Enemy;
     [SerializeField] GameObject recallEffect;
     [SerializeField] GameObject recallingEffect;
     [SerializeField] GameObject recallFields;
@@ -46,7 +46,7 @@ public class RecallMonster : MonoBehaviour
     {
         animator.SetBool("recallMonster", true);
         Invoke("OnAnimationEnd", 2.33f);
-        Instantiate(enemies[Random.Range(0, 2)], recallPosition, Quaternion.identity);
+        Instantiate(Enemy, recallPosition, Quaternion.identity);
         Instantiate(recallEffect, recallPosition, Quaternion.identity);
         Invoke("RecallingMonster", recallTime);
     }
@@ -62,22 +62,5 @@ public class RecallMonster : MonoBehaviour
         animator.SetBool("recallMonster", false);
         recallingEffect.SetActive(false);
     }
-
-    /*void RecallingMonster()
-    {
-        if (recallField != null)
-        {
-            Vector3 recallPosition = new Vector3(recallField.transform.position.x + Random.Range(-recallField.transform.localScale.x / 2, recallField.transform.localScale.x / 2),
-                recallField.transform.position.y + recallField.transform.localScale.y,
-                recallField.transform.position.z + Random.Range(-recallField.transform.localScale.z / 2, recallField.transform.localScale.z / 2));
-            animator.SetBool("recallMonster", true);
-            Instantiate(enemies[Random.Range(0, 2)], recallPosition, Quaternion.identity);
-            Invoke("RecallingMonster", recallTime);
-        }
-        else
-        {
-            Debug.Log("X");
-        }
-    }*/
 
 }

@@ -2864,7 +2864,6 @@ GameObject:
   - component: {fileID: 891242866319723375}
   - component: {fileID: 8477876334130935885}
   - component: {fileID: 5734579662053140159}
-  - component: {fileID: 184307907417364956}
   - component: {fileID: 5987127825586452298}
   m_Layer: 3
   m_Name: Boss8
@@ -2963,20 +2962,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &184307907417364956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6995389654976968035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 50
-  curHp: 0
 --- !u!114 &5987127825586452298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,6 +2976,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recallTime: 10
   enemies: []
+  recallEffect: {fileID: 0}
+  recallingEffect: {fileID: 0}
+  recallFields: []
 --- !u!1 &7173665409702191559
 GameObject:
   m_ObjectHideFlags: 0
