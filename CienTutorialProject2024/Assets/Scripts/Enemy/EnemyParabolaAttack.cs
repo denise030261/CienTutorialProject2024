@@ -12,18 +12,23 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     public float reloadTime;
     private float reloadingTime=0f;
-    private Transform startPoint; // 발사 위치
+    [SerializeField]  private Transform startPoint; // 발사 위치
     private GameObject target;
     private Transform targetPoint; // 목표 위치
     public GameObject projectilePrefab; // 발사할 객체의 프리팹
     private float firingAngle = 30f;
     private float gravity = 9.8f;
+    Animator animator;
 
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
+        targetPoint = target.transform;
+        startPoint = gameObject.transform;
+
         waist = FindDeepChild(transform, "Waist");
         head = FindDeepChild(transform, "Head");
+        animator = GetComponent<Animator>();
     }
 
 
@@ -43,7 +48,8 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     void Update()
     {
-        DetectPlayer();
+        //DetectPlayer();
+
         reloadingTime += Time.deltaTime;
         if (reloadingTime>=reloadTime)
         {
@@ -54,6 +60,7 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     public IEnumerator SimulateProjectile()
     {
+        animator.SetBool("isAttack", true);
         // 발사할 객체 생성
         GameObject projectile = Instantiate(projectilePrefab, startPoint.position, Quaternion.identity);
 
@@ -84,6 +91,7 @@ public class EnemyParabolaAttack : MonoBehaviour
 
         // 발사한 객체 파괴
         Destroy(projectile);
+        animator.SetBool("isAttack", false);
     }
 
     void DetectPlayer()
