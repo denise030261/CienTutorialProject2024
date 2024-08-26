@@ -103,10 +103,7 @@ public class EnemyAI : MonoBehaviour
             }
             else if(enemyLongAttack != null)
             {
-                if(enemyLongAttack.enabled == true)
-                {
-                    enemyLongAttack.enabled = false;
-                }
+                enemyLongAttack.isShoot = false;
             }
         }
     }
@@ -147,10 +144,7 @@ public class EnemyAI : MonoBehaviour
             else if(enemyLongAttack!=null) 
             {
                 isTarget = false;
-                if(enemyLongAttack.enabled==false)
-                {
-                    enemyLongAttack.enabled = true;
-                }
+                enemyLongAttack.isShoot = true;
             }
         }
         else if(!isTarget)

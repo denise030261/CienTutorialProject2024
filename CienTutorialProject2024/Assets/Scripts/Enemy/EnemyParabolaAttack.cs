@@ -9,16 +9,20 @@ public class EnemyParabolaAttack : MonoBehaviour
     [SerializeField]  private GameObject head;
     [SerializeField]  private GameObject waist;
     [SerializeField] float detectionRadius = 10f;
+    [SerializeField] GameObject projectilePrefab; // 발사할 객체의 프리팹
+    [SerializeField] float gravity = 9.8f;
+    [SerializeField] GameObject particleObject;
     public float reloadTime;
 
     private float reloadingTime=0f;
+    bool readyShoot = false; // 발사 준비
     private Transform startPoint; // 발사 위치
     private GameObject target;
     private Transform targetPoint; // 목표 위치
-    public GameObject projectilePrefab; // 발사할 객체의 프리팹
     private float firingAngle = 30f;
-    private float gravity = 9.8f;
     Animator animator;
+
+    ParticleSystem particleSystem;
 
     private void Start()
     {
@@ -26,6 +30,8 @@ public class EnemyParabolaAttack : MonoBehaviour
         targetPoint = target.transform;
         startPoint = gameObject.transform;
         animator = GetComponent<Animator>();
+        particleSystem= particleObject.GetComponent<ParticleSystem>();
+        Invoke("StopParticle", 0.5f);
     }
 
 
@@ -45,22 +51,31 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     void Update()
     {
-        DetectPlayer();
-
         reloadingTime += Time.deltaTime;
-        if (reloadingTime>=reloadTime)
+        if (reloadingTime>=reloadTime && readyShoot)
         {
             reloadingTime = 0f;
             StartCoroutine(SimulateProjectile());
+            readyShoot = false;
         }
-        else if(reloadingTime >= (reloadTime-0.767f))
+        else if(reloadingTime >= (reloadTime-0.767f) && DetectPlayer())
         {
             animator.SetBool("isAttack", true);
+            readyShoot = true;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(!readyShoot)
+        {
+            ViewOfField();
         }
     }
 
     public IEnumerator SimulateProjectile()
     {
+        yield return new WaitForSeconds(0.767f);
         Vector3 shootPosition= new Vector3(startPoint.position.x + 0.5f, startPoint.position.y + 1.5f, startPoint.position.z);
         animator.SetBool("isAttack", false);
         // 발사할 객체 생성
@@ -95,7 +110,7 @@ public class EnemyParabolaAttack : MonoBehaviour
         Destroy(projectile);
     }
 
-    void DetectPlayer()
+    bool DetectPlayer()
     {
         Vector3 targetWaistDir = (target.transform.position - transform.position).normalized;
 
@@ -107,16 +122,26 @@ public class EnemyParabolaAttack : MonoBehaviour
             {
                 target = hit.gameObject;
                 ViewOfField();
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
     void ViewOfField()
     {
         Vector3 targetWaistDir = (target.transform.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(targetWaistDir);
+        waist.transform.rotation = Quaternion.LookRotation(targetWaistDir);
+
+        Vector3 targetHeadDir = (target.transform.position - transform.position).normalized;
+        head.transform.rotation = Quaternion.LookRotation(targetHeadDir);
 
         Debug.DrawLine(transform.position, target.transform.position, Color.blue);
+    }
+
+    void StopParticle()
+    {
+        particleSystem.Pause();
     }
 }

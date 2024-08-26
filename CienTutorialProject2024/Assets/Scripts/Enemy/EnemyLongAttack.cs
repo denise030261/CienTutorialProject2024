@@ -8,29 +8,25 @@ public class EnemyLongAttack : MonoBehaviour
     [SerializeField] GameObject shoot;
     public GameObject projectileObject;
     private EnemyProjectile projectile;
-    private EnemyAI ai;
-    bool isFirstEnable = true;
+    public bool isShoot = false;
+    public bool readyShoot = true;
     [Range(0f, 360f)] float ViewAngle;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
         ViewAngle=transform.eulerAngles.y;
-    }
-
-    private void OnEnable()
-    {
-        if(isFirstEnable)
+        if(isShoot && readyShoot)
         {
-            isFirstEnable = false;
-            return;
+            isShoot = false;
+            readyShoot = false;
+            StartCoroutine(LongAttack());
         }
-        StartCoroutine(LongAttack());
     }
 
     IEnumerator LongAttack()
@@ -40,6 +36,6 @@ public class EnemyLongAttack : MonoBehaviour
         Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
         projectile=projectileObject.GetComponent<EnemyProjectile>();
         projectile.targetDir = transform.forward;
-        this.enabled = false;
+        readyShoot = true;
     } // rotation 방향대로 쏘게 만들기
 }
