@@ -6,13 +6,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyParabolaAttack : MonoBehaviour
 {
-    private GameObject head;
-    private GameObject waist;
+    [SerializeField]  private GameObject head;
+    [SerializeField]  private GameObject waist;
     [SerializeField] float detectionRadius = 10f;
-
     public float reloadTime;
+
     private float reloadingTime=0f;
-    [SerializeField]  private Transform startPoint; // 발사 위치
+    private Transform startPoint; // 발사 위치
     private GameObject target;
     private Transform targetPoint; // 목표 위치
     public GameObject projectilePrefab; // 발사할 객체의 프리팹
@@ -25,9 +25,6 @@ public class EnemyParabolaAttack : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         targetPoint = target.transform;
         startPoint = gameObject.transform;
-
-        waist = FindDeepChild(transform, "Waist");
-        head = FindDeepChild(transform, "Head");
         animator = GetComponent<Animator>();
     }
 
@@ -48,7 +45,7 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     void Update()
     {
-        //DetectPlayer();
+        DetectPlayer();
 
         reloadingTime += Time.deltaTime;
         if (reloadingTime>=reloadTime)
@@ -56,13 +53,18 @@ public class EnemyParabolaAttack : MonoBehaviour
             reloadingTime = 0f;
             StartCoroutine(SimulateProjectile());
         }
+        else if(reloadingTime >= (reloadTime-0.767f))
+        {
+            animator.SetBool("isAttack", true);
+        }
     }
 
     public IEnumerator SimulateProjectile()
     {
-        animator.SetBool("isAttack", true);
+        Vector3 shootPosition= new Vector3(startPoint.position.x + 0.5f, startPoint.position.y + 1.5f, startPoint.position.z);
+        animator.SetBool("isAttack", false);
         // 발사할 객체 생성
-        GameObject projectile = Instantiate(projectilePrefab, startPoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, shootPosition, Quaternion.identity);
 
         // 시작점과 목표점 사이의 거리 계산
         float target_Distance = Vector3.Distance(startPoint.position, targetPoint.position);
@@ -89,9 +91,8 @@ public class EnemyParabolaAttack : MonoBehaviour
             yield return null;
         }
 
-        // 발사한 객체 파괴
+        // 무언가가 부딪히면 파괴 + 효과
         Destroy(projectile);
-        animator.SetBool("isAttack", false);
     }
 
     void DetectPlayer()
@@ -114,10 +115,7 @@ public class EnemyParabolaAttack : MonoBehaviour
     void ViewOfField()
     {
         Vector3 targetWaistDir = (target.transform.position - transform.position).normalized;
-        waist.transform.rotation = Quaternion.LookRotation(targetWaistDir);
-
-        Vector3 targetHeadDir = (target.transform.position - transform.position).normalized;
-        head.transform.rotation = Quaternion.LookRotation(targetHeadDir);
+        transform.rotation = Quaternion.LookRotation(targetWaistDir);
 
         Debug.DrawLine(transform.position, target.transform.position, Color.blue);
     }
