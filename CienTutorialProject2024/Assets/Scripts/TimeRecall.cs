@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeRecall : MonoBehaviour
+public class TimeRecall : TimeSkill
 {
-    [SerializeField] float reloadTime = 5f;
-    bool isReload = true;
-    ParticleSystem useEffect;
-
     private List<Vector3> positionHistory; 
     private float recordInterval = 0.1f; 
     private float rewindDelay = 3f; 
@@ -21,9 +17,6 @@ public class TimeRecall : MonoBehaviour
         maxHistoryLength = Mathf.CeilToInt(rewindDelay / recordInterval);
         StartCoroutine(RecordPosition());
         originPosition = transform.parent.gameObject.transform.position;
-
-        useEffect = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
-        useEffect.Stop();
     }
 
     // Update is called once per frame
@@ -31,14 +24,8 @@ public class TimeRecall : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && isReload)
         {
-
             RewindToPreviousPosition();
         }
-    }
-
-    void ReLoad()
-    {
-        isReload = true;
     }
 
     private IEnumerator RecordPosition()
@@ -61,18 +48,16 @@ public class TimeRecall : MonoBehaviour
         if (positionHistory.Count >= maxHistoryLength)
         {
             Debug.Log("사용");
-            useEffect.Play();
-            Invoke("ReLoad", reloadTime);
-            isReload = false;
+            SkillUse();
+
             transform.parent.gameObject.transform.position = positionHistory[maxHistoryLength - 1];
             positionHistory.Clear();
             originPosition = transform.parent.gameObject.transform.position;
         }
         else
         {
-            useEffect.Play();
-            Invoke("ReLoad", reloadTime);
-            isReload = false;
+            SkillUse();
+
             transform.parent.gameObject.transform.position = originPosition;
             positionHistory.Clear();
             Debug.Log("기록된 위치가 충분하지 않습니다.");

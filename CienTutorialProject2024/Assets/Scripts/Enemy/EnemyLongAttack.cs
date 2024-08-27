@@ -6,34 +6,42 @@ public class EnemyLongAttack : MonoBehaviour
 {
     [SerializeField] GameObject target;
     [SerializeField] GameObject shoot;
+    [SerializeField] float reloadTime = 1f;
     public GameObject projectileObject;
     private EnemyProjectile projectile;
-    private EnemyAI ai;
-    bool isFirstEnable = true;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool isReload = true;
+    public bool isDist = false;
+    public bool isShoot = false;
+    public Vector3 shootRotation;
+
+    private void Update()
     {
-
+        Debug.DrawLine(transform.position, target.transform.position, Color.red);
     }
 
-    private void OnEnable()
+    public IEnumerator LongAttack()
     {
-        if(isFirstEnable)
-        {
-            isFirstEnable = false;
-            return;
-        }
-        StartCoroutine(LongAttack());
-    }
+        Debug.Log("발사");
 
-    IEnumerator LongAttack()
-    {
-        Debug.Log("start");
-        yield return new WaitForSeconds(0.753f);
-        Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
-        projectile=projectileObject.GetComponent<EnemyProjectile>();
-        projectile.targetTransform = target.transform;
-        StartCoroutine(LongAttack());
+        // 타겟을 향한 방향 계산
+        Vector3 direction = target.transform.position - transform.position;
+        Vector3 shootRotation = direction.normalized;
+
+        // 총 쏘는 애니메이션 대기 시간
+        yield return new WaitForSeconds(0.833f);
+
+        GameObject projectileInstance = Instantiate(projectileObject, shoot.transform.position, Quaternion.LookRotation(shootRotation));
+
+        projectile = projectileInstance.GetComponent<EnemyProjectile>();
+        projectile.targetDir = shootRotation;
+
+        Debug.Log(projectile.targetDir);
+
+        isShoot = false;
+
+        // 재장전 대기 시간
+        yield return new WaitForSeconds(reloadTime);
+        isReload = true;
     }
 }

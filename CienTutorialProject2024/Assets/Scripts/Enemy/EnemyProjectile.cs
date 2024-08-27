@@ -5,41 +5,41 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] float dist = 2f;
-    [SerializeField] float speed = 2f;
-    public Transform targetTransform;
+    [SerializeField] float speed = 20f; 
+    [SerializeField] float maxDistance = 50f; 
+    public Vector3 targetDir;  
 
-    Vector3 targetPos;
-    Vector3 targetDir;
-    Vector3 originPos;
+    private Rigidbody rb;
+    private Vector3 originPos;  
 
-    // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         originPos = transform.position;
-        targetPos = targetTransform.position;
-        targetPos.y=transform.position.y;
-        targetDir = (targetPos - transform.position).normalized;
+        rb.velocity = targetDir.normalized * speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, originPos + targetDir * dist, speed * Time.deltaTime);
-
-        if(transform.position== originPos + targetDir * dist)
+        float traveledDistance = Vector3.Distance(originPos, transform.position);
+        if (traveledDistance >= maxDistance)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            // 체력 깎는 코드
             Debug.Log("명중");
             Destroy(gameObject);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        // 발사체가 화면 밖으로 나갔을 때 제거
+        Destroy(gameObject);
     }
 }

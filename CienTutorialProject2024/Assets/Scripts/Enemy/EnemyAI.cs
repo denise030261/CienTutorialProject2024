@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     Animator animator;
     LayerMask targetMask;
     float playerDist;
-    bool isTarget;
+    public bool isTarget;
     bool isWall = false;
     EnemyBomb enemyBomb = null;
     EnemyLongAttack enemyLongAttack = null;
@@ -70,7 +70,11 @@ public class EnemyAI : MonoBehaviour
 
         Collider[] Targets = Physics.OverlapSphere(transform.position, ViewRadius, targetMask);
 
-        if (Targets.Length == 0) return;
+        if (Targets.Length == 0)
+        {
+            animator.SetBool("isWalk", false);
+            return;
+        }
         foreach (Collider targetCollider in Targets)
         {
             Vector3 targetPos = targetCollider.transform.position;
@@ -90,15 +94,15 @@ public class EnemyAI : MonoBehaviour
 
             if (targetAngle <= ViewAngle * 0.5f && !isWall)
             {
+                Debug.Log("타겟 확인");
                 isTarget = true;
                 ChaseTarget();
             }
-            else if(enemyLongAttack != null)
+            else if(targetAngle> ViewAngle * 0.5f)
             {
-                if(enemyLongAttack.enabled == true)
-                {
-                    enemyLongAttack.enabled = false;
-                }
+                nav.SetDestination(transform.position);
+                animator.SetBool("isWalk", false);
+                animator.SetBool("isAttack", false);
             }
         }
     }
@@ -107,39 +111,65 @@ public class EnemyAI : MonoBehaviour
     {
         playerDist = Vector3.Distance(transform.position, target.transform.position);
 
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
         if (playerDist >= noMoveDist && isTarget)
         {
-            nav.SetDestination(target.transform.position);
+            Debug.Log("추적");
             animator.SetBool("isWalk", true);
+            animator.SetBool("isAttack", false);
+            nav.SetDestination(target.transform.position);
+            MoveRotation();
+            nav.autoBraking = false;
+            enemyLongAttack.isDist = false;
         }
         else if (playerDist < noMoveDist && isTarget)
         {
-            animator.SetBool("isAttack", true);
-            animator.SetBool("isWalk", false);
-            nav.SetDestination(transform.position);
-            
-            if(enemyBomb!=null)
+            if (enemyBomb!=null)
             {
+                EnemyAttackAnimation();
+                MoveRotation();
                 enemyBomb.Bomb();
-                isTarget = false;
             }
             else if(enemyLongAttack!=null) 
             {
-                isTarget = false;
-                if(enemyLongAttack.enabled==false)
+                enemyLongAttack.isDist = true;
+
+                if (enemyLongAttack.isReload && !enemyLongAttack.isShoot)
                 {
-                    enemyLongAttack.enabled = true;
+                    enemyLongAttack.isReload = false;
+                    enemyLongAttack.isShoot = true;
+                    StartCoroutine(enemyLongAttack.LongAttack());
+                    EnemyAttackAnimation();
+                }
+                else if(!enemyLongAttack.isReload && !enemyLongAttack.isShoot)
+                {
+                    MoveRotation();
+                    animator.SetBool("isWalk", true);
+                    animator.SetBool("isAttack", false);
                 }
             }
+            isTarget = false;
         }
         else if(!isTarget)
         {
             nav.SetDestination(transform.position);
             animator.SetBool("isWalk", false);
+            animator.SetBool("isAttack", false);
+            nav.autoBraking = true;
+            enemyLongAttack.isDist = false;
         }
+    }
+
+    public void MoveRotation()
+    {
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * 100f);
+    }
+
+    void EnemyAttackAnimation()
+    {
+        animator.SetBool("isAttack", true);
+        animator.SetBool("isWalk", false);
+        nav.SetDestination(transform.position);
     }
 }
