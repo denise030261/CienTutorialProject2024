@@ -327,7 +327,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3850880387918888069}
-  offset: {x: 0, y: 3.2, z: -1.6}
+  followSpeed: 100
+  sensitivity: 100
+  clampAngle: 70
+  mainCamera: {fileID: 0}
+  aimCamera: {fileID: 0}
+  dirNormalized: {x: 0, y: 0, z: 0}
+  finalDir: {x: 0, y: 0, z: 0}
+  localPosition: {x: 0, y: 0, z: 0}
+  minDistance: 0
+  finalDistance: 0
+  smoothness: 10
 --- !u!1 &990660892
 GameObject:
   m_ObjectHideFlags: 0
