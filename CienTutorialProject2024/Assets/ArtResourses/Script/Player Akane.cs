@@ -5,19 +5,9 @@ using UnityEngine;
 
 public class PlayerAkane : MonoBehaviour
 {
-    // 속도
-    public float speed;
     //플레이어 무기관련 배열 함수 2개 선언
     public GameObject[] weapons;
     public bool[] hasWeapons;
-    //움직임 좌표
-    float hAxis;
-    float vAxis;
-    
-    //점프 bool 변수
-    bool jDown;
-    //무한점프 방지 변수
-    bool isJump;
 
     //아이템 먹기
     GameObject nearObject;
@@ -37,42 +27,29 @@ public class PlayerAkane : MonoBehaviour
 
     Vector3 moveVec;
 
-    //물리효과 변수
-    Rigidbody rigid;
 
     //애니메이션
     Animator anim;
 
     void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
+        hasWeapons = new bool[3];
         anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        rigid.angularVelocity = Vector3.zero;
+
     }
     void Update()
     {
-
         GetInput();
-        Move();
-        Turn();
-        Jump();
         Swap();
         Interaction();
         Attack();
-        
     }
     void GetInput()
     {
-        hAxis = Input.GetAxisRaw("Horizontal");
-        vAxis = Input.GetAxisRaw("Vertical");
-
-        
-
-        jDown = Input.GetButtonDown("Jump");
 
         iDown = Input.GetButtonDown("Interaction");
         sDown1 = Input.GetButtonDown("Swap1");
@@ -81,32 +58,7 @@ public class PlayerAkane : MonoBehaviour
 
         fDown = Input.GetButtonDown("Fire1");
     }
-    void Move()
-    {
-        moveVec = new Vector3(hAxis, 0, vAxis).normalized;
 
-        transform.position += moveVec * speed * Time.deltaTime;
-
-        
-
-        anim.SetBool("isRun", moveVec != Vector3.zero);
-    }
-
-    void Turn()
-    {
-        transform.LookAt(transform.position + moveVec);
-    }
-
-    void Jump()
-    {
-        if (jDown && !isJump)
-        {
-            rigid.AddForce(Vector3.up * 5, ForceMode.Impulse);
-            anim.SetBool("isJump", true);
-            anim.SetTrigger("doJump");
-            isJump = true;
-        }
-    }
 
 
     void Attack()
@@ -140,7 +92,7 @@ public class PlayerAkane : MonoBehaviour
         if (sDown2) weaponIndex = 1;
         if (sDown3) weaponIndex = 2;
 
-        if ((sDown1 || sDown2 || sDown3) && !isJump)
+        if (sDown1 || sDown2 || sDown3)
         {
             if (equipWeapon != null)
                 equipWeapon.gameObject.SetActive(false);
@@ -153,10 +105,11 @@ public class PlayerAkane : MonoBehaviour
 
     void Interaction()
     {
-        if (iDown && nearObject != null && !isJump)
+        if (iDown && nearObject != null)
         {
             if (nearObject.tag == "Weapon")
             {
+                Debug.Log("get Weapon");
                 //무기를 가지고 있는지
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value;
@@ -169,14 +122,7 @@ public class PlayerAkane : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            anim.SetBool("isJump", false);
-            isJump = false;
-        }
-    }
+
 
     void OnTriggerStay(Collider other)
     {
