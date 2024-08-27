@@ -19,10 +19,9 @@ public class TimeRecall : TimeSkill
         originPosition = transform.parent.gameObject.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.E) && isReload)
+        if (Input.GetKeyDown(KeyCode.E) && isReload)
         {
             RewindToPreviousPosition();
         }
@@ -47,10 +46,10 @@ public class TimeRecall : TimeSkill
     {
         if (positionHistory.Count >= maxHistoryLength)
         {
-            Debug.Log("»ç¿ë");
             SkillUse();
 
             transform.parent.gameObject.transform.position = positionHistory[maxHistoryLength - 1];
+            Debug.Log(positionHistory[maxHistoryLength - 1]);
             positionHistory.Clear();
             originPosition = transform.parent.gameObject.transform.position;
         }
