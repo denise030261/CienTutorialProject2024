@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera _camera;
     public Camera _aimCamera;
     CharacterController _controller;
+    bool isZoom;
 
     public float speed = 5f;
     public float gravity = -9.81f;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         isHang = false;
         isHangPosition = false;
         hangDist = Vector3.zero;
+        isZoom = false;
     }
 
     // Update is called once per frame
@@ -54,12 +56,16 @@ public class PlayerMovement : MonoBehaviour
             toggleCameraRotation = true; //에임시
             _camera.enabled = false;
             _aimCamera.enabled = true;
+            isZoom = true;
+            _animator.SetBool("isZoom", true);
         }
         else
         {
             toggleCameraRotation = false; //평상시
             _camera.enabled = true;
             _aimCamera.enabled = false;
+            isZoom = false;
+            _animator.SetBool("isZoom", false);
         }
 
         InputMovement();
@@ -84,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = 0f;
             _animator.SetBool("isJump", false);
-            _animator.SetBool("isRoll", false );
         }
 
         if (!isGrounded)
@@ -107,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        _controller.Move(move * Time.deltaTime * speed);
+        _controller.Move(move * 0.01f * speed);
 
         characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
 
@@ -119,12 +124,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        playerVelocity.y += gravity * Time.deltaTime;
-        _controller.Move(playerVelocity * Time.deltaTime);
+        playerVelocity.y += gravity * 0.01f;
+        _controller.Move(playerVelocity * 0.01f);
 
 
         float percent = 0.5f * move.magnitude;
-        _animator.SetFloat("Blend", percent, 0.1f, Time.deltaTime);
+        _animator.SetFloat("Blend", percent, 0.1f, 0.01f);
 
         _animator.SetFloat("Hang Blend", h);
     }
@@ -136,14 +141,14 @@ public class PlayerMovement : MonoBehaviour
             if (toggleCameraRotation)//줌 했을 시 즉시
             {
                 Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));//카메라 방향으로 캐릭터 회전
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), 0.01f * smoothness);
             }
             else
             {
                 if (move.magnitude > 0.05f)//줌 하지 않고 움직일 시
                 {
                     characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(characterRotation), Time.deltaTime * smoothness);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(characterRotation), 0.01f * smoothness);
                 }
             }
         }
@@ -168,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     hangDist = handPosition.position - hangPosition.position;
                     Debug.Log(hangDist);
-                    //gameObject.transform.position = Vector3.Slerp(gameObject.transform.position, transform.position + delta, Time.deltaTime * smoothness);
+                    //gameObject.transform.position = Vector3.Slerp(gameObject.transform.position, transform.position + delta, 0.01f * smoothness);
                     isHang = true;
                     playerVelocity = Vector3.zero;
                     gravity = 0;
@@ -235,12 +240,5 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isRoll", false);
     }
 
-    void GoHangPosition()
-    {
-        if (isHang)
-        {
-            gameObject.transform.position = Vector3.Slerp(transform.position, transform.position - hangDist, 0.05f);
-            Debug.Log("go to hang position");
-        }
-    }
+
 }
