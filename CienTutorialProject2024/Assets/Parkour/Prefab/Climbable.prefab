@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2346975685029026720}
   - component: {fileID: 4296607359395463616}
   - component: {fileID: 3833870644181440340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Climbable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3031812572535556697}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParkourPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

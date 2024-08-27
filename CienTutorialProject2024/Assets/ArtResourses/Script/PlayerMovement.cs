@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
 
+
+
     Animator _animator;
     public Camera _camera;
     public Camera _aimCamera;
@@ -27,14 +29,21 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 playerVelocity;
     bool isGrounded;
+   
+    bool isHang;
+    bool isHangPosition;
+    Vector3 hangDist;
 
    Transform handPosition;
     void Start()
     {
-        _animator = this.GetComponent<Animator>();
-        _controller = this.GetComponent<CharacterController>();
-        handPosition = this.transform.Find("HandPoint");
 
+        _animator = gameObject.GetComponent<Animator>();
+        _controller = gameObject.GetComponent<CharacterController>();
+        handPosition = gameObject.transform.Find("HandPoint");
+        isHang = false;
+        isHangPosition = false;
+        hangDist = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -56,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         InputMovement();
         Hang();
         Roll();
+        //GoHangPosition();
     }
 
     private void LateUpdate()
@@ -74,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = 0f;
             _animator.SetBool("isJump", false);
+            _animator.SetBool("isRoll", false );
         }
 
         if (!isGrounded)
@@ -81,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("isJump", true);
         }
 
-        if(!_animator.GetBool("isHang"))
+        if(!isHang)
         {
             move = new Vector3(h, 0, v);
             speed = 5f;
@@ -91,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             move = new Vector3(h, 0, 0);
-            speed = 0.5f;
+            speed = 0.7f;
         }
 
 
@@ -122,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!_animator.GetBool("isHang"))
         {
-            if (toggleCameraRotation)
+            if (toggleCameraRotation)//줌 했을 시 즉시
             {
                 Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));//카메라 방향으로 캐릭터 회전
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
             }
             else
             {
-                if (move.magnitude > 0.05f)
+                if (move.magnitude > 0.05f)//줌 하지 않고 움직일 시
                 {
                     characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(characterRotation), Time.deltaTime * smoothness);
@@ -149,14 +160,16 @@ public class PlayerMovement : MonoBehaviour
             Transform hangPosition = hit.collider.transform.Find("ParkourPoint");
             
 
-            float distance = Vector3.Distance(hangPosition.position, handPosition.position);
+            float distance = Vector3.Distance(hangPosition.position, handPosition.position);//벽에서 잡는 곳, 손과의 거리
 
-            if (!_animator.GetBool("isHang")) 
+            if (!isHang) 
             { 
                 if (Input.GetButtonDown("Jump") && distance < 0.2f)
                 {
-                    Vector3 delta = handPosition.position - hangPosition.position;
-                    this.transform.position = Vector3.Slerp(this.transform.position, transform.position + delta, Time.deltaTime * smoothness);
+                    hangDist = handPosition.position - hangPosition.position;
+                    Debug.Log(hangDist);
+                    //gameObject.transform.position = Vector3.Slerp(gameObject.transform.position, transform.position + delta, Time.deltaTime * smoothness);
+                    isHang = true;
                     playerVelocity = Vector3.zero;
                     gravity = 0;
                     _animator.SetBool("isHang", true);
@@ -169,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     gravity = -9.81f;
                     _animator.SetBool("isHang", false);
+                    isHang = false;
                     if (Input.GetKey(KeyCode.S))
                     {
                         playerVelocity.y += Mathf.Sqrt(jumpPower * -3.0f * gravity);
@@ -219,5 +233,14 @@ public class PlayerMovement : MonoBehaviour
     public void ResetRoll()
     {
         _animator.SetBool("isRoll", false);
+    }
+
+    void GoHangPosition()
+    {
+        if (isHang)
+        {
+            gameObject.transform.position = Vector3.Slerp(transform.position, transform.position - hangDist, 0.05f);
+            Debug.Log("go to hang position");
+        }
     }
 }
