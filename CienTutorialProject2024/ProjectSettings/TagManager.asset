@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Floor
   - Wall
+  - Weapon
+  - Bullet
+  - Shield
   layers:
   - Default
   - TransparentFX
