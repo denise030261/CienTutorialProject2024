@@ -9,6 +9,8 @@ TagManager:
   - Weapon
   - Bullet
   - Shield
+  - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX
