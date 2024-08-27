@@ -846,6 +846,7 @@ GameObject:
   - component: {fileID: 2212184512186648361}
   - component: {fileID: 3269412955464560775}
   - component: {fileID: 6904624191286984315}
+  - component: {fileID: 3196674347573157438}
   m_Layer: 0
   m_Name: CloseRangeEnemy
   m_TagString: Untagged
@@ -959,6 +960,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 50
   curHp: 0
+--- !u!135 &3196674347573157438
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5417485943416989464}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5629834035263921688
 GameObject:
   m_ObjectHideFlags: 0

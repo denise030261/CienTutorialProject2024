@@ -18,16 +18,17 @@ public class EnemyModel : MonoBehaviour
         curHp = maxHp;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet")) 
         {
-            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             curHp -= bullet.damage;
-            if (curHp<=0f)
+            if (curHp <= 0f)
             {
                 Destroy(gameObject);
             }
         }
     }
+
 }
