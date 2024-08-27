@@ -84,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = 0f;
             _animator.SetBool("isJump", false);
-            _animator.SetBool("isRoll", false );
         }
 
         if (!isGrounded)
