@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CienTutorialProject2024/Assets/ArtResourses/Animation/Player/Camera.prefab.meta
 guid: 5d8ef0e98619c054bbd57fb9ad3810c8
 PrefabImporter:
+========
+guid: ae3a8b081d254904e8470a38221de88e
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> CharacterMovingControl:CienTutorialProject2024/Assets/UI iMAGE Sprite.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
