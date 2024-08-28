@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyModel : MonoBehaviour
 {
-    public float maxHp = 50;
-    public float curHp;
+    public int maxHp = 50;
+    public int curHp;
 
     // Start is called before the first frame update
     private void Awake()
@@ -17,4 +17,18 @@ public class EnemyModel : MonoBehaviour
     {
         curHp = maxHp;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet")) 
+        {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            curHp -= bullet.damage;
+            if (curHp <= 0f)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
 }
