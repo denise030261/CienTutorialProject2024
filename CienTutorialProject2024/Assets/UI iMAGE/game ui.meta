@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CienTutorialProject2024/Assets/Scenes/stage2.unity.meta
+guid: c08b4fb812f3f594cbe99177b32a0157
+========
 guid: fd06a1120109f8f41a5952696b24a5f7
 folderAsset: yes
+>>>>>>>> main:CienTutorialProject2024/Assets/UI iMAGE/game ui.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
