@@ -239,6 +239,4 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("isRoll", false);
     }
-
-
 }

@@ -4,55 +4,37 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] float disappearTime=5f;
-    ParticleSystem disappearParticleSystem;
-    bool disappearing = false; // ¾ËÆÄ°ª
+    [SerializeField] float disappearSpeed=5f;
+    bool disappearing = false; // ì•ŒíŒŒê°’
+    Material platformMaterial;
 
     // Start is called before the first frame update
     void Start()
     {
-        disappearParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
-        disappearParticleSystem.Pause();
+        platformMaterial = GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!disappearParticleSystem.IsAlive())
-        {
-            Destroy(gameObject);
-        }
         if(disappearing) 
         {
-            Renderer renderer = gameObject.GetComponent<Renderer>();
-            if (renderer != null)
+            if (platformMaterial != null)
             {
-                Color color = renderer.material.color;
-                color.a = 0f;  // ¿ÏÀüÈ÷ Åõ¸íÇÏ°Ô ¼³Á¤
-                renderer.material.color = color;
-            }
+                Color curColor = platformMaterial.color;
+                platformMaterial.color = 
+                    new Color(curColor.r, curColor.g, curColor.b, curColor.a-Time.deltaTime*disappearSpeed);
 
-            // ¿ÀºêÁ§Æ®¸¦ ¼­¼­È÷ ³ªÅ¸³ª°Ô ÇÏ·Á¸é
-            if (renderer != null)
-            {
-                Color color = renderer.material.color;
-                color.a = 1f;  // ¿ÏÀüÈ÷ ºÒÅõ¸íÇÏ°Ô ¼³Á¤
-                renderer.material.color = color;
+                if(platformMaterial.color.a<=0f)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Disappear()
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Invoke("StartDestroy", disappearTime);
-            disappearing = true;
-        }
-    }
-
-    void StartDestroy()
-    {
-        disappearParticleSystem.Play();
+        disappearing = true;
     }
 }

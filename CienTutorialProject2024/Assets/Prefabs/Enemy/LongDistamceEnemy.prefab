@@ -15570,7 +15570,7 @@ GameObject:
   - component: {fileID: 2030149608024886802}
   m_Layer: 0
   m_Name: LongDistamceEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15667,6 +15667,10 @@ MonoBehaviour:
   target: {fileID: 0}
   shoot: {fileID: 6190995114227458528}
   projectileObject: {fileID: 1888238686076217868, guid: c592311308ab03e4582caa1edf16ab93, type: 3}
+  isShoot: 0
+  readyShoot: 1
+  speed: 2
+  maxDistance: 5
 --- !u!114 &2030149608024886802
 MonoBehaviour:
   m_ObjectHideFlags: 0
