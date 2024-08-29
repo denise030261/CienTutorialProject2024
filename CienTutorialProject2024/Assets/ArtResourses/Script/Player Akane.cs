@@ -29,12 +29,11 @@ public class PlayerAkane : MonoBehaviour
 
 
     //애니메이션
-    Animator anim;
+    [SerializeField]  Animator anim;
 
     void Awake()
     {
         hasWeapons = new bool[3];
-        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
