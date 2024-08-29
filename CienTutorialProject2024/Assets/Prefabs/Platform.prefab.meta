@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CienTutorialProject2024/Assets/Prefabs/Platform.prefab.meta
 guid: 6601e6c1bf60c2b40b5ece077c8cda28
+========
+guid: 80ecadad2c3bede47af2ae7f95a86fd7
+>>>>>>>> main:CienTutorialProject2024/Assets/Prefabs/Enemy/BigCloseRangeEnemy .prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
