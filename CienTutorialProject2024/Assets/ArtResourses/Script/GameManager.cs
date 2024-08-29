@@ -5,30 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if(!_instance)
-            {
-                _instance = FindObjectOfType(typeof(GameManager)) as GameManager;
-
-                if( _instance == null)
-                {
-                    Debug.Log("No Singleton obj");
-                }
-            }
-            return _instance;
-        }
-    }
-
-    //정보를 가지고 있는 변수할당
-    //public GameObject menuCam;
-    //public GameObject gameCam;
-    //public (플레이어스크립트) player;
-    public int stage;
     public float playTime;
     public bool isBattle;
 
@@ -39,15 +15,11 @@ public class GameManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject gameclearPanel;
     public GameObject gameoverPanel;
+    public PlayerAkane player;
     public Text playTimeTxt;
-    public Image gun1Img;
-    public Image gun2Img;
-    //버튼 관련
-    public Image startselect;
+    
     //시작화면 버튼관련
     public List<GameObject> StartmenuClick = new List<GameObject>();
-    //메뉴화면 버튼관련
-    public List<GameObject> StageClick = new List<GameObject>();
     //인게임관련변수
 
     //인게임 플레이타임
@@ -71,46 +43,26 @@ public class GameManager : MonoBehaviour
         StartmenuClick[num].SetActive(false);
     }
 
-    //메뉴화면
-    public void Stageselect(int num)
-    {
-
-        StageClick[num].SetActive(true);
-    }
-    public void StageDeselect(int num)
-    {
-        StageClick[num].SetActive(false);
-    }
     
-    public void MenuBack()
-    {
-        menuPanel.SetActive(false);
-        startPanel.SetActive(true);
-    }
-
 
     //인게임
-    private void Awake()
-    {
-        if(_instance == null)
-        {
-            _instance = this;
-        }
-
-        else if(_instance != this)
-        {
-            Destroy(_instance);
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
     void Start()
     {
         previousTime = Time.time;
         wasInBattle = isBattle;
     }
     void Update()
+    {
+        PlayTimeCalculate();
+
+    }
+    void LateUpdate()
+    {
+        PlayTimeShow();
+    }
+
+    
+    void PlayTimeCalculate()
     {
         //Time.deltaTime 쓸거면
         //if (isBattle)
@@ -137,15 +89,14 @@ public class GameManager : MonoBehaviour
         }
         //현재 전투 상태 저장
         wasInBattle = isBattle;
-
     }
-    void LateUpdate()
+    void PlayTimeShow()
     {
         //플레이타임
         int hour = (int)(playTime / 3600);
         int min = (int)((playTime - hour * 3600) / 60);
         int second = (int)(playTime % 60);
-        playTimeTxt.text = string.Format("{0:00}",hour) + ":" + string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second);
+        playTimeTxt.text = string.Format("{0:00}", hour) + ":" + string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second);
     }
 
     //게임종료
