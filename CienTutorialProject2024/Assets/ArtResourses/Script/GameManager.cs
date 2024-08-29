@@ -33,129 +33,78 @@ public class GameManager : MonoBehaviour
     public float playTime;
     public bool isBattle;
     bool isPause;
-    public float[] stageRecord = new float[6];
-
-    //UI를 위한 변수 할당
-    public GameObject startPanel;
-    public GameObject menuPanel;
-    public GameObject ingamePanel;
-    public GameObject pausePanel;
-    public GameObject gameclearPanel;
-    public GameObject gameoverPanel;
-    public Text playTimeTxt;
-    public Text clearTimeTxt;
-    public Image gun1Img;
-    public Image gun2Img;
-    //버튼 관련
-    public Image startselect;
-    //시작화면 버튼관련
-    public List<GameObject> StartmenuClick = new List<GameObject>();
-    //메뉴화면 버튼관련
-    public List<GameObject> StageClick = new List<GameObject>();
+    public float[] stageRecord = new float[7];
 
     //인게임관련변수
-
+    public bool isGameOver;
+    public bool isClearStage;
     //인게임 플레이타임
     public float previousTime; //이전 업데이트 시간
     bool wasInBattle; //이전 프레임에서의 전투상태
 
-
-    //게임시작화면
-    public void GameStart()
-    {
-        startPanel.SetActive(false);
-        menuPanel.SetActive(true);
-    }
-
-    public void StartbuttonOn (int num)
-    {
-        StartmenuClick[num].SetActive(true);
-    }
-    public void StartbuttonOff (int num)
-    {
-        StartmenuClick[num].SetActive(false);
-    }
-
-    //메뉴화면
-    public void Stageselect(int num)
-    {
-
-        StageClick[num].SetActive(true);
-    }
-    public void StageDeselect(int num)
-    {
-        StageClick[num].SetActive(false);
-    }
-    
-    public void MenuBack()
-    {
-        menuPanel.SetActive(false);
-        startPanel.SetActive(true);
-    }
-
     public void Clear()
     {
+        isClearStage = true;
         Time.timeScale = 0;
-        clearTimeTxt = playTimeTxt;
         stageRecord[stage] = playTime;
-        playTime = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void GameOver()
     {
+        isGameOver = true;
         Time.timeScale = 0;
-        gameoverPanel.SetActive(true);
         playTime = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void PauseGame()
     {
         if (!isPause)
         {
+            Debug.Log("PauseGame");
             isPause = true;
-            pausePanel.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 0; 
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
         else
         {
             isPause = false;
-            pausePanel.SetActive(false);
             Time.timeScale = 1;
         }
-
-
     }
 
     //인게임
     private void Awake()
     {
-        if(_instance == null)
+        if (_instance)
         {
-            _instance = this;
+            DestroyImmediate(gameObject);
+            return;
         }
-
-        else if(_instance != this)
-        {
-            Destroy(_instance);
-        }
+        _instance = this;
 
         DontDestroyOnLoad(gameObject);
     }
 
+
     void Start()
     {
+        isClearStage = false;
+        isGameOver = false;
         isPause = false;
         previousTime = Time.time;
         wasInBattle = isBattle;
     }
     void Update()
     {
+        isBattle = stage != 0;
         //Time.deltaTime 쓸거면
         //if (isBattle)
         //  playTime += Time.deltaTime; 이렇게만 하면 됨
-
-
-
         if (isBattle)
         {
             if (!isPause)
@@ -177,14 +126,22 @@ public class GameManager : MonoBehaviour
                     //playTime을 업데이트
                     playTime += deltaTime;
 
-
+                    Debug.Log(currentTime); 
                 }
             }
+        }
+        else
+        {
+            //스테이지 진입시 시간 초기화
+            Time.timeScale = 1;
+            playTime = 0;
+            previousTime = 0;
+            isPause = false;
+            wasInBattle = isBattle;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                PauseGame();
-            }
+            //게임오버, 클리어 변수 초기화
+            isClearStage = false;
+            isGameOver = false;
         }
         //현재 전투 상태 저장
         wasInBattle = isBattle;
@@ -192,11 +149,7 @@ public class GameManager : MonoBehaviour
     }
     void LateUpdate()
     {
-        //플레이타임
-        int min = (int)(playTime/ 60);
-        int second = (int)(playTime % 60);
-        int milisecond = (int)((playTime - second) * 100);
-        playTimeTxt.text = string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second) + ":" + string.Format("{0:00}", milisecond);
+
     }
 
 

@@ -52,8 +52,8 @@ public class CameraFollow : MonoBehaviour
             maxDistance = 2f;
         }
 
-        mx += -(Input.GetAxis("Mouse Y")) * sensitivity * 0.05f;
-        my += Input.GetAxis("Mouse X") * sensitivity * 0.05f;
+        mx += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
+        my += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
 
         mx = Mathf.Clamp(mx, -clampAngle, clampAngle);
         Quaternion rot = Quaternion.Euler(mx, my, 0);
@@ -62,7 +62,7 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * 0.05f);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
         finalDir = transform.TransformPoint(dirNormalized * maxDistance);
 
@@ -78,6 +78,6 @@ public class CameraFollow : MonoBehaviour
         }
 
 
-        activatedCamera.localPosition = Vector3.Lerp(activatedCamera.localPosition, dirNormalized * finalDistance, 0.05f * smoothness);
+        activatedCamera.localPosition = Vector3.Lerp(activatedCamera.localPosition, dirNormalized * finalDistance, Time.deltaTime * smoothness);
     }
 }
