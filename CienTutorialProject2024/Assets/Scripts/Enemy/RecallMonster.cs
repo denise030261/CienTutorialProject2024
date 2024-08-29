@@ -42,6 +42,7 @@ public class RecallMonster : MonoBehaviour
 
                     if(isNeed)
                     {
+                        Debug.Log("º“»Ø");
                         isCreate = true;
                         Transform recallField = fields.transform.GetChild(Random.RandomRange(0, fields.transform.childCount));
                         RecallField(recallField.position, recallField.gameObject);

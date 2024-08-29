@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
             Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
             Ray ray = aimCam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             Vector3 targetPoint;
-            if(Physics.Raycast(ray, out RaycastHit hitInfo))
+            if(Physics.Raycast(ray, out RaycastHit hitInfo, 100, 1 << LayerMask.NameToLayer("Enemy")))
             {
                 targetPoint = hitInfo.point;
                 Debug.Log(hitInfo.collider.name);

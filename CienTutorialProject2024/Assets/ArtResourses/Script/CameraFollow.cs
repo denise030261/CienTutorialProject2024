@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     public Transform mainCamera;
     public Transform aimCamera;
-    Transform activatedCamera;
+    public Transform activatedCamera;
     public Vector3 dirNormalized;
     public Vector3 finalDir;
     public Vector3 localPosition;
@@ -52,8 +52,8 @@ public class CameraFollow : MonoBehaviour
             maxDistance = 2f;
         }
 
-        mx += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
-        my += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        mx += -(Input.GetAxis("Mouse Y")) * sensitivity * 0.05f;
+        my += Input.GetAxis("Mouse X") * sensitivity * 0.05f;
 
         mx = Mathf.Clamp(mx, -clampAngle, clampAngle);
         Quaternion rot = Quaternion.Euler(mx, my, 0);
@@ -62,7 +62,7 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * 0.05f);
 
         finalDir = transform.TransformPoint(dirNormalized * maxDistance);
 
@@ -77,7 +77,7 @@ public class CameraFollow : MonoBehaviour
             finalDistance = maxDistance;
         }
 
-
-        activatedCamera.localPosition = Vector3.Lerp(activatedCamera.localPosition, dirNormalized * finalDistance, Time.deltaTime * smoothness);
+        // if문 또는 아예 참조
+        activatedCamera.localPosition = Vector3.Lerp(activatedCamera.localPosition, dirNormalized * finalDistance, 0.05f * smoothness);
     }
 }

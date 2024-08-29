@@ -27,13 +27,11 @@ public class BossStageCamera : MonoBehaviour
     int curPage = 1;
 
     int Scene = 1;
-    private void Awake()
-    {
-        Init();
-    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Init();
         LCamera.enabled = true;
     }
 
