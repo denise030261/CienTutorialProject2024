@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,19 +15,19 @@
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\ui_ingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\clearball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\clearball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\clearball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\scripts\\timeslow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\timeslow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timeslow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
               "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAUwCwBAAAAAAAA",
+              "ViewState": "AQIAANcAAAAAAAAAAAAkwOYAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-29T19:06:54.24Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Assets\\Scripts\\TimeSlow.cs",
               "ViewState": "AQIAACUAAAAAAAAAAAAgwDAAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T19:04:54.039Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T19:04:54.039Z"
             },
             {
               "$type": "Document",
@@ -80,12 +79,11 @@
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\ClearBall.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAAwBQAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T19:01:23.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T19:01:23.531Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "UI_StageMenu.cs",
               "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
@@ -104,7 +102,7 @@
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\GameManager.cs",
               "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\GameManager.cs",
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\GameManager.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAwDAAAAAiAAAA",
+              "ViewState": "AQIAAHYAAAAAAAAAAAAgwDAAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-29T11:54:22.524Z",
               "EditorCaption": ""
@@ -123,13 +121,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CameraFollow.cs",
               "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\CameraFollow.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAAwDUAAAAAAAAA",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAADwAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-10T04:11:19.257Z",
               "EditorCaption": ""
@@ -142,7 +140,7 @@
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\UI_InGame.cs",
               "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_InGame.cs",
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\UI_InGame.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACgAAAAAAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAwCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-29T15:25:43.107Z",
               "EditorCaption": ""
