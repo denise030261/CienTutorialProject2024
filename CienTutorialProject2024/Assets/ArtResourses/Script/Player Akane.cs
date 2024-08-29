@@ -48,6 +48,7 @@ public class PlayerAkane : MonoBehaviour
         Interaction();
         Attack();
     }
+
     void GetInput()
     {
 
@@ -57,6 +58,7 @@ public class PlayerAkane : MonoBehaviour
         sDown3 = Input.GetButtonDown("Swap3");
 
         fDown = Input.GetButtonDown("Fire1");
+
     }
 
 
