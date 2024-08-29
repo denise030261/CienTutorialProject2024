@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         isTurn = false;
         isRoll = false;
         isHurdle = false;
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     private void FixedUpdate()

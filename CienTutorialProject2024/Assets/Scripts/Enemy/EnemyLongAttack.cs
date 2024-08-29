@@ -7,10 +7,8 @@ public class EnemyLongAttack : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] GameObject shoot;
     public GameObject projectileObject;
-    private EnemyProjectile projectile;
     public bool isShoot = false;
     public bool readyShoot = true;
-    [Range(0f, 360f)] float ViewAngle;
 
     [SerializeField] float speed = 2f;
     [SerializeField] float maxDistance = 5f;
@@ -23,7 +21,6 @@ public class EnemyLongAttack : MonoBehaviour
 
     private void Update()
     {
-        ViewAngle=transform.eulerAngles.y;
         if(isShoot && readyShoot)
         {
             isShoot = false;
@@ -38,7 +35,7 @@ public class EnemyLongAttack : MonoBehaviour
         GameObject instance = Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
 
         // 총알의 방향과 속도 설정
-        Vector3 targetDir = transform.forward;
+        Vector3 targetDir = target.transform.position - shoot.transform.position;
         Rigidbody rb = instance.GetComponent<Rigidbody>();
         rb.velocity = targetDir.normalized * speed;
 

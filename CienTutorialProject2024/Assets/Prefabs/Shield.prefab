@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2606344830209718757}
-  - component: {fileID: 2558701878541354920}
   - component: {fileID: 3783300705023008982}
+  - component: {fileID: 1947758920452344924}
   m_Layer: 3
   m_Name: Shield
   m_TagString: Shield
@@ -34,19 +34,6 @@ Transform:
   - {fileID: 2981726123626654394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2558701878541354920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6138974491059549755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6228495a11269ac498dd746d6174ced9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shieldEffect: {fileID: 1214521371524553006}
 --- !u!135 &3783300705023008982
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -68,6 +55,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.4
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1947758920452344924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138974491059549755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b634ef84e9e4443bb8c9c152b39f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldEffect: {fileID: 1214521371524553006}
 --- !u!1001 &4168117573985567956
 PrefabInstance:
   m_ObjectHideFlags: 0
