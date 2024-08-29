@@ -31,6 +31,7 @@ public class EnemyBomb : MonoBehaviour
 
     void SelfDestructEnd()
     {
+        isDamage = true;
         Debug.Log("Bomb");
         Effects[0].SetActive(false);
         Effects[1].SetActive(true);
@@ -47,9 +48,10 @@ public class EnemyBomb : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player") && isDamage)
+        Debug.Log(other.name);
+        if((other.CompareTag("Player") || other.CompareTag("Shield")) && isDamage)
         {
-            // 공격받는 코드
+            Destroy(other.gameObject);
         }
     }
 }

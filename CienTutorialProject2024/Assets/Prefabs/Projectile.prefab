@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af17615b8ffb8e4fbdaf9d99ff62dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 2
   speed: 2
+  maxDistance: 50
   targetDir: {x: -0.99528575, y: -0.084853165, z: -0.046970528}
 --- !u!54 &1268054522181377350
 Rigidbody:
