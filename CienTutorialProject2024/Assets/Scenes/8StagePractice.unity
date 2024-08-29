@@ -3143,6 +3143,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5472629025953165702, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1580751664}
+    - target: {fileID: 5472629025953165702, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1381407327}
@@ -3150,6 +3154,14 @@ PrefabInstance:
       propertyPath: _aimCamera
       value: 
       objectReference: {fileID: 331549668}
+    - target: {fileID: 6591334410345699577, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 46965d119b468954991984a0ff8b07d5, type: 2}
+    - target: {fileID: 7829719974796730497, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 46965d119b468954991984a0ff8b07d5, type: 2}
     - target: {fileID: 8966523440944742197, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3198,7 +3210,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6591334410345699577, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -7364,6 +7377,7 @@ MonoBehaviour:
   stair: {fileID: 50931768}
   longAttackEnemies: {fileID: 531979244}
   solveDefence: {fileID: 596657309}
+  bossShield: {fileID: 0}
   page: 1
 --- !u!4 &1389610064
 Transform:
@@ -8285,6 +8299,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6601e6c1bf60c2b40b5ece077c8cda28, type: 3}
+--- !u!4 &1580751664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5949166464181723722, guid: eca3bf8c503e2634aac8a6266e5c8cc7, type: 3}
+  m_PrefabInstance: {fileID: 594298642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1585144301
 PrefabInstance:
   m_ObjectHideFlags: 0
