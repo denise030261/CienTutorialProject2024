@@ -9,6 +9,7 @@ public class TimeRecall : TimeSkill
     private float rewindDelay = 3f; 
     private int maxHistoryLength;
     Vector3 originPosition;
+    public GameObject timeRecallcharge;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,11 @@ public class TimeRecall : TimeSkill
         {
             RewindToPreviousPosition();
         }
+    }
+
+    private void Update()
+    {
+        TimeRecallCharge();
     }
 
     private IEnumerator RecordPosition()
@@ -60,6 +66,18 @@ public class TimeRecall : TimeSkill
             transform.parent.gameObject.transform.position = originPosition;
             positionHistory.Clear();
             Debug.Log("기록된 위치가 충분하지 않습니다.");
+        }
+    }
+
+    void TimeRecallCharge()
+    {
+        if (isReload)
+        {
+            timeRecallcharge.SetActive(true);
+        }
+        else
+        {
+            timeRecallcharge.SetActive(false);
         }
     }
 }
