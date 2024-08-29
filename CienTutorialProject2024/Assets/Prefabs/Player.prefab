@@ -238,7 +238,7 @@ MonoBehaviour:
   _aimCamera: {fileID: 0}
   model: {fileID: 3546096486221394672}
   speed: 4
-  jumpPower: 5
+  jumpPower: 13
   toggleCameraRotation: 1
   smoothness: 10
   hurdlePosition: {fileID: 8165163803334397098}
