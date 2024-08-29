@@ -29,10 +29,12 @@ public class PlayerAkane : MonoBehaviour
 
 
     //애니메이션
-    [SerializeField]  Animator anim;
+    Animator _animator;
+    public Transform model;
 
     void Awake()
     {
+        _animator = model.GetComponent<Animator>();
         hasWeapons = new bool[3];
     }
 
@@ -73,7 +75,7 @@ public class PlayerAkane : MonoBehaviour
         if (fDown && isFireReady)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doShot");
+            _animator.SetTrigger("doShot");
             fireDelay = 0;
         }
     }

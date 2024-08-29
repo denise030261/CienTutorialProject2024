@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
+            _animator.SetBool("isZoom", true);
             crosshairUI.gameObject.SetActive(true);
             toggleCameraRotation = true; //에임시
             _camera.enabled = false;
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            _animator.SetBool("isZoom", false);
             crosshairUI.gameObject.SetActive(false);
             toggleCameraRotation = false; //평상시
             _camera.enabled = true;
