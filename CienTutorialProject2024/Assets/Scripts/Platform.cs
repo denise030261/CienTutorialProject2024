@@ -8,10 +8,18 @@ public class Platform : MonoBehaviour
     bool disappearing = false; // 알파값
     Material platformMaterial;
 
+    [SerializeField] bool haveShield = false; // 다시 생성용 또는 사라지는 용
+    [SerializeField] GameObject shield;
+    [SerializeField] float createSpeed = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
         platformMaterial = GetComponent<MeshRenderer>().material;
+        if(shield == null)
+        {
+            Debug.LogError("쉴드 배치 바람");
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +35,16 @@ public class Platform : MonoBehaviour
 
                 if(platformMaterial.color.a<=0f)
                 {
-                    Destroy(gameObject);
+                    if(!haveShield)
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        platformMaterial.color = new Color(curColor.r, curColor.g, curColor.b, 255f);
+                        gameObject.SetActive(false);
+                        Invoke("HaveShield", createSpeed);
+                    }
                 }
             }
         }
@@ -37,4 +54,21 @@ public class Platform : MonoBehaviour
     {
         disappearing = true;
     }
+
+    void HaveShield()
+    {
+        gameObject.SetActive(true);
+        Transform shieldTransform = gameObject.transform;
+        Vector3 shieldPosition = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
+        shieldTransform.position = shieldPosition;
+        Instantiate(shield, shieldTransform);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag=="Player")
+        {
+            Disappear();
+        }
+    } // 플레이어 감지하면 사라지기 시작함
 }

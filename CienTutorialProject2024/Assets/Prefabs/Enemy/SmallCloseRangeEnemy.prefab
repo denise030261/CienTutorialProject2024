@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 6904624191286984315}
   - component: {fileID: 3196674347573157438}
   m_Layer: 0
-  m_Name: CloseRangeEnemy
+  m_Name: SmallCloseRangeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 1
   curHp: 0
 --- !u!135 &3196674347573157438
 SphereCollider:

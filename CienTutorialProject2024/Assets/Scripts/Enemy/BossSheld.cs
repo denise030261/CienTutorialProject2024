@@ -10,7 +10,7 @@ public class BossSheld : MonoBehaviour
     void Start()
     {
         shieldEffect = transform.GetChild(0).GetComponent<ParticleSystem>();
-        Invoke("StopEffect", 3f);
+        Invoke("StopEffect", 1.3f);
     }
 
     private void OnCollisionEnter(Collision collision)
