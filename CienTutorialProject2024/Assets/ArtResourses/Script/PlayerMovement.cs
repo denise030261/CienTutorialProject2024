@@ -42,11 +42,13 @@ public class PlayerMovement : MonoBehaviour
     bool backDown;
     bool isRoll;
     public Transform hurdlePosition;
+    AnimationCallback _animCallBack;
     void Start()
     {
         state = PlayerState.RUNNING;
         _rb = GetComponent<Rigidbody>();
         _animator = model.GetComponent<Animator>();
+        _animCallBack = model.GetComponent<AnimationCallback>();
         isTurn = false;
         isRoll = false;
     }
@@ -60,16 +62,20 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.HANGING: { Hang(); } break; 
             case PlayerState.ROLLING: { Roll(); } break;
         }
-        if (isRoll)
-        {
-            Debug.Log("state Rolling");
-            state = PlayerState.ROLLING;
-        }
+
         isGrounded = IsCheckGrounded();
         if (isGrounded)
         {
             _animator.SetBool("isJump", false);
-            state = PlayerState.RUNNING;
+            if (isRoll)
+            {
+                Debug.Log("state Rolling");
+                state = PlayerState.ROLLING;
+            }
+            else
+            {
+                state = PlayerState.RUNNING;
+            }
         }else if(state == PlayerState.RUNNING)
         {
             state = PlayerState.FALLING;
@@ -220,10 +226,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 isTurn = true;
                 transform.rotation *= Quaternion.Euler(0f, -90f * h, 0f);
-                
-                transform.position =transform.position + transform.right * h * 0.5f;
+                transform.position = transform.position + transform.right * h * 0.5f;
             }
-
         }
 
 
@@ -301,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
             if(hit.distance > 2f)
             {
                 isRoll =  true;
-                Debug.Log("isRoll: " + isRoll);
+                _animator.SetBool("isRoll", true);
             }
         }
     }
@@ -309,8 +313,14 @@ public class PlayerMovement : MonoBehaviour
     void Roll()
     {
         Debug.Log("do Roll");
-        _animator.SetBool("isRoll", true);
-        transform.position = Vector3.Lerp(transform.position, transform.forward, 0.1f);
+
+        transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward.normalized, 0.1f);
+        if (_animCallBack.endRollAnim)
+        {
+            _animator.SetBool("isRoll", false);
+            isRoll = false;
+            state = PlayerState.RUNNING;
+        }
     }
 
     public void ResetRoll()
