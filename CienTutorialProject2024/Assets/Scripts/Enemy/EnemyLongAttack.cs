@@ -31,7 +31,7 @@ public class EnemyLongAttack : MonoBehaviour
 
     IEnumerator LongAttack()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.733f);
         GameObject instance = Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
 
         // 총알의 방향과 속도 설정
@@ -41,6 +41,8 @@ public class EnemyLongAttack : MonoBehaviour
 
         // 총알이 발사된 위치를 기록
         Vector3 originPos = instance.transform.position;
+
+        Invoke("Reload", 1f);
 
         // 총알이 이동한 거리를 계산하고, 최대 거리에 도달하면 파괴
         while (true)
@@ -63,6 +65,11 @@ public class EnemyLongAttack : MonoBehaviour
             yield return null; // 매 프레임마다 체크
         }
 
-        readyShoot = true;
+        //readyShoot = true;
     } // rotation 방향대로 쏘게 만들기
+
+    void Reload()
+    {
+        readyShoot = true;
+    }
 }

@@ -145,8 +145,16 @@ public class EnemyAI : MonoBehaviour
             }
             else if(enemyLongAttack!=null) 
             {
-                isTarget = false;
-                enemyLongAttack.isShoot = true;
+                if(enemyLongAttack.readyShoot)
+                {
+                    isTarget = false;
+                    enemyLongAttack.isShoot = true;
+                }
+                else
+                {
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isWalk", true);
+                }
             }
         }
         else if(!isTarget)
