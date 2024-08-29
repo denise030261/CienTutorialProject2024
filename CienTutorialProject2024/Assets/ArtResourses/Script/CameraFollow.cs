@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
 
     public Transform target;
-    public float followSpeed = 1f;
-    public float sensitivity = 1f;
+    public float followSpeed = 0.1f;
+    public float sensitivity = 0.1f;
     public float clampAngle = 70f;
 
     float mx = 0;
@@ -22,7 +22,7 @@ public class CameraFollow : MonoBehaviour
     public float minDistance;
     float maxDistance;
     public float finalDistance;
-    public float smoothness = 1f;
+    public float smoothness = 0.1f;
 
     private void Start()
     {

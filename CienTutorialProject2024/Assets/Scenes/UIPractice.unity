@@ -2408,7 +2408,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 930124951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406f8e45ac481d54b8a4c523d6f06802, type: 3}
+  m_Script: {fileID: 11500000, guid: 39c6d42b84849734787cacafd423040b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
@@ -5879,6 +5879,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7505274429372449860, guid: 7e0836211c61402449600c69c182274f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505274429372449860, guid: 7e0836211c61402449600c69c182274f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6351533423245983546, guid: 7e0836211c61402449600c69c182274f, type: 3}
     - {fileID: 3351322121318144860, guid: 7e0836211c61402449600c69c182274f, type: 3}
@@ -6093,7 +6101,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -6239,7 +6247,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0.06395506, y: -0.0016859396, z: 0.006555432}
@@ -6260,7 +6268,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.34
   m_Center: {x: 0.06395506, y: -0.0016859396, z: 0.006555432}
@@ -6287,7 +6295,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
