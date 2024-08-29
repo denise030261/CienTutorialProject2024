@@ -46,7 +46,7 @@ public class Platform : MonoBehaviour
                      {
                          Destroy(gameObject);
                      }
-                     else if(ShieldProbability())
+                     else 
                      {
                         gameObject.SetActive(false);
                          Invoke("HaveShield", createSpeed);
