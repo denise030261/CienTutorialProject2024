@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
         HURDLING
     }
 
+    public Canvas crosshairUI;
+
     public PlayerState state;
     Animator _animator;
     public Camera _camera;
@@ -96,12 +98,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
+            _animator.SetBool("isZoom", true);
+            crosshairUI.gameObject.SetActive(true);
             toggleCameraRotation = true; //에임시
             _camera.enabled = false;
             _aimCamera.enabled = true;
         }
         else
         {
+            _animator.SetBool("isZoom", false);
+            crosshairUI.gameObject.SetActive(false);
             toggleCameraRotation = false; //평상시
             _camera.enabled = true;
             _aimCamera.enabled = false;

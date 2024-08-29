@@ -29,12 +29,13 @@ public class PlayerAkane : MonoBehaviour
 
 
     //애니메이션
-    Animator anim;
+    Animator _animator;
+    public Transform model;
 
     void Awake()
     {
+        _animator = model.GetComponent<Animator>();
         hasWeapons = new bool[3];
-        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -48,6 +49,7 @@ public class PlayerAkane : MonoBehaviour
         Interaction();
         Attack();
     }
+
     void GetInput()
     {
 
@@ -57,6 +59,7 @@ public class PlayerAkane : MonoBehaviour
         sDown3 = Input.GetButtonDown("Swap3");
 
         fDown = Input.GetButtonDown("Fire1");
+
     }
 
 
@@ -72,7 +75,7 @@ public class PlayerAkane : MonoBehaviour
         if (fDown && isFireReady)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doShot");
+            _animator.SetTrigger("doShot");
             fireDelay = 0;
         }
     }
@@ -131,7 +134,6 @@ public class PlayerAkane : MonoBehaviour
             nearObject = other.gameObject;
 
         }
-        Debug.Log(nearObject.name);
     }
 
     void OnTriggerExit(Collider other)
