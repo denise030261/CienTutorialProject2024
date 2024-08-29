@@ -46,16 +46,6 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.tag == "Platform")
-        {
-            Debug.Log("¶³¾îÁü");
-            Platform platform = hit.collider.GetComponent<Platform>();
-            platform.Disappear();
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag=="Glass") 

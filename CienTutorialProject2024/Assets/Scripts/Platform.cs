@@ -11,14 +11,19 @@ public class Platform : MonoBehaviour
     [SerializeField] bool haveShield = false; // 다시 생성용 또는 사라지는 용
     [SerializeField] GameObject shield;
     [SerializeField] float createSpeed = 3f;
+
     Color originColor;
+    Transform originTransform;
+    Collider collider;
 
     // Start is called before the first frame update
     void Start()
     {
         platformMaterial = GetComponent<MeshRenderer>().material;
+        collider = GetComponent<Collider>();
         originColor = platformMaterial.color;
-        if(shield == null)
+        originTransform = gameObject.transform;
+        if (shield == null)
         {
             Debug.LogError("쉴드 배치 바람");
         }
@@ -38,15 +43,14 @@ public class Platform : MonoBehaviour
                 if(platformMaterial.color.a<=0f)
                 {
                     if(!haveShield)
-                    {
-                        Destroy(gameObject);
-                    }
-                    else
-                    {
-                        platformMaterial.color = originColor;
+                     {
+                         Destroy(gameObject);
+                     }
+                     else if(ShieldProbability())
+                     {
                         gameObject.SetActive(false);
-                        Invoke("HaveShield", createSpeed);
-                    }
+                         Invoke("HaveShield", createSpeed);
+                     }
                 }
             }
         }
@@ -59,11 +63,13 @@ public class Platform : MonoBehaviour
 
     void HaveShield()
     {
+        if (ShieldProbability())
+        {
+            Instantiate(shield, transform);
+        }
+        platformMaterial.color = originColor;
         gameObject.SetActive(true);
-        Transform shieldTransform = gameObject.transform;
-        Vector3 shieldPosition = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
-        shieldTransform.position = shieldPosition;
-        Instantiate(shield, shieldTransform);
+        disappearing = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -72,5 +78,18 @@ public class Platform : MonoBehaviour
         {
             Disappear();
         }
-    } // 플레이어 감지하면 사라지기 시작함
+    } 
+
+    bool ShieldProbability()
+    {
+        int num = Random.Range(1, 101);
+        if(num<=5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
