@@ -45,15 +45,16 @@ public class BossStageCamera : MonoBehaviour
 
         if(prePage!=curPage)
         {
-            if(!isMove)
+            if(!isMove && !MoveCamera.enabled)
             {
-                Init();
+                /*Init();
                 MoveCamera.enabled = true;
                 MoveCamera.transform.position = startPosition;
                 MoveCamera.transform.rotation = startRotation;
-                isMove = true;
+                isMove = true;*/
+                StartCoroutine(PlayerMoveCamera());
             }
-            else
+            else if(isMove && MoveCamera.enabled)
             {
                 elapsedTime += Time.deltaTime;
 
@@ -67,7 +68,7 @@ public class BossStageCamera : MonoBehaviour
                     MoveCamera.transform.position = targetPosition; // 정확한 목표 위치로 이동
                     MoveCamera.transform.rotation = targetRotation; // 정확한 목표 회전으로 회전
 
-                    ReachTarget(); // 목표에 도달했을 때 실행할 메서드 호출
+                    StartCoroutine(BossMoveCamera());
                 }
             }
         }
@@ -85,18 +86,26 @@ public class BossStageCamera : MonoBehaviour
         playerMovement.enabled = false;
     }
 
-    void ReachTarget()
+    IEnumerator BossMoveCamera()
     {
+        elapsedTime = 0;
         prePage = curPage;
         isMove = false;
-        Invoke("ViewTop", 1f);
-    }
-
-    void ViewTop()
-    {
+        yield return new WaitForSeconds(1f);
         MoveCamera.enabled = false;
         AllSceneCamera.enabled = true;
-        Invoke("ChangeMainCamera", 3f);
+        yield return new WaitForSeconds(3f);
+        ChangeMainCamera();
+    }
+
+    IEnumerator PlayerMoveCamera()
+    {
+        Init();
+        MoveCamera.enabled = true;
+        MoveCamera.transform.position = startPosition;
+        MoveCamera.transform.rotation = startRotation;
+        yield return new WaitForSeconds(1f);
+        isMove = true;
     }
 
     void ChangeMainCamera()
