@@ -11,11 +11,13 @@ public class Platform : MonoBehaviour
     [SerializeField] bool haveShield = false; // 다시 생성용 또는 사라지는 용
     [SerializeField] GameObject shield;
     [SerializeField] float createSpeed = 3f;
+    Color originColor;
 
     // Start is called before the first frame update
     void Start()
     {
         platformMaterial = GetComponent<MeshRenderer>().material;
+        originColor = platformMaterial.color;
         if(shield == null)
         {
             Debug.LogError("쉴드 배치 바람");
@@ -41,7 +43,7 @@ public class Platform : MonoBehaviour
                     }
                     else
                     {
-                        platformMaterial.color = new Color(curColor.r, curColor.g, curColor.b, 255f);
+                        platformMaterial.color = originColor;
                         gameObject.SetActive(false);
                         Invoke("HaveShield", createSpeed);
                     }

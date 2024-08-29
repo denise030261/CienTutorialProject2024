@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3248247423777533785}
   - component: {fileID: 315288107953066466}
   - component: {fileID: 1249114724510377709}
+  - component: {fileID: 5643555610825319053}
   m_Layer: 0
   m_Name: ShieldItem
   m_TagString: Shield
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 7011103557088003799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.91, y: 1.85, z: -6.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.333, y: 2, z: 0.333}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,3 +108,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5643555610825319053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011103557088003799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7143909d692e0ef49b800d49e239e51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 6138974491059549755, guid: dc0a8e074708c694fb8ef012eb29bd61, type: 3}

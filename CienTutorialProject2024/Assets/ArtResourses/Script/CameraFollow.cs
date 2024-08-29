@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     public Transform mainCamera;
     public Transform aimCamera;
-    Transform activatedCamera;
+    public Transform activatedCamera;
     public Vector3 dirNormalized;
     public Vector3 finalDir;
     public Vector3 localPosition;
@@ -77,7 +77,7 @@ public class CameraFollow : MonoBehaviour
             finalDistance = maxDistance;
         }
 
-
+        // if문 또는 아예 참조
         activatedCamera.localPosition = Vector3.Lerp(activatedCamera.localPosition, dirNormalized * finalDistance, 0.05f * smoothness);
     }
 }

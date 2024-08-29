@@ -34,7 +34,7 @@ public class EnemyLongAttack : MonoBehaviour
 
     IEnumerator LongAttack()
     {
-        yield return new WaitForSeconds(0.753f);
+        yield return new WaitForSeconds(0.3f);
         GameObject instance = Instantiate(projectileObject, shoot.transform.position, Quaternion.identity);
 
         // 총알의 방향과 속도 설정
@@ -48,13 +48,18 @@ public class EnemyLongAttack : MonoBehaviour
         // 총알이 이동한 거리를 계산하고, 최대 거리에 도달하면 파괴
         while (true)
         {
-            // traveledDistance는 총알이 발사된 이후 현재까지 이동한 거리
-            float traveledDistance = Vector3.Distance(originPos, instance.transform.position);
-
-            // 만약 총알이 최대 거리 이상 이동하면 파괴
-            if (traveledDistance >= maxDistance)
+            if (instance != null)
             {
-                Destroy(instance);
+                float traveledDistance = Vector3.Distance(originPos, instance.transform.position);
+
+                if (traveledDistance >= maxDistance)
+                {
+                    Destroy(instance);
+                    break;
+                }
+            }
+            else
+            {
                 break;
             }
 
