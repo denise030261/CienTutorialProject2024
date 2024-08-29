@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //정보를 가지고 있는 변수할당
-    //public GameObject menuCam;
-    //public GameObject gameCam;
-    //public (플레이어스크립트) player;
-    public int stage;
     public float playTime;
     public bool isBattle;
 
@@ -20,15 +15,11 @@ public class GameManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject gameclearPanel;
     public GameObject gameoverPanel;
+    public PlayerAkane player;
     public Text playTimeTxt;
-    public Image gun1Img;
-    public Image gun2Img;
-    //버튼 관련
-    public Image startselect;
+    
     //시작화면 버튼관련
     public List<GameObject> StartmenuClick = new List<GameObject>();
-    //메뉴화면 버튼관련
-    public List<GameObject> StageClick = new List<GameObject>();
     //인게임관련변수
 
     //인게임 플레이타임
@@ -52,22 +43,7 @@ public class GameManager : MonoBehaviour
         StartmenuClick[num].SetActive(false);
     }
 
-    //메뉴화면
-    public void Stageselect(int num)
-    {
-
-        StageClick[num].SetActive(true);
-    }
-    public void StageDeselect(int num)
-    {
-        StageClick[num].SetActive(false);
-    }
     
-    public void MenuBack()
-    {
-        menuPanel.SetActive(false);
-        startPanel.SetActive(true);
-    }
 
     //인게임
     void Start()
@@ -85,6 +61,7 @@ public class GameManager : MonoBehaviour
         PlayTimeShow();
     }
 
+    
     void PlayTimeCalculate()
     {
         //Time.deltaTime 쓸거면
