@@ -100,6 +100,7 @@ public class EnemyAI : MonoBehaviour
             {
                 nav.SetDestination(transform.position);
                 animator.SetBool("isWalk", false);
+                animator.SetBool("isAttack", false);
             }
             else if(enemyLongAttack != null)
             {
@@ -125,6 +126,7 @@ public class EnemyAI : MonoBehaviour
             {
                 ChaseRotation();
                 animator.SetBool("isWalk", false);
+                animator.SetBool("isAttack", false);
                 nav.SetDestination(transform.position);
             }
         }
@@ -173,5 +175,5 @@ public class EnemyAI : MonoBehaviour
         Quaternion currentRotation = transform.rotation;
         transform.rotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0f);
         // 회전 상태 고정
-    }
+    } // When bomb Transform
 }

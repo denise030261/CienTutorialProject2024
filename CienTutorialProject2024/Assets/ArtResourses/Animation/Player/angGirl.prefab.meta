@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CienTutorialProject2024/Assets/ArtResourses/Animation/Player/angGirl.prefab.meta
 guid: eba2cca536ea6354fb41373538b7ba85
 PrefabImporter:
+========
+guid: 3c21e817104743c4881722ae607b5627
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> CharacterMovingControl:CienTutorialProject2024/Assets/Ui files.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
