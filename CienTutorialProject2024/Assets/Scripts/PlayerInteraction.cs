@@ -28,15 +28,17 @@ public class PlayerInteraction : MonoBehaviour
             glass.SetActive(false);
             getGlass=false;
         }
-        if(putGlass && Input.GetKeyDown(KeyCode.E))
+        else if(putGlass && Input.GetKeyDown(KeyCode.E))
         {
             glassEffect.transform.parent = glassPlatform.transform;
             glass.transform.parent = glassPlatform.transform;
+            glass.SetActive(true);
             glass.transform.localPosition = new Vector3(0, 2, 0);
             glassEffect.transform.localPosition = new Vector3(0, 0, 0);
 
             glassEffect = null;
             glass = null;
+            putGlass = false;
             if (BossStageController.instance != null) 
             {
                 BossStageController.instance.page++;
@@ -66,7 +68,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(glass !=null)
+        if(glass !=null && other.gameObject.tag != "Glass")
         {
             glassPlatform = other.transform.parent.gameObject;
             if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == glass.name.Substring(0, (glass.name.Length - 5)))

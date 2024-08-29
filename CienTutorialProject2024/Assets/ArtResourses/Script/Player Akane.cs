@@ -131,7 +131,6 @@ public class PlayerAkane : MonoBehaviour
             nearObject = other.gameObject;
 
         }
-        Debug.Log(nearObject.name);
     }
 
     void OnTriggerExit(Collider other)

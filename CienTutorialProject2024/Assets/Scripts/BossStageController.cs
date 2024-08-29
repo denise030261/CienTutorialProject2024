@@ -9,17 +9,16 @@ public class BossStageController : MonoBehaviour
     [SerializeField] GameObject longAttackEnemies;
     [SerializeField] GameObject solveDefence;
     public int page = 1;
-    public static BossStageController instance;
+    public static BossStageController instance = null;
 
     void Awake()
     {
-        BossStageController.instance = this;
+        instance = this;
         bridge.SetActive(false);
         stair.SetActive(false);
         longAttackEnemies.SetActive(false);
         solveDefence.SetActive(true);
-    } 
-
+    }
 
     // Start is called before the first frame update
     void Start()

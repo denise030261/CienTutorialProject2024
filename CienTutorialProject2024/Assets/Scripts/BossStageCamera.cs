@@ -17,6 +17,11 @@ public class BossStageCamera : MonoBehaviour
 
     [SerializeField] float cameraMoveSpeed = 1f;
 
+    Vector3 startPosition = new Vector3(8.5f, 5f, 0f);
+    Quaternion startRotation= Quaternion.Euler(20f, -90f, 0f);
+    Vector3 targetPosition = new Vector3(1.5f, 5.5f, 17f);
+    Quaternion targetRotation = Quaternion.Euler(-10f, -30f, 0f);
+    float elapsedTime = 0f;
     bool isMove = false;
     int prePage = 1;
     int curPage = 1;
@@ -40,12 +45,12 @@ public class BossStageCamera : MonoBehaviour
 
         if(prePage!=curPage)
         {
-            /*if(!isMove)
+            if(!isMove)
             {
                 Init();
                 MoveCamera.enabled = true;
-                MoveCamera.transform.position = new Vector3(-12f, 7.5f, 4.5f);
-                MoveCamera.transform.rotation = Quaternion.Euler(-10f, -30f, 0f);
+                MoveCamera.transform.position = startPosition;
+                MoveCamera.transform.rotation = startRotation;
                 isMove = true;
             }
             else
@@ -53,20 +58,18 @@ public class BossStageCamera : MonoBehaviour
                 elapsedTime += Time.deltaTime;
 
                 // 위치와 회전 갱신
-                transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
-                transform.rotation = Quaternion.Slerp(startRotation, Quaternion.Euler(targetRotation), elapsedTime / duration);
+                MoveCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (cameraMoveSpeed*2f));
+                MoveCamera.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / (cameraMoveSpeed * 2f));
 
                 // 목표에 도달했는지 확인
-                if (elapsedTime >= duration)
+                if (elapsedTime >= (cameraMoveSpeed * 2f))
                 {
-                    transform.position = targetPosition; // 정확한 목표 위치로 이동
-                    transform.rotation = Quaternion.Euler(targetRotation); // 정확한 목표 회전으로 회전
+                    MoveCamera.transform.position = targetPosition; // 정확한 목표 위치로 이동
+                    MoveCamera.transform.rotation = targetRotation; // 정확한 목표 회전으로 회전
 
-                    OnReachedTarget(); // 목표에 도달했을 때 실행할 메서드 호출
+                    ReachTarget(); // 목표에 도달했을 때 실행할 메서드 호출
                 }
             }
-            //도착하면
-            prePage = curPage;*/
         }
     }
 
@@ -82,11 +85,25 @@ public class BossStageCamera : MonoBehaviour
         playerMovement.enabled = false;
     }
 
+    void ReachTarget()
+    {
+        prePage = curPage;
+        isMove = false;
+        Invoke("ViewTop", 1f);
+    }
+
+    void ViewTop()
+    {
+        MoveCamera.enabled = false;
+        AllSceneCamera.enabled = true;
+        Invoke("ChangeMainCamera", 3f);
+    }
+
     void ChangeMainCamera()
     {
-        Scene++;
         NellCamera.enabled = false;
         LCamera.enabled = false;
+        AllSceneCamera.enabled = false;
         MainCamera.enabled = true;
         cameraFollow.enabled = true;
         playerMovement.enabled = true;
@@ -153,6 +170,7 @@ public class BossStageCamera : MonoBehaviour
             LCamera.rect = new Rect(0, 0, 0.5f, 1);
             NellCamera.rect = new Rect(0.5f, 0, 0.5f, 1);
 
+            Scene++;
             Invoke("ChangeMainCamera", 5f);
         }
     }
