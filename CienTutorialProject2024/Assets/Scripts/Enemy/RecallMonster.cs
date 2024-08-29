@@ -30,6 +30,17 @@ public class RecallMonster : MonoBehaviour
             {
                 recallCount = 2;
             }
+            else if (BossStageController.instance.page == 4)
+            {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+                foreach (GameObject enemy in enemies)
+                {
+                    Destroy(enemy);
+                }
+
+                this.enabled = false;
+            }
         }
     }
 

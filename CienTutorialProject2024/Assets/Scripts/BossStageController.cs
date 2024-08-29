@@ -47,6 +47,4 @@ public class BossStageController : MonoBehaviour
             bossShield.SetActive(false);
         }
     }
-
-    //보스 애니메이션 컨트롤하기 
 }
