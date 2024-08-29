@@ -1108,6 +1108,7 @@ GameObject:
   - component: {fileID: 1274946572496849032}
   - component: {fileID: 4009976436726366314}
   - component: {fileID: 5892463581964516432}
+  - component: {fileID: 6811875116053997923}
   m_Layer: 0
   m_Name: BossSubEnemyGreen
   m_TagString: Untagged
@@ -1184,6 +1185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectObject: {fileID: 8875094048000324700}
   visualObject: {fileID: 6491422736214595487}
+  bombTime: 1
 --- !u!95 &1274946572496849032
 Animator:
   serializedVersion: 5
@@ -1242,6 +1244,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 50
   curHp: 0
+--- !u!135 &6811875116053997923
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157523946388006553}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3405882029908216811
 GameObject:
   m_ObjectHideFlags: 0

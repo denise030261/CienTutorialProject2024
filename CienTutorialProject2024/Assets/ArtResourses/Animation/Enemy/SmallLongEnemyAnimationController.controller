@@ -83,7 +83,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LongEnemyAnimationController
+  m_Name: SmallLongEnemyAnimationController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAttack
@@ -236,7 +236,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1.0846972
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 1.0002872
   m_HasExitTime: 0

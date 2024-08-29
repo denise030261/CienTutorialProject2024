@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
-    [SerializeField] GameObject DestroiedObject;
+    public int maxHp = 5;
+    public int curHp;
+    [SerializeField] GameObject destroiedObject;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
-        // 감지하면 파괴   
+        curHp = maxHp;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            curHp -= bullet.damage;
+            if (curHp <= 0f)
+            {
+                destroiedObject.SetActive(false);
+                Destroy(gameObject);
+            }
+        }
+    }
 }
