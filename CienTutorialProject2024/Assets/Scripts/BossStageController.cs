@@ -5,17 +5,23 @@ using UnityEngine;
 public class BossStageController : MonoBehaviour
 {
     [SerializeField] GameObject bridge;
+    [SerializeField] GameObject stair;
     [SerializeField] GameObject longAttackEnemies;
+    [SerializeField] GameObject solveDefence;
+    [SerializeField] GameObject bossShield;
+
     public int page = 1;
-    public static BossStageController instance;   
+    public static BossStageController instance = null;
 
     void Awake()
     {
-        BossStageController.instance = this;
+        instance = this;
         bridge.SetActive(false);
+        stair.SetActive(false);
         longAttackEnemies.SetActive(false);
-    } 
-
+        bossShield.SetActive(true);
+        solveDefence.SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +37,16 @@ public class BossStageController : MonoBehaviour
             bridge.SetActive(true);
             longAttackEnemies.SetActive(true);
         }
+        else if(page==3) 
+        {
+            solveDefence.SetActive(false);
+        }
+        else if(page == 4) 
+        {
+            stair.SetActive(true);
+            bossShield.SetActive(false);
+        }
     }
 
- 
+    //보스 애니메이션 컨트롤하기 
 }

@@ -25,14 +25,27 @@ public class RecallMonster : MonoBehaviour
     {
         if(recallFields != null)
         {
-            for(int i=0;i< recallFields.transform.childCount;i++)
+            bool isCreate = false;
+            foreach(Transform fields in recallFields.transform)
             {
-                GameObject field = recallFields.transform.GetChild(i).gameObject;
-                if(field.transform.childCount == 0)
+                if(!isCreate)
                 {
-                    Debug.Log(field.transform.position);
-                    RecallField(field.transform.position);
-                    break;
+                    bool isNeed = true;
+                    foreach (Transform field in fields)
+                    {
+                        if (field.childCount >= 1)
+                        {
+                            isNeed = false;
+                            break;
+                        }
+                    }
+
+                    if(isNeed)
+                    {
+                        isCreate = true;
+                        Transform recallField = fields.transform.GetChild(Random.RandomRange(0, fields.transform.childCount));
+                        RecallField(recallField.position, recallField.gameObject);
+                    }
                 }
             }
         }
@@ -42,11 +55,12 @@ public class RecallMonster : MonoBehaviour
         }
     }
 
-    void RecallField(Vector3 recallPosition)
+    void RecallField(Vector3 recallPosition, GameObject recallObject)
     {
         animator.SetBool("recallMonster", true);
         Invoke("OnAnimationEnd", 2.33f);
-        Instantiate(Enemy, recallPosition, Quaternion.identity);
+        GameObject instance = Instantiate(Enemy, recallPosition, Quaternion.identity);
+        instance.transform.parent = recallObject.transform;
         Instantiate(recallEffect, recallPosition, Quaternion.identity);
         Invoke("RecallingMonster", recallTime);
     }
@@ -61,6 +75,7 @@ public class RecallMonster : MonoBehaviour
     {
         animator.SetBool("recallMonster", false);
         recallingEffect.SetActive(false);
+        Destroy(recallingEffect);
     }
 
 }
