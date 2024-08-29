@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 postVelo = _rb.velocity;
         move = new Vector3(h, 0, v);
         move = _camera.transform.TransformDirection(move);
+        move = move.normalized;
         move = Vector3.Scale(move, new Vector3(1, 0, 1));
         playerVelocity = move * speed;
         playerVelocity.y = postVelo.y;
