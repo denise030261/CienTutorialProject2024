@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public int stage;
     public float playTime;
     public bool isBattle;
+    bool isPause;
+    float[] stageRecord = new float[6];
 
     //UI를 위한 변수 할당
     public GameObject startPanel;
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameclearPanel;
     public GameObject gameoverPanel;
     public Text playTimeTxt;
+    public Text clearTimeTxt;
     public Image gun1Img;
     public Image gun2Img;
     //버튼 관련
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> StartmenuClick = new List<GameObject>();
     //메뉴화면 버튼관련
     public List<GameObject> StageClick = new List<GameObject>();
+
     //인게임관련변수
 
     //인게임 플레이타임
@@ -88,6 +93,38 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true);
     }
 
+    public void Clear()
+    {
+        Time.timeScale = 0;
+        clearTimeTxt = playTimeTxt;
+        stageRecord[stage] = playTime;
+        playTime = 0;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        gameoverPanel.SetActive(true);
+        playTime = 0;
+    }
+
+    public void PauseGame()
+    {
+        if (!isPause)
+        {
+            isPause = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            isPause = false;
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+
+
+    }
 
     //인게임
     private void Awake()
@@ -107,6 +144,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        isPause = false;
         previousTime = Time.time;
         wasInBattle = isBattle;
     }
@@ -116,23 +154,36 @@ public class GameManager : MonoBehaviour
         //if (isBattle)
         //  playTime += Time.deltaTime; 이렇게만 하면 됨
 
+
+
         if (isBattle)
         {
-            if (!wasInBattle)
+            if (!isPause)
             {
-                //전투 상태가 이전에는 비활성화되어 있었고 현재는 활성화 된 경우
-                //이전 시간 업데이트
-                previousTime = Time.time;
-            }
-            else
-            {
-                //현재 시간과 이전 시간의 차이를 계산
-                float currentTime = Time.time;
-                float deltaTime = currentTime - previousTime;
-                previousTime = currentTime;
+                if (!wasInBattle)
+                {
+                    //전투 상태가 이전에는 비활성화되어 있었고 현재는 활성화 된 경우
+                    //이전 시간 업데이트
+                    previousTime = Time.time;
+                }
+                else
+                {
 
-                //playTIme을 업데이트
-                playTime += deltaTime;
+                    //현재 시간과 이전 시간의 차이를 계산
+                    float currentTime = Time.time;
+                    float deltaTime = currentTime - previousTime;
+                    previousTime = currentTime;
+
+                    //playTime을 업데이트
+                    playTime += deltaTime;
+
+
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseGame();
             }
         }
         //현재 전투 상태 저장
@@ -142,10 +193,10 @@ public class GameManager : MonoBehaviour
     void LateUpdate()
     {
         //플레이타임
-        int hour = (int)(playTime / 3600);
-        int min = (int)((playTime - hour * 3600) / 60);
+        int min = (int)(playTime/ 60);
         int second = (int)(playTime % 60);
-        playTimeTxt.text = string.Format("{0:00}",hour) + ":" + string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second);
+        int milisecond = (int)((playTime - second) * 100);
+        playTimeTxt.text = string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second) + ":" + string.Format("{0:00}", milisecond);
     }
 
     //게임종료

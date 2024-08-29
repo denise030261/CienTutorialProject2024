@@ -25,8 +25,6 @@ public class PlayerAkane : MonoBehaviour
     float fireDelay;
     bool isFireReady = true;
 
-    Vector3 moveVec;
-
 
     //애니메이션
     Animator _animator;
