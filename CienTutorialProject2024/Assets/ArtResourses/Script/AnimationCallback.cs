@@ -5,6 +5,8 @@ using UnityEngine;
 public class AnimationCallback : MonoBehaviour
 {
     public bool endRollAnim = false;
+    public bool startHurdle = false;
+    public bool endHurdle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,17 @@ public class AnimationCallback : MonoBehaviour
     {
         
     }
+
+    void StartHurdle()
+    {
+        startHurdle=true;
+    }
+
+    void EndHurdle()
+    {
+        endHurdle=true;
+    }
+    
 
     void EndRoll()
     {

@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
         RUNNING,
         FALLING,
         HANGING,
-        ROLLING
+        ROLLING,
+        HURDLING
     }
 
     public PlayerState state;
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     bool isTurn;
     bool backDown;
     bool isRoll;
+    bool isHurdle;
     public Transform hurdlePosition;
     AnimationCallback _animCallBack;
     void Start()
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         _animCallBack = model.GetComponent<AnimationCallback>();
         isTurn = false;
         isRoll = false;
+        isHurdle = false;
     }
 
     private void FixedUpdate()
@@ -61,9 +64,11 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.FALLING: { Falling(); } break;
             case PlayerState.HANGING: { Hang(); } break; 
             case PlayerState.ROLLING: { Roll(); } break;
+            case PlayerState.HURDLING: { Hurdle(); } break;
         }
 
         isGrounded = IsCheckGrounded();
+        isHurdle = IsCheckHurdling();
         if (isGrounded)
         {
             _animator.SetBool("isJump", false);
@@ -132,7 +137,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Jump");
 
-            playerVelocity.y  = jumpPower;
+            playerVelocity.y = jumpPower;
+
+            if (isHurdle)
+            {
+                _animator.SetBool("isHurdle", true);
+            }
             state = PlayerState.FALLING;
 
         }
@@ -150,6 +160,9 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("isJump", true);
         _animator.SetBool("isHang", false);
+        _animator.SetBool("isHurdle", false );
+        move = new Vector3(h, 0, v);
+        move = _camera.transform.TransformDirection(move);
         if (jumpDown && Physics.Raycast(transform.position, transform.forward, 0.3f, 1<<8))
         {
             Debug.Log("goto hang");
@@ -314,11 +327,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("do Roll");
 
-        transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward.normalized, 0.1f);
+        transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward.normalized * 0.4f, 0.1f);
         if (_animCallBack.endRollAnim)
         {
             _animator.SetBool("isRoll", false);
             isRoll = false;
+            _animCallBack.endRollAnim = false;
             state = PlayerState.RUNNING;
         }
     }
@@ -330,14 +344,36 @@ public class PlayerMovement : MonoBehaviour
         state = PlayerState.RUNNING;
     }
 
-    public void Hurdle()
+    public bool IsCheckHurdling()
     {
         int layerMask;
         layerMask = 1 << 9;
         RaycastHit hit;
-        if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, layerMask))
+        if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, 5f, layerMask))
         {
-            Debug.Log(hit.collider.name);
+            Debug.Log(hit.distance);
+            if(hit.distance >= 2f && hit.distance < 3f)
+                return true;
+        }
+        return false;
+    }
+
+    public void Hurdle()
+    {
+        _animator.SetBool("isHurdle", true);
+        if (_animCallBack.startHurdle)
+        {
+            Debug.Log("do Hurdle");
+            transform.position = Vector3.Slerp(transform.position, transform.position + transform.forward.normalized * 5f, 0.1f);
+        }
+        if (_animCallBack.endHurdle)
+        {
+            _animCallBack.startHurdle = false;
+            _animator.SetBool("isHurdle", false);
+            isHurdle = false;
+            _animCallBack.endHurdle = false;
+            state = PlayerState.RUNNING;
+
         }
     }
 
