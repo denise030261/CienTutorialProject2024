@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         isTurn = false;
         isRoll = false;
         isHurdle = false;
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     private void FixedUpdate()
@@ -316,9 +317,9 @@ public class PlayerMovement : MonoBehaviour
     void IsRoll()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit))
+        if(Physics.Raycast(transform.position, Vector3.down, out hit,5f))
         {
-            if(hit.distance > 2f)
+            if(hit.distance > 3f)
             {
                 isRoll =  true;
                 _animator.SetBool("isRoll", true);
@@ -330,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("do Roll");
 
-        transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward.normalized * 0.4f, 0.1f);
+        transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward.normalized * 0.2f, 0.1f);
         if (_animCallBack.endRollAnim)
         {
             _animator.SetBool("isRoll", false);
