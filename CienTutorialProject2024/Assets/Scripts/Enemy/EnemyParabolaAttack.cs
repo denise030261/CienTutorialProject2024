@@ -47,6 +47,18 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     void Update()
     {
+        if (BossStageController.instance != null)
+        {
+            if (BossStageController.instance.page == 3)
+            {
+                reloadTime = 4;
+            }
+            else if (BossStageController.instance.page == 4)
+            {
+                reloadTime = 3;
+            }
+        }
+
         reloadingTime += Time.deltaTime;
         if (reloadingTime>=reloadTime && readyShoot)
         {

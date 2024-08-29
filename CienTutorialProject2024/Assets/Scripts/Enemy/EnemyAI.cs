@@ -39,6 +39,24 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if(BossStageController.instance!=null)
+        {
+            if(BossStageController.instance.page==2)
+            {
+                ViewRadius = 7;
+                nav.speed = 2;
+            }
+            else if(BossStageController.instance.page == 3)
+            {
+                ViewRadius = 9;
+            }
+            else if(BossStageController.instance.page == 4)
+            {
+                ViewRadius = 15;
+                nav.speed = 3;
+            }
+        }
+
         isTarget = false;
         ViewOfField();
         ViewOfFieldDebug();

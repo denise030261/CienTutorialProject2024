@@ -32,7 +32,7 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(disappearing) 
+        if (disappearing) 
         {
             if (platformMaterial != null)
             {

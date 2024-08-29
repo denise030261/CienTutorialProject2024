@@ -9,6 +9,7 @@ public class RecallMonster : MonoBehaviour
     [SerializeField] GameObject recallEffect;
     [SerializeField] GameObject recallingEffect;
     [SerializeField] GameObject recallFields;
+    int recallCount = 1;
     Animator animator;
 
 
@@ -19,6 +20,17 @@ public class RecallMonster : MonoBehaviour
         recallingEffect.SetActive(false);
         Invoke("RecallingMonster", recallTime);
         Invoke("OnAnimationStart", recallTime - 1f);
+    }
+
+    private void Update()
+    {
+        if (BossStageController.instance != null)
+        {
+            if (BossStageController.instance.page == 3)
+            {
+                recallCount = 2;
+            }
+        }
     }
 
     void RecallingMonster()
@@ -33,7 +45,7 @@ public class RecallMonster : MonoBehaviour
                     bool isNeed = true;
                     foreach (Transform field in fields)
                     {
-                        if (field.childCount >= 1)
+                        if (field.childCount >= recallCount)
                         {
                             isNeed = false;
                             break;
@@ -48,6 +60,11 @@ public class RecallMonster : MonoBehaviour
                         RecallField(recallField.position, recallField.gameObject);
                     }
                 }
+            }
+
+            if(!isCreate)
+            {
+                Invoke("RecallingMonster", recallTime);
             }
         }
         else
