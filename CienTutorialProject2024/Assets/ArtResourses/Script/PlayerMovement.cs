@@ -7,18 +7,25 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
+    public enum PlayerState
+    {
+        RUNNING,
+        FALLING,
+        HANGING,
+        ROLLING
+    }
 
-
-
+    public PlayerState state;
     Animator _animator;
     public Camera _camera;
     public Camera _aimCamera;
-    CharacterController _controller;
+    Rigidbody _rb;
+    public Transform model;
 
-    public float speed = 5f;
-    public float gravity = -9.81f;
-    public float jumpPower = 1.0f;
-    float yVelocity = 0;
+    public float speed = 4.0f;
+    public float jumpPower = 5.0f;
+    float h;
+    float v;
     public bool toggleCameraRotation;
 
     Vector3 dir;
@@ -29,21 +36,48 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 playerVelocity;
     bool isGrounded;
-   
-    bool isHang;
-    bool isHangPosition;
-    Vector3 hangDist;
+    bool jumpDown;
 
-   Transform handPosition;
+    bool isTurn;
+    bool backDown;
+    bool isRoll;
+    public Transform hurdlePosition;
     void Start()
     {
+        state = PlayerState.RUNNING;
+        _rb = GetComponent<Rigidbody>();
+        _animator = model.GetComponent<Animator>();
+        isTurn = false;
+        isRoll = false;
+    }
 
-        _animator = gameObject.GetComponent<Animator>();
-        _controller = gameObject.GetComponent<CharacterController>();
-        handPosition = gameObject.transform.Find("HandPoint");
-        isHang = false;
-        isHangPosition = false;
-        hangDist = Vector3.zero;
+    private void FixedUpdate()
+    {
+        switch (state)
+        {
+            case PlayerState.RUNNING: { InputMovement(); } break;
+            case PlayerState.FALLING: { Falling(); } break;
+            case PlayerState.HANGING: { Hang(); } break; 
+            case PlayerState.ROLLING: { Roll(); } break;
+        }
+        if (isRoll)
+        {
+            Debug.Log("state Rolling");
+            state = PlayerState.ROLLING;
+        }
+        isGrounded = IsCheckGrounded();
+        if (isGrounded)
+        {
+            _animator.SetBool("isJump", false);
+            state = PlayerState.RUNNING;
+        }else if(state == PlayerState.RUNNING)
+        {
+            state = PlayerState.FALLING;
+        }
+        _rb.useGravity = state != PlayerState.HANGING;
+
+        IsRoll();
+        jumpDown = false;
     }
 
     // Update is called once per frame
@@ -61,10 +95,14 @@ public class PlayerMovement : MonoBehaviour
             _camera.enabled = true;
             _aimCamera.enabled = false;
         }
+        if (!jumpDown)
+        {
+            jumpDown = Input.GetButtonDown("Jump");
+        }
 
-        InputMovement();
-        Hang();
-        Roll();
+        backDown = Input.GetKey(KeyCode.S);
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
         //GoHangPosition();
     }
 
@@ -75,63 +113,47 @@ public class PlayerMovement : MonoBehaviour
 
     void InputMovement()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        isGrounded = IsCheckGrounded();
-
-        if (isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-            _animator.SetBool("isJump", false);
-            _animator.SetBool("isRoll", false );
-        }
-
-        if (!isGrounded)
-        {
-            _animator.SetBool("isJump", true);
-        }
-
-        if(!isHang)
-        {
-            move = new Vector3(h, 0, v);
-            speed = 5f;
-            move = _camera.transform.TransformDirection(move);
-            move = Vector3.Scale(move, new Vector3(1, 0, 1));
-        }
-        else
-        {
-            move = new Vector3(h, 0, 0);
-            speed = 0.7f;
-        }
-
-
-
-        _controller.Move(move * Time.deltaTime * speed);
+        Vector3 postVelo = _rb.velocity;
+        move = new Vector3(h, 0, v);
+        move = _camera.transform.TransformDirection(move);
+        move = Vector3.Scale(move, new Vector3(1, 0, 1));
+        playerVelocity = move * speed;
+        playerVelocity.y = postVelo.y;
 
         characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(jumpDown)
         {
             Debug.Log("Jump");
-            playerVelocity.y += Mathf.Sqrt(jumpPower * -3.0f * gravity);
-            _animator.SetBool("isJump", true);
+
+            playerVelocity.y  = jumpPower;
+            state = PlayerState.FALLING;
+
         }
+        
 
-
-        playerVelocity.y += gravity * Time.deltaTime;
-        _controller.Move(playerVelocity * Time.deltaTime);
-
+        _rb.velocity = playerVelocity;
 
         float percent = 0.5f * move.magnitude;
         _animator.SetFloat("Blend", percent, 0.1f, Time.deltaTime);
 
-        _animator.SetFloat("Hang Blend", h);
+
+    }
+
+    void Falling()
+    {
+        _animator.SetBool("isJump", true);
+        _animator.SetBool("isHang", false);
+        if (jumpDown && Physics.Raycast(transform.position, transform.forward, 0.3f, 1<<8))
+        {
+            Debug.Log("goto hang");
+            state = PlayerState.HANGING;
+        }
     }
 
     void PlayerRotation()
     {
-        if(!_animator.GetBool("isHang"))
+        if(state != PlayerState.HANGING)
         {
             if (toggleCameraRotation)//줌 했을 시 즉시
             {
@@ -142,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (move.magnitude > 0.05f)//줌 하지 않고 움직일 시
                 {
+
                     characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(characterRotation), Time.deltaTime * smoothness);
                 }
@@ -152,95 +175,165 @@ public class PlayerMovement : MonoBehaviour
 
     void Hang()
     {
-        int layerMask;
-        layerMask = 1 << 8;
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 30f, layerMask))
+        _animator.SetBool("isHang", true);
+        Vector3 offset = transform.TransformDirection(Vector2.one * 0.5f);
+        Vector3 checkDirection = Vector3.zero;
+        int k = 0;
+        for(int i = 0; i < 4; i++)
         {
-            Transform hangPosition = hit.collider.transform.Find("ParkourPoint");
-            
-
-            float distance = Vector3.Distance(hangPosition.position, handPosition.position);//벽에서 잡는 곳, 손과의 거리
-
-            if (!isHang) 
-            { 
-                if (Input.GetButtonDown("Jump") && distance < 0.2f)
-                {
-                    hangDist = handPosition.position - hangPosition.position;
-                    Debug.Log(hangDist);
-                    //gameObject.transform.position = Vector3.Slerp(gameObject.transform.position, transform.position + delta, Time.deltaTime * smoothness);
-                    isHang = true;
-                    playerVelocity = Vector3.zero;
-                    gravity = 0;
-                    _animator.SetBool("isHang", true);
-
-                }
-            }
-            else
+            RaycastHit checkHit;
+            if(Physics.Raycast(transform.position + offset, transform.forward, out checkHit))
             {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    gravity = -9.81f;
-                    _animator.SetBool("isHang", false);
-                    isHang = false;
-                    if (Input.GetKey(KeyCode.S))
-                    {
-                        playerVelocity.y += Mathf.Sqrt(jumpPower * -3.0f * gravity);
-                    }
-                    else if (Input.GetKey(KeyCode.W))
-                    {
-
-                    }
-                }
-                
+                checkDirection += checkHit.normal;
+                k++;
             }
+            offset = Quaternion.AngleAxis(90f, transform.forward) * offset;
+        }
+        checkDirection /= k;
 
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, -checkDirection, out hit))
+        {
+            isTurn = false;
+            Vector3 playerVelocity = new Vector3(h, 0, 0);
+            transform.forward = -hit.normal;
+            Vector3 grabPostion = hit.point + hit.normal * 0.18f;
+            grabPostion.y = hit.collider.transform.position.y + hit.collider.transform.localScale.y / 2 - 0.15f;
+            _rb.position = Vector3.Lerp(_rb.position, grabPostion, 10f * Time.fixedDeltaTime);
+            transform.forward = Vector3.Lerp(transform.forward, -hit.normal, 10f * Time.fixedDeltaTime);
+
+            _rb.useGravity = false;
+            _rb.velocity = transform.TransformDirection(playerVelocity) * 1f;
+            _animator.SetFloat("Hang Blend", h);
+            if (jumpDown)
+            {
+                if(backDown)
+                {
+                    _rb.velocity = Vector3.up * 5f + hit.normal * 2f;
+                }
+                state = PlayerState.FALLING;
+            }
         }
         else
         {
-            _animator.SetBool("isHang", false);
-            gravity = -9.81f;
+            if (!isTurn)
+            {
+                isTurn = true;
+                transform.rotation *= Quaternion.Euler(0f, -90f * h, 0f);
+                
+                transform.position =transform.position + transform.right * h * 0.5f;
+            }
+
         }
+
+
+
+        //int layerMask;
+        //layerMask = 1 << 8;
+        //RaycastHit hit;
+        //if(Physics.Raycast(transform.position, transform.forward, out hit, 0.3f, layerMask))
+        //{
+        //    Transform hangPosition = hit.collider.transform.Find("ParkourPoint");
+
+        //    float distance = Vector3.Distance(hangPosition.position, handPosition.position);//벽에서 잡는 곳, 손과의 거리
+            
+        //    if (!isHang) 
+        //    { 
+        //        if (jumpDown && distance < 0.2f)
+        //        {
+        //            hangDist = handPosition.position - hangPosition.position;
+        //            Debug.Log(hangDist);
+        //            isHang = true;
+        //            playerVelocity = Vector3.zero;
+        //            _rb.useGravity = false;
+        //            _animator.SetBool("isHang", true);
+
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("isHang: " + isHang);
+        //        if (jumpDown)
+        //        {
+        //            _rb.useGravity = true;
+        //            _animator.SetBool("isHang", false);
+        //            isHang = false;
+        //            if (Input.GetKey(KeyCode.S))
+        //            {
+        //                playerVelocity.y = jumpPower;
+        //            }
+        //            else if (Input.GetKey(KeyCode.W))
+        //            {
+
+        //            }
+        //        }
+        //        transform.forward = -hit.normal;
+        //        Vector3 grabPostion = hit.point + hit.normal * 0.18f;
+        //        grabPostion.y = hit.collider.transform.position.y + hit.collider.transform.localScale.y / 2 - 0.7f;
+        //        Debug.Log(grabPostion);
+        //        transform.position = Vector3.Lerp(transform.position,
+        //                                grabPostion,
+        //                                10f * Time.fixedDeltaTime);
+        //    }
+
+        //}
+
     }
 
     private bool IsCheckGrounded()
     {
-        if (_controller.isGrounded) return true;
-        var ray = new Ray(this.transform.position + Vector3.up * 0.1f, Vector3.down);
+        RaycastHit hit;
 
-        var maxDistance = 0.1f;
+        if(Physics.Raycast(transform.position,
+            Vector3.down,
+            out hit, 0.57f))
+        {
+            return true;
+        }
+        return false;
+    }
 
-        Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down * maxDistance, Color.red);
-
-        return Physics.Raycast(ray, maxDistance);
+    void IsRoll()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            if(hit.distance > 2f)
+            {
+                isRoll =  true;
+                Debug.Log("isRoll: " + isRoll);
+            }
+        }
     }
 
     void Roll()
     {
-        RaycastHit floor;
-
-        if(Physics.Raycast(transform.position, Vector3.down, out floor, 50f))
-        {
-            if(floor.distance > 2f)
-            {
-                _animator.SetBool("isRoll", true);
-            }
-        }
-
-
+        Debug.Log("do Roll");
+        _animator.SetBool("isRoll", true);
+        transform.position = Vector3.Lerp(transform.position, transform.forward, 0.1f);
     }
 
     public void ResetRoll()
     {
         _animator.SetBool("isRoll", false);
+        isRoll = false;
+        state = PlayerState.RUNNING;
     }
 
-    void GoHangPosition()
+    public void Hurdle()
     {
-        if (isHang)
+        int layerMask;
+        layerMask = 1 << 9;
+        RaycastHit hit;
+        if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, layerMask))
         {
-            gameObject.transform.position = Vector3.Slerp(transform.position, transform.position - hangDist, 0.05f);
-            Debug.Log("go to hang position");
+            Debug.Log(hit.collider.name);
         }
+    }
+
+    IEnumerator RotateOnce()
+    {
+
+        yield return new WaitForSeconds(1f);
     }
 }
