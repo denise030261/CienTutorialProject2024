@@ -77,6 +77,16 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        PlayTimeCalculate();
+
+    }
+    void LateUpdate()
+    {
+        PlayTimeShow();
+    }
+
+    void PlayTimeCalculate()
+    {
         //Time.deltaTime 쓸거면
         //if (isBattle)
         //  playTime += Time.deltaTime; 이렇게만 하면 됨
@@ -102,15 +112,14 @@ public class GameManager : MonoBehaviour
         }
         //현재 전투 상태 저장
         wasInBattle = isBattle;
-
     }
-    void LateUpdate()
+    void PlayTimeShow()
     {
         //플레이타임
         int hour = (int)(playTime / 3600);
         int min = (int)((playTime - hour * 3600) / 60);
         int second = (int)(playTime % 60);
-        playTimeTxt.text = string.Format("{0:00}",hour) + ":" + string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second);
+        playTimeTxt.text = string.Format("{0:00}", hour) + ":" + string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second);
     }
 
     //게임종료
