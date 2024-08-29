@@ -78,7 +78,7 @@ public class EnemyParabolaAttack : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, shootPosition, Quaternion.identity);
 
         // 시작점과 목표점 사이의 거리 계산
-        float target_Distance = Vector3.Distance(startPoint.position, targetPoint.position);
+        float target_Distance = (Vector3.Distance(startPoint.position, targetPoint.position))/2;
 
         float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
