@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 using Debug = UnityEngine.Debug;
 
 public class EnemyAI : MonoBehaviour

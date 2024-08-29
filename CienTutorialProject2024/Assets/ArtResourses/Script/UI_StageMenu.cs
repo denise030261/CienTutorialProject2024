@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_StageMenu : MonoBehaviour
 {
     public int stage;
-    public GameObject startPanel;
-    public GameObject menuPanel;
-    public GameObject ingamePanel;
+    public Canvas startUI;
     //메뉴화면 버튼관련
     public List<GameObject> StageClick = new List<GameObject>();
 
     //메뉴화면
-    public void Stageselect(int num)
+    public void StageSelect(int num)
     {
-
-        StageClick[num].SetActive(true);
+        SceneManager.LoadScene("stage"+num.ToString());
+        GameManager.Instance.stage = num;
     }
     public void StageDeselect(int num)
     {
@@ -24,8 +23,8 @@ public class UI_StageMenu : MonoBehaviour
 
     public void MenuBack()
     {
-        menuPanel.SetActive(false);
-        startPanel.SetActive(true);
+        startUI.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 

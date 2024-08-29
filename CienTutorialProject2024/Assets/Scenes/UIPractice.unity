@@ -4613,7 +4613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1117134464
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5793,6 +5793,13 @@ MonoBehaviour:
   stage: 0
   playTime: 0
   isBattle: 1
+  stageRecord:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   startPanel: {fileID: 540466447}
   menuPanel: {fileID: 2127661430}
   ingamePanel: {fileID: 1117134463}

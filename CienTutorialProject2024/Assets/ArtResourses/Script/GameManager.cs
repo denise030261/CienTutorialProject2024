@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public float playTime;
     public bool isBattle;
     bool isPause;
-    float[] stageRecord = new float[6];
+    public float[] stageRecord = new float[6];
 
     //UI를 위한 변수 할당
     public GameObject startPanel;
@@ -199,10 +199,6 @@ public class GameManager : MonoBehaviour
         playTimeTxt.text = string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second) + ":" + string.Format("{0:00}", milisecond);
     }
 
-    //게임종료
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
 
+ 
 }
