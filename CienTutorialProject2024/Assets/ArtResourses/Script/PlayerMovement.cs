@@ -141,8 +141,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(jumpDown)
         {
-            Debug.Log("Jump");
-
             playerVelocity.y = jumpPower;
 
             if (isHurdle)
@@ -357,7 +355,6 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, 5f, layerMask))
         {
-            Debug.Log(hit.distance);
             if(hit.distance >= 2f && hit.distance < 3f)
                 return true;
         }
