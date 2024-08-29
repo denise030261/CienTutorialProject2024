@@ -5,6 +5,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if(!_instance)
+            {
+                _instance = FindObjectOfType(typeof(GameManager)) as GameManager;
+
+                if( _instance == null)
+                {
+                    Debug.Log("No Singleton obj");
+                }
+            }
+            return _instance;
+        }
+    }
+
     //정보를 가지고 있는 변수할당
     //public GameObject menuCam;
     //public GameObject gameCam;
@@ -69,7 +88,23 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true);
     }
 
+
     //인게임
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+
+        else if(_instance != this)
+        {
+            Destroy(_instance);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         previousTime = Time.time;

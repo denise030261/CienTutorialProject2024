@@ -1984,6 +1984,7 @@ MonoBehaviour:
   bullet: {fileID: 1823996715}
   bulletCasePos: {fileID: 923249050}
   bulletCase: {fileID: 1835825767}
+  aimCam: {fileID: 0}
 --- !u!1 &445028717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,6 +3340,7 @@ MonoBehaviour:
   bullet: {fileID: 2003684447}
   bulletCasePos: {fileID: 603638315}
   bulletCase: {fileID: 1835825767}
+  aimCam: {fileID: 0}
 --- !u!1 &865716242
 GameObject:
   m_ObjectHideFlags: 0
