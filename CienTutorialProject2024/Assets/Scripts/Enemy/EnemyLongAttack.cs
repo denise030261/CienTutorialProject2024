@@ -65,7 +65,6 @@ public class EnemyLongAttack : MonoBehaviour
             yield return null; // 매 프레임마다 체크
         }
 
-        //readyShoot = true;
     } // rotation 방향대로 쏘게 만들기
 
     void Reload()

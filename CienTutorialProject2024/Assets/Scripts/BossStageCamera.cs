@@ -16,6 +16,7 @@ public class BossStageCamera : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] float cameraMoveSpeed = 1f;
+    [SerializeField] Animator bossAnimator;
 
     Vector3 startPosition = new Vector3(8.5f, 5f, 0f);
     Quaternion startRotation= Quaternion.Euler(20f, -90f, 0f);
@@ -45,11 +46,6 @@ public class BossStageCamera : MonoBehaviour
         {
             if(!isMove && !MoveCamera.enabled)
             {
-                /*Init();
-                MoveCamera.enabled = true;
-                MoveCamera.transform.position = startPosition;
-                MoveCamera.transform.rotation = startRotation;
-                isMove = true;*/
                 StartCoroutine(PlayerMoveCamera());
             }
             else if(isMove && MoveCamera.enabled)
@@ -86,10 +82,22 @@ public class BossStageCamera : MonoBehaviour
 
     IEnumerator BossMoveCamera()
     {
+        if(BossStageController.instance.page<=3)
+        {
+            bossAnimator.SetBool("getDamage", true);
+            bossAnimator.SetBool("recallMonster", false);
+        }
+        else
+        {
+            bossAnimator.SetBool("getDamage", false);
+            bossAnimator.SetBool("recallMonster", false);
+            bossAnimator.SetBool("isDown", true);
+        }
         elapsedTime = 0;
         prePage = curPage;
         isMove = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
+        bossAnimator.SetBool("getDamage", false);
         MoveCamera.enabled = false;
         AllSceneCamera.enabled = true;
         yield return new WaitForSeconds(3f);

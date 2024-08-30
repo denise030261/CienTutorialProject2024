@@ -25,10 +25,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             glass.transform.parent = transform;
             glassEffect.transform.parent = transform;
+            glassEffect.transform.localPosition = new Vector3(0f, 0f, 0f);
             glass.SetActive(false);
             getGlass=false;
         }
-        else if(putGlass && Input.GetKeyDown(KeyCode.E))
+        else if(glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) ==
+                glass.name.Substring(0, (glass.name.Length - 5)) && Input.GetKeyDown(KeyCode.E))
         {
             glassEffect.transform.parent = glassPlatform.transform;
             glass.transform.parent = glassPlatform.transform;
@@ -48,23 +50,36 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Glass") 
+        if(other.gameObject.tag=="Glass" && !putGlass) 
         {
             getGlass = true;
             glass = other.gameObject;
             glassEffect = glass.transform.GetChild(0).gameObject;
-        }   
+        }
+
+        if (glass != null && other.gameObject.tag != "Glass" && !putGlass)
+        {
+            glassPlatform = other.transform.parent.gameObject;
+            /*Debug.Log(glassPlatform);
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == 
+                glass.name.Substring(0, (glass.name.Length - 5)))
+            {
+                putGlass = true;
+            }*/
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(glass !=null && other.gameObject.tag != "Glass")
+        if (glass != null && other.gameObject.tag != "Glass" && !putGlass)
         {
             glassPlatform = other.transform.parent.gameObject;
-            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == glass.name.Substring(0, (glass.name.Length - 5)))
+            /*Debug.Log(glassPlatform);
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == 
+                glass.name.Substring(0, (glass.name.Length - 5)))
             {
                 putGlass = true;
-            }
+            }*/
         }
     }
 
