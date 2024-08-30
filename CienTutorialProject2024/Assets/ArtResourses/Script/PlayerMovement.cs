@@ -133,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 postVelo = _rb.velocity;
         move = new Vector3(h, 0, v);
         move = _camera.transform.TransformDirection(move);
-        move = move.normalized;
         move = Vector3.Scale(move, new Vector3(1, 0, 1));
         playerVelocity = move * speed;
         playerVelocity.y = postVelo.y;
@@ -356,7 +355,8 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, 5f, layerMask))
         {
-            if(hit.distance >= 2f && hit.distance < 3f)
+            Debug.Log("Go Hurdle");
+            if(hit.distance >= 1f && hit.distance < 2.5f)
                 return true;
         }
         return false;

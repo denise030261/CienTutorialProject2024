@@ -12,8 +12,8 @@ public class UI_InGame : MonoBehaviour
     public GameObject gameclearPanel;
     public GameObject gameoverPanel;
     public PlayerAkane player;
-    //public Image gun1Img;
-    //public Image gun2Img;
+    public Image gun1Img;
+    public Image gun2Img;
     public GameObject gun1;
     public GameObject gun2;
 
@@ -44,7 +44,7 @@ public class UI_InGame : MonoBehaviour
 
     void LateUpdate()
     {
-        //HasWeapon();
+        HasWeapon();
         //플레이타임
         int min = (int)(playTime / 60);
         int second = (int)(playTime % 60);
@@ -89,9 +89,17 @@ public class UI_InGame : MonoBehaviour
     }
     public void GotoMenu()
     {
+        Debug.Log("Go To Menu");
         GameManager.Instance.stage = 0;
         SceneManager.LoadScene("MainMenu");
 
+    }
+
+    public void ResetScene()
+    {
+        int curStage = GameManager.Instance.stage;
+        GameManager.Instance.stage = 0;
+        SceneManager.LoadScene("stage" + curStage.ToString());
     }
 
     //무기획득 시 아이콘관련

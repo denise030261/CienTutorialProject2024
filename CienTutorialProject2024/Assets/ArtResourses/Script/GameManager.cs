@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         isClearStage = true;
         Time.timeScale = 0;
         stageRecord[stage] = playTime;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Time.timeScale = 0;
         playTime = 0;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
@@ -67,13 +67,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("PauseGame");
             isPause = true;
             Time.timeScale = 0; 
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
             isPause = false;
             Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
