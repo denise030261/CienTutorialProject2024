@@ -22,7 +22,7 @@ public class TimeRecall : TimeSkill
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.G) && isReload)
+        if (Input.GetKeyDown(KeyCode.R) && isReload)
         {
             RewindToPreviousPosition();
         }

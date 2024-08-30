@@ -18,6 +18,9 @@ public class DestroyObject1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-    }
+        other.gameObject.SetActive(false);
+        if(other.gameObject.tag=="Player")
+        {
+            GameManager.Instance.GameOver();
+        }    }
 }

@@ -35,6 +35,7 @@ public class EnemyBomb : MonoBehaviour
         Debug.Log("Bomb");
         Effects[0].SetActive(false);
         Effects[1].SetActive(true);
+        isDamage = true;
         visualObject.SetActive(false);
         StartCoroutine(BombAnimation());
     }
@@ -63,7 +64,8 @@ public class EnemyBomb : MonoBehaviour
                     }
                 }
 
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
+                GameManager.Instance.GameOver();
                 isDamage = false;
             }
         }

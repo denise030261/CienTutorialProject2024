@@ -2111,6 +2111,8 @@ MonoBehaviour:
   gameclearPanel: {fileID: 8142984567365776697}
   gameoverPanel: {fileID: 7493343598107979983}
   player: {fileID: 0}
+  gun1Img: {fileID: 0}
+  gun2Img: {fileID: 0}
   gun1: {fileID: 0}
   gun2: {fileID: 0}
   playTime: 0
@@ -2205,7 +2207,7 @@ GameObject:
   - component: {fileID: 6812337046925774184}
   - component: {fileID: 7091448225067161190}
   m_Layer: 5
-  m_Name: BoxE
+  m_Name: BoxR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2271,7 +2273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: E
+  m_Text: R
 --- !u!1 &6543911592029539327
 GameObject:
   m_ObjectHideFlags: 0

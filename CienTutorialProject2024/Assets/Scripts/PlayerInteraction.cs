@@ -29,21 +29,24 @@ public class PlayerInteraction : MonoBehaviour
             glass.SetActive(false);
             getGlass=false;
         }
-        else if(glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) ==
-                glass.name.Substring(0, (glass.name.Length - 5)) && Input.GetKeyDown(KeyCode.E))
+        else if(glass != null && glassPlatform !=null)
         {
-            glassEffect.transform.parent = glassPlatform.transform;
-            glass.transform.parent = glassPlatform.transform;
-            glass.SetActive(true);
-            glass.transform.localPosition = new Vector3(0, 2, 0);
-            glassEffect.transform.localPosition = new Vector3(0, 0, 0);
-
-            glassEffect = null;
-            glass = null;
-            putGlass = false;
-            if (BossStageController.instance != null) 
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) ==
+                glass.name.Substring(0, (glass.name.Length - 5)) && Input.GetKeyDown(KeyCode.E))
             {
-                BossStageController.instance.page++;
+                glassEffect.transform.parent = glassPlatform.transform;
+                glass.transform.parent = glassPlatform.transform;
+                glass.SetActive(true);
+                glass.transform.localPosition = new Vector3(0, 2, 0);
+                glassEffect.transform.localPosition = new Vector3(0, 0, 0);
+
+                glassEffect = null;
+                glass = null;
+                putGlass = false;
+                if (BossStageController.instance != null)
+                {
+                    BossStageController.instance.page++;
+                }
             }
         }
     }

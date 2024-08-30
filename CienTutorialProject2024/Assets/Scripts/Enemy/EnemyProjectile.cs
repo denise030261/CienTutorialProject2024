@@ -15,7 +15,7 @@ public class EnemyProjectile : MonoBehaviour
         else if(other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
+            GameManager.Instance.GameOver();
         }
     }
 }
