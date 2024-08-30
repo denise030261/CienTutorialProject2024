@@ -92,7 +92,7 @@ public class UI_InGame : MonoBehaviour
         Debug.Log("Go To Menu");
         GameManager.Instance.stage = 0;
         SceneManager.LoadScene("MainMenu");
-
+        AudioManager.Instance.PlayBGM("Title");
     }
 
     public void ResetScene()
@@ -100,6 +100,7 @@ public class UI_InGame : MonoBehaviour
         int curStage = GameManager.Instance.stage;
         GameManager.Instance.stage = 0;
         SceneManager.LoadScene("stage" + curStage.ToString());
+        AudioManager.Instance.PlayBGM("stage" + curStage.ToString());
     }
 
     //무기획득 시 아이콘관련

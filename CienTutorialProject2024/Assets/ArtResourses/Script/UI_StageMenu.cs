@@ -16,6 +16,7 @@ public class UI_StageMenu : MonoBehaviour
     public void StageSelect(int num)
     {
         SceneManager.LoadScene("stage"+num.ToString());
+        AudioManager.Instance.PlayBGM("stage" + num.ToString());
         GameManager.Instance.stage = num;
     }
 
