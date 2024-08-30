@@ -5763,6 +5763,8 @@ GameObject:
   - component: {fileID: 804590900669601264}
   - component: {fileID: 7912858625814409024}
   - component: {fileID: 2712979980169568890}
+  - component: {fileID: 9094760800181739795}
+  - component: {fileID: 3608869362947866409}
   m_Layer: 7
   m_Name: MiddleLongDistamceEnemy
   m_TagString: Untagged
@@ -5866,6 +5868,43 @@ MonoBehaviour:
   readyShoot: 1
   speed: 2
   maxDistance: 5
+--- !u!114 &9094760800181739795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076404343290144956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 2
+  curHp: 0
+--- !u!136 &3608869362947866409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076404343290144956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7905625
+  m_Height: 1.6773736
+  m_Direction: 1
+  m_Center: {x: 0.00000011957684, y: 0.72161657, z: 0.0966575}
 --- !u!1 &4148628879837202946
 GameObject:
   m_ObjectHideFlags: 0
@@ -6963,8 +7002,6 @@ GameObject:
   m_Component:
   - component: {fileID: 655673285593262224}
   - component: {fileID: 8573041790767394014}
-  - component: {fileID: 1440797985959781738}
-  - component: {fileID: 6848848527035411485}
   m_Layer: 7
   m_Name: 017_ShooterRobot_lv2
   m_TagString: Untagged
@@ -7107,43 +7144,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000011920929, y: -0.039334744, z: 0.72250867}
     m_Extent: {x: 0.79056233, y: 0.28382963, z: 0.8386866}
   m_DirtyAABB: 0
---- !u!114 &1440797985959781738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624708097504200345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 2
-  curHp: 0
---- !u!136 &6848848527035411485
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624708097504200345}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7905625
-  m_Height: 1.6773736
-  m_Direction: 1
-  m_Center: {x: 0.00000011957684, y: 0.72161657, z: 0.0966575}
 --- !u!1 &7740497349921953405
 GameObject:
   m_ObjectHideFlags: 0

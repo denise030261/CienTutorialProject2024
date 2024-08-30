@@ -9,6 +9,7 @@ public class BossStageController : MonoBehaviour
     [SerializeField] GameObject longAttackEnemies;
     [SerializeField] GameObject solveDefence;
     [SerializeField] GameObject bossShield;
+    [SerializeField] GameObject goal;
 
     public int page = 1;
     public static BossStageController instance = null;
@@ -21,6 +22,7 @@ public class BossStageController : MonoBehaviour
         longAttackEnemies.SetActive(false);
         bossShield.SetActive(true);
         solveDefence.SetActive(true);
+        goal.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -45,6 +47,7 @@ public class BossStageController : MonoBehaviour
         {
             stair.SetActive(true);
             bossShield.SetActive(false);
+            goal.SetActive(true);
         }
     }
 }

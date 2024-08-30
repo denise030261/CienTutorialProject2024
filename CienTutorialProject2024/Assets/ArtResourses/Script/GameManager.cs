@@ -127,8 +127,6 @@ public class GameManager : MonoBehaviour
 
                     //playTime을 업데이트
                     playTime += deltaTime;
-
-                    Debug.Log(currentTime); 
                 }
             }
         }

@@ -9729,8 +9729,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2255151679885737252}
   - component: {fileID: 2546101339504660178}
-  - component: {fileID: 8006754008798571331}
-  - component: {fileID: 5667170640431680264}
   m_Layer: 7
   m_Name: 017_ShooterRobot_lv1
   m_TagString: Untagged
@@ -9843,43 +9841,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000006556511, y: -0.009761564, z: 0.3779769}
     m_Extent: {x: 0.53624743, y: 0.2420286, z: 0.46562898}
   m_DirtyAABB: 0
---- !u!136 &8006754008798571331
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076610228231694549}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.53624725
-  m_Height: 0.93125814
-  m_Direction: 1
-  m_Center: {x: 0.00000065565087, y: 0.37744486, z: 0.021036007}
---- !u!114 &5667170640431680264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076610228231694549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1
-  curHp: 0
 --- !u!1 &1088977564070039142
 GameObject:
   m_ObjectHideFlags: 0
@@ -15582,6 +15543,8 @@ GameObject:
   - component: {fileID: 576137986108199994}
   - component: {fileID: 2665775794920922212}
   - component: {fileID: 6540632106683635225}
+  - component: {fileID: 6279496549617641611}
+  - component: {fileID: 6214557104573150541}
   m_Layer: 7
   m_Name: LongDistamceEnemy
   m_TagString: Enemy
@@ -15685,6 +15648,43 @@ MonoBehaviour:
   readyShoot: 1
   speed: 2
   maxDistance: 5
+--- !u!136 &6279496549617641611
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760560639205456521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.53624725
+  m_Height: 0.93125814
+  m_Direction: 1
+  m_Center: {x: 0.00000065565087, y: 0.37744486, z: 0.021036007}
+--- !u!114 &6214557104573150541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760560639205456521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1
+  curHp: 0
 --- !u!1 &6832212668996206394
 GameObject:
   m_ObjectHideFlags: 0

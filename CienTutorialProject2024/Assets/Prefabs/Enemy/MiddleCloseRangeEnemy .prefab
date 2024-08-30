@@ -9948,6 +9948,8 @@ GameObject:
   - component: {fileID: 360275258964929864}
   - component: {fileID: 6898753169299249110}
   - component: {fileID: 5445699144383904775}
+  - component: {fileID: 1058446813691295087}
+  - component: {fileID: 6004085093253056369}
   m_Layer: 7
   m_Name: 'MiddleCloseRangeEnemy '
   m_TagString: Enemy
@@ -10068,6 +10070,43 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1058446813691295087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340115056414655434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 2
+  curHp: 0
+--- !u!136 &6004085093253056369
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340115056414655434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.79056287
+  m_Height: 1.6773736
+  m_Direction: 1
+  m_Center: {x: -0.00000004836113, y: 0.72161657, z: 0.096657395}
 --- !u!1 &1342822245885643461
 GameObject:
   m_ObjectHideFlags: 0
@@ -10559,8 +10598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1826910007578592978}
   - component: {fileID: 1499379985750259810}
-  - component: {fileID: 7276616758449162447}
-  - component: {fileID: 4093019799041639830}
   m_Layer: 7
   m_Name: 017_ShooterRobot_lv2
   m_TagString: Untagged
@@ -10703,43 +10740,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000011920929, y: -0.039334744, z: 0.72250867}
     m_Extent: {x: 0.79056233, y: 0.28382963, z: 0.8386866}
   m_DirtyAABB: 0
---- !u!136 &7276616758449162447
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542341368999390946}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.79056287
-  m_Height: 1.6773736
-  m_Direction: 1
-  m_Center: {x: -0.00000004836113, y: 0.72161657, z: 0.096657395}
---- !u!114 &4093019799041639830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542341368999390946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8bbd3de3147c4ea3b8457023c93cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 2
-  curHp: 0
 --- !u!1 &2597431377621563409
 GameObject:
   m_ObjectHideFlags: 0

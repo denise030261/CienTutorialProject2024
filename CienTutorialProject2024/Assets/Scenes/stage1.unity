@@ -984,10 +984,30 @@ PrefabInstance:
       propertyPath: timeSlowcharge
       value: 
       objectReference: {fileID: 196416574457789635}
+    - target: {fileID: 2879942414235468413, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
+      propertyPath: aimCam
+      value: 
+      objectReference: {fileID: 1380812357}
     - target: {fileID: 3794868609825976076, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: life2
       value: 
       objectReference: {fileID: 196416574457789637}
+    - target: {fileID: 3794868609825976076, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
+      propertyPath: GunSelect.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794868609825976076, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
+      propertyPath: GunSelect.Array.data[1]
+      value: 
+      objectReference: {fileID: 907725298}
+    - target: {fileID: 3794868609825976076, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
+      propertyPath: GunSelect.Array.data[2]
+      value: 
+      objectReference: {fileID: 907725297}
+    - target: {fileID: 4683164539376649772, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
+      propertyPath: aimCam
+      value: 
+      objectReference: {fileID: 1380812357}
     - target: {fileID: 6856369507256700047, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1000,16 +1020,6 @@ PrefabInstance:
 --- !u!4 &377944144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1999916154933009236, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
-  m_PrefabInstance: {fileID: 377944143}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &377944145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 856049097770075706, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
-  m_PrefabInstance: {fileID: 377944143}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &377944146 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7009007357119373459, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
   m_PrefabInstance: {fileID: 377944143}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &377944147 stripped
@@ -2157,6 +2167,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 221bd8eee906efe489a9f1c8aad0ec09, type: 3}
+--- !u!1 &907725297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8899740209711330242, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+  m_PrefabInstance: {fileID: 196416574457789634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &907725298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5363018674518852000, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+  m_PrefabInstance: {fileID: 196416574457789634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &907725299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 203886294579157859, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+  m_PrefabInstance: {fileID: 196416574457789634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &907725300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5618495884137226516, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+  m_PrefabInstance: {fileID: 196416574457789634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &911218656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4642,6 +4672,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203886294579157859, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4503983963524308659, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4750,6 +4784,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5363018674518852000, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618495884137226516, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6068802515737699182, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -4785,11 +4827,11 @@ PrefabInstance:
     - target: {fileID: 8338173975718036624, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
       propertyPath: gun1
       value: 
-      objectReference: {fileID: 377944146}
+      objectReference: {fileID: 907725300}
     - target: {fileID: 8338173975718036624, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
       propertyPath: gun2
       value: 
-      objectReference: {fileID: 377944145}
+      objectReference: {fileID: 907725299}
     - target: {fileID: 8338173975718036624, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
       propertyPath: player
       value: 
@@ -4802,6 +4844,10 @@ PrefabInstance:
       propertyPath: gun2Img
       value: 
       objectReference: {fileID: 196416574457789638}
+    - target: {fileID: 8899740209711330242, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
