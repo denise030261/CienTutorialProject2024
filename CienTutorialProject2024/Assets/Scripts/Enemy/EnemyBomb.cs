@@ -31,12 +31,12 @@ public class EnemyBomb : MonoBehaviour
 
     void SelfDestructEnd()
     {
-        isDamage = true;
         Debug.Log("Bomb");
         Effects[0].SetActive(false);
         Effects[1].SetActive(true);
-        isDamage = true;
+        
         visualObject.SetActive(false);
+        isDamage = true;
         StartCoroutine(BombAnimation());
     }
 
@@ -70,5 +70,4 @@ public class EnemyBomb : MonoBehaviour
             }
         }
     }
-
 }

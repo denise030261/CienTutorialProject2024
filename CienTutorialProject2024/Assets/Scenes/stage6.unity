@@ -1345,15 +1345,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6914694932567497695, guid: 06924029d8d9f574ca2aaebb7a93cb79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17
+      value: -0.91
       objectReference: {fileID: 0}
     - target: {fileID: 6914694932567497695, guid: 06924029d8d9f574ca2aaebb7a93cb79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.308
       objectReference: {fileID: 0}
     - target: {fileID: 6914694932567497695, guid: 06924029d8d9f574ca2aaebb7a93cb79, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 6914694932567497695, guid: 06924029d8d9f574ca2aaebb7a93cb79, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3726,6 +3726,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c58df7dae54eb4d4f8540555716ede56, type: 3}
+--- !u!1 &571067710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8389859497330429206, guid: c58df7dae54eb4d4f8540555716ede56, type: 3}
+  m_PrefabInstance: {fileID: 571067709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &571258291 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8338173975718036624, guid: b7e136ccee7c5e444b26c03b784ac7ec, type: 3}
@@ -8207,7 +8212,7 @@ MonoBehaviour:
   longAttackEnemies: {fileID: 531979244}
   solveDefence: {fileID: 596657309}
   bossShield: {fileID: 520592179}
-  goal: {fileID: 0}
+  goal: {fileID: 571067710}
   page: 1
 --- !u!4 &1389610064
 Transform:

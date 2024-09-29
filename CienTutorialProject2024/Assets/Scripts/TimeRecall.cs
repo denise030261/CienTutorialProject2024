@@ -24,6 +24,7 @@ public class TimeRecall : TimeSkill
     {
         if (Input.GetKeyDown(KeyCode.R) && isReload)
         {
+            Debug.Log("»ç¿ë");
             RewindToPreviousPosition();
         }
     }

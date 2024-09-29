@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         playTime = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
                     //이전 시간 업데이트
                     previousTime = Time.time;
                 }
-                else
+                else if(!isGameOver)
                 {
 
                     //현재 시간과 이전 시간의 차이를 계산
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        else
+        else 
         {
             //스테이지 진입시 시간 초기화
             Time.timeScale = 1;
