@@ -34,7 +34,6 @@ public class EnemyBomb : MonoBehaviour
         Debug.Log("Bomb");
         Effects[0].SetActive(false);
         Effects[1].SetActive(true);
-        
         visualObject.SetActive(false);
         isDamage = true;
         StartCoroutine(BombAnimation());

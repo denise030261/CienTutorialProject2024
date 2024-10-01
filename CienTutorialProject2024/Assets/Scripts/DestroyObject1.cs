@@ -4,23 +4,12 @@ using UnityEngine;
 
 public class DestroyObject1 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
-        if(other.gameObject.tag=="Player")
+        if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.GameOver();
-        }    }
+        }
+        Destroy(other.gameObject);
+    }
 }

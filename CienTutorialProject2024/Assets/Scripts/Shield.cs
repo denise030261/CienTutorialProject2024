@@ -5,17 +5,24 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     public ParticleSystem shieldEffect;
+    bool isStop = false;
+    float currentTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         shieldEffect = transform.GetChild(0).GetComponent<ParticleSystem>();
-        Invoke("StopEffect", 1.0f);
+        currentTime = 0f;
+        shieldEffect.Play();
     }
 
-    protected void StopEffect()
+    private void Update()
     {
-        Debug.Log("¹æ¾î");
-        shieldEffect.Pause();
+        currentTime += Time.fixedDeltaTime;
+        if(currentTime >= 0.7f && !isStop)
+        {
+            isStop = true;
+            shieldEffect.Pause();
+        }
     }
 }

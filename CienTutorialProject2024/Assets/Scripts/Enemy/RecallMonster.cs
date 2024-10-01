@@ -54,9 +54,15 @@ public class RecallMonster : MonoBehaviour
                 if(!isCreate)
                 {
                     bool isNeed = true;
+                    int enemy = 0;
                     foreach (Transform field in fields)
                     {
-                        if (field.childCount >= recallCount)
+                        if(field.gameObject.tag=="Enemy")
+                        {
+                            enemy++;
+                        }
+
+                        if (enemy >= recallCount)
                         {
                             isNeed = false;
                             break;
@@ -68,7 +74,7 @@ public class RecallMonster : MonoBehaviour
                         Debug.Log("소환");
                         isCreate = true;
                         Transform recallField = fields.transform.GetChild(Random.RandomRange(0, fields.transform.childCount));
-                        RecallField(recallField.position, recallField.gameObject);
+                        RecallField(recallField.position, fields.gameObject);
                     }
                 }
             }
@@ -80,7 +86,7 @@ public class RecallMonster : MonoBehaviour
         }
         else
         {
-            Debug.Log("필드를 선정하지 않았습니다");
+            Debug.LogError("필드를 선정하지 않았습니다");
         }
     }
 

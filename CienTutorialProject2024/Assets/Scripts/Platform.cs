@@ -78,7 +78,7 @@ public class Platform : MonoBehaviour
         {
             Disappear();
         }
-    } 
+    }
 
     bool ShieldProbability()
     {
