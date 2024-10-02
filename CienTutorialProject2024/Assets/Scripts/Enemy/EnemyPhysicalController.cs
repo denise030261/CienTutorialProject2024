@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyPhysicalController : MonoBehaviour
 {
-    bool isPlatform = true;
-    bool isCheck = false;
+    GameObject floor = null;
     Rigidbody rb;
     NavMeshAgent nav;
     
@@ -20,22 +19,22 @@ public class EnemyPhysicalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isPlatform && isCheck)
+        if (floor != null) 
         {
-            rb.isKinematic = false;
-            nav.enabled = false;
+            if (!floor.activeSelf)
+            {
+                rb.isKinematic = false;
+                nav.enabled = false;
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        isPlatform = false;
-        isCheck = false;
-        if (other.gameObject.tag=="Platform")
+        if (other.CompareTag("Platform"))
         {
-            isPlatform = true;
+            floor = other.gameObject;
         }
-        isCheck = true;
     }
 
     private void OnDestroy()
