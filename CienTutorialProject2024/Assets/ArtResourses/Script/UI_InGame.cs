@@ -48,7 +48,7 @@ public class UI_InGame : MonoBehaviour
         //플레이타임
         int min = (int)(playTime / 60);
         int second = (int)(playTime % 60);
-        int milisecond = (int)((playTime - second) * 100);
+        int milisecond = (int)((playTime - (min*60)- second) * 100);
         timeTxt = string.Format("{0:00}", min) + ":" + string.Format("{0:00}", second) + ":" + string.Format("{0:00}", milisecond);
         playTimeTxt.text = timeTxt;
         if (isGameOverActive)
