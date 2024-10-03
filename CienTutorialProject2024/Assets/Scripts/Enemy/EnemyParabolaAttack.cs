@@ -104,7 +104,14 @@ public class EnemyParabolaAttack : MonoBehaviour
         float elapse_time = 0;
         while (elapse_time < flightDuration)
         {
-            projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+            if(GameManager.Instance.isSlow)
+            {
+                projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime * 0.25f, Vx * Time.deltaTime * 0.5f);
+            }
+            else
+            {
+                projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+            }
             elapse_time += Time.deltaTime;
             yield return null;
         }

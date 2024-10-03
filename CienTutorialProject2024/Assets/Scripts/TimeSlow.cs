@@ -33,15 +33,13 @@ public class TimeSlow : TimeSkill
 
     void SlowState()
     {
-        playerMovement.speed *= 2;
-        playerMovement.jumpPower /= 1.2f;
+        GameManager.Instance.isSlow = true;
     }
 
     void OriginTime()
     {
         timeRecall.isReload = true;
-        playerMovement.speed /= 2;
-        playerMovement.jumpPower *= 1.2f;
+        GameManager.Instance.isSlow = false;
         Time.timeScale = 1f;
         useEffect.Stop();
     }

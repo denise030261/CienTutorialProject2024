@@ -37,7 +37,15 @@ public class EnemyLongAttack : MonoBehaviour
         // 총알의 방향과 속도 설정
         Vector3 targetDir = target.transform.position - shoot.transform.position;
         Rigidbody rb = instance.GetComponent<Rigidbody>();
-        rb.velocity = targetDir.normalized * speed;
+
+        if (GameManager.Instance.isSlow)
+        {
+            rb.velocity = targetDir.normalized * (speed/4f);
+        }
+        else
+        {
+            rb.velocity = targetDir.normalized * speed;
+        }
 
         // 총알이 발사된 위치를 기록
         Vector3 originPos = instance.transform.position;

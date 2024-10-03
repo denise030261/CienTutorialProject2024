@@ -135,6 +135,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -886,6 +894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -1928,6 +1940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -2011,6 +2027,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
@@ -3052,6 +3076,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -3411,6 +3443,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
@@ -4648,6 +4688,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -5850,6 +5894,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -5910,6 +5962,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -6482,6 +6538,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -6775,6 +6839,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
