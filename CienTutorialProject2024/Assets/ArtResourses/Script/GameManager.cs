@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     public int stage;
     public float playTime;
     public bool isBattle;
+    public bool isSlow;
     bool isPause;
+    // Enum이든 ScriptObject로 이벤트 상태를 바꿀 예정
     public float[] stageRecord = new float[7];
 
     //인게임관련변수
@@ -54,7 +56,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
-        //Time.timeScale = 0;
         playTime = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

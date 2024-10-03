@@ -46,7 +46,7 @@ public class RecallMonster : MonoBehaviour
 
     void RecallingMonster()
     {
-        if(recallFields != null)
+        if(recallFields != null && BossStageController.instance.page != 4)
         {
             bool isCreate = false;
             foreach(Transform fields in recallFields.transform)

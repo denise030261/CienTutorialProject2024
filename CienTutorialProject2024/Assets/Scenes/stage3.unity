@@ -3156,6 +3156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7159788674677861944, guid: 4bb218ded2dbd2c4c9fbc6bd54cdf7a9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4520,7 +4524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1652168454798988480, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: reloadTime
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1652168454798988480, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: timeRecallcharge
@@ -5704,6 +5708,10 @@ PrefabInstance:
     - target: {fileID: 2137515646055626460, guid: 5241ff47e66374c44b1e7499c3c9acb3, type: 3}
       propertyPath: m_Name
       value: Pistol 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024000992506883925, guid: 5241ff47e66374c44b1e7499c3c9acb3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
