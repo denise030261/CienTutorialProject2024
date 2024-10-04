@@ -13,16 +13,12 @@ public class Platform : MonoBehaviour
     [SerializeField] float createSpeed = 3f;
 
     Color originColor;
-    Transform originTransform;
-    Collider collider;
 
     // Start is called before the first frame update
     void Start()
     {
         platformMaterial = GetComponent<MeshRenderer>().material;
-        collider = GetComponent<Collider>();
         originColor = platformMaterial.color;
-        originTransform = gameObject.transform;
         if (shield == null)
         {
             Debug.LogError("쉴드 배치 바람");
@@ -78,7 +74,7 @@ public class Platform : MonoBehaviour
         {
             Disappear();
         }
-    } 
+    }
 
     bool ShieldProbability()
     {

@@ -8,13 +8,11 @@ public class TimeSlow : TimeSkill
     [SerializeField] float slowStateTime = 5f;
     TimeRecall timeRecall;
     PlayerMovement playerMovement;
-    Rigidbody _rg;
     public GameObject timeSlowcharge;
 
     private void Start()
     {
         playerMovement = transform.parent.gameObject.GetComponent<PlayerMovement>();
-        _rg = transform.parent.gameObject.GetComponent<Rigidbody>();
         timeRecall =GetComponent<TimeRecall>();
         reloadTime += slowStateTime;
     }
@@ -35,16 +33,13 @@ public class TimeSlow : TimeSkill
 
     void SlowState()
     {
-        playerMovement.speed *= 2;
-        playerMovement.jumpPower /= 1.2f;
-        Time.timeScale = slowTime;
+        GameManager.Instance.isSlow = true;
     }
 
     void OriginTime()
     {
         timeRecall.isReload = true;
-        playerMovement.speed /= 2;
-        playerMovement.jumpPower *= 1.2f;
+        GameManager.Instance.isSlow = false;
         Time.timeScale = 1f;
         useEffect.Stop();
     }

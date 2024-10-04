@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float noMoveDist = 1f;
     public GameObject target;
 
+    float walkSpeed = 1f;
+
     Vector3 AngleToDir(float angle)
     {
         float radian = angle * Mathf.Deg2Rad;
@@ -35,6 +37,7 @@ public class EnemyAI : MonoBehaviour
         enemyLongAttack = GetComponent<EnemyLongAttack>();
         target = GameObject.Find("Player");
         targetMask = LayerMask.GetMask("Player");
+        walkSpeed = nav.speed;
     }
 
     private void Update()
@@ -44,7 +47,8 @@ public class EnemyAI : MonoBehaviour
             if(BossStageController.instance.page==2)
             {
                 ViewRadius = 7;
-                nav.speed = 2;
+                walkSpeed *= 2;
+                nav.speed = walkSpeed;
             }
             else if(BossStageController.instance.page == 3)
             {
@@ -53,8 +57,18 @@ public class EnemyAI : MonoBehaviour
             else if(BossStageController.instance.page == 4)
             {
                 ViewRadius = 15;
-                nav.speed = 3;
+                walkSpeed *= 3;
+                nav.speed = walkSpeed;
             }
+        }
+
+        if(GameManager.Instance.isSlow)
+        {
+            nav.speed = walkSpeed / 4;
+        }
+        else
+        {
+            nav.speed = walkSpeed;
         }
 
         isTarget = false;

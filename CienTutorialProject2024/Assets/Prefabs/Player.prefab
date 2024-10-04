@@ -50,6 +50,7 @@ MonoBehaviour:
   reloadTime: 5
   useEffect: {fileID: 7696755318703794102}
   isReload: 1
+  timeRecallcharge: {fileID: 0}
 --- !u!114 &2220559047585327233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
   isReload: 1
   slowTime: 0.5
   slowStateTime: 5
+  timeSlowcharge: {fileID: 0}
 --- !u!1 &3844826262722155811
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +261,8 @@ MonoBehaviour:
   - {fileID: 7009007357119373459}
   - {fileID: 856049097770075706}
   hasWeapons: 000000
+  GunSelect: []
+  life2: {fileID: 0}
   model: {fileID: 3546096486221394672}
 --- !u!114 &9197043897479169954
 MonoBehaviour:

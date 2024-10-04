@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public int stage;
     public float playTime;
     public bool isBattle;
+    public bool isSlow;
     bool isPause;
     public float[] stageRecord = new float[7];
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void Clear()
     {
+        isSlow = false;
         isClearStage = true;
         Time.timeScale = 0;
         stageRecord[stage] = playTime;
@@ -53,8 +55,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isSlow = false;
         isGameOver = true;
-        //Time.timeScale = 0;
         playTime = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
         isClearStage = false;
         isGameOver = false;
         isPause = false;
+        isSlow = false;
         previousTime = Time.time;
         wasInBattle = isBattle;
     }
@@ -147,11 +150,4 @@ public class GameManager : MonoBehaviour
         wasInBattle = isBattle;
 
     }
-    void LateUpdate()
-    {
-
-    }
-
-
- 
 }

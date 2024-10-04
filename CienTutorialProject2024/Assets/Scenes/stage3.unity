@@ -135,6 +135,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -886,6 +894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -1928,6 +1940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -2011,6 +2027,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
@@ -3052,6 +3076,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -3155,6 +3187,10 @@ PrefabInstance:
     - target: {fileID: 6706072822813173438, guid: 4bb218ded2dbd2c4c9fbc6bd54cdf7a9, type: 3}
       propertyPath: m_Name
       value: Pistol 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159788674677861944, guid: 4bb218ded2dbd2c4c9fbc6bd54cdf7a9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3407,6 +3443,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
@@ -4520,7 +4564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1652168454798988480, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: reloadTime
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1652168454798988480, guid: a2bc17d5eec39584c8671ac3639199cb, type: 3}
       propertyPath: timeRecallcharge
@@ -4644,6 +4688,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -5705,6 +5753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5024000992506883925, guid: 5241ff47e66374c44b1e7499c3c9acb3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5842,6 +5894,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -5902,6 +5962,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804590900669601264, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
+      propertyPath: walkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2712979980169568890, guid: ca6ae97e529d55e4a81d7974f5b285c0, type: 3}
       propertyPath: speed
       value: 4
@@ -6474,6 +6538,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: noMoveDist
       value: 1.5
       objectReference: {fileID: 0}
@@ -6767,6 +6839,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514155636946427976, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
       propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
+      propertyPath: walkSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 977075265856172668, guid: 11febac3ca47a1d4bb055fc7130b6632, type: 3}
