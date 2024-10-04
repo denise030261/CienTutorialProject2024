@@ -212,6 +212,22 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, 1f, hangable))
         {
+            /*if(hit.collider.gameObject.layer==8)
+            {
+                isTurn = false;
+                Vector3 playerVelocity = new Vector3(h, 0, 0);
+                _rb.velocity = transform.TransformDirection(playerVelocity) * 1f;
+                _animator.SetFloat("Hang Blend", h);
+                if (jumpDown)
+                {
+                    if (backDown)
+                    {
+                        _rb.velocity = Vector3.up * 5f + hit.normal * 2f;
+                    }
+
+                    state = PlayerState.FALLING;
+                }
+            }*/
             isTurn = false;
             Vector3 playerVelocity = new Vector3(h, 0, 0);
             _rb.velocity = transform.TransformDirection(playerVelocity) * 1f;
@@ -235,10 +251,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = transform.position + transform.right * h * 0.5f;
             }
         }
-
-        
-
-
 
         //int layerMask;
         //layerMask = 1 << 8;

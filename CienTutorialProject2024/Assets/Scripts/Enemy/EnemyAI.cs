@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour
     float playerDist;
     bool isTarget;
     bool isWall = false;
+    float doubleSpeed;
+    float tripleSpeed;
     EnemyBomb enemyBomb = null;
     EnemyLongAttack enemyLongAttack = null;
 
@@ -38,6 +40,8 @@ public class EnemyAI : MonoBehaviour
         target = GameObject.Find("Player");
         targetMask = LayerMask.GetMask("Player");
         walkSpeed = nav.speed;
+        doubleSpeed = walkSpeed * 2;
+        tripleSpeed = walkSpeed * 3;
     }
 
     private void Update()
@@ -47,8 +51,7 @@ public class EnemyAI : MonoBehaviour
             if(BossStageController.instance.page==2)
             {
                 ViewRadius = 7;
-                walkSpeed *= 2;
-                nav.speed = walkSpeed;
+                nav.speed = doubleSpeed;
             }
             else if(BossStageController.instance.page == 3)
             {
@@ -57,14 +60,13 @@ public class EnemyAI : MonoBehaviour
             else if(BossStageController.instance.page == 4)
             {
                 ViewRadius = 15;
-                walkSpeed *= 3;
-                nav.speed = walkSpeed;
+                nav.speed = tripleSpeed;
             }
         }
 
         if(GameManager.Instance.isSlow)
         {
-            nav.speed = walkSpeed / 4;
+            nav.speed = walkSpeed / 4f;
         }
         else
         {

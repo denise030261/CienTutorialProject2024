@@ -239,7 +239,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _aimCamera: {fileID: 0}
   model: {fileID: 3546096486221394672}
-  speed: 4
+  speed: 3
   jumpPower: 13
   toggleCameraRotation: 1
   smoothness: 10
