@@ -1,17 +1,17 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum Type { Melee, Range };
+    public enum Type { Melee, Range};
     public Type type;
     public int damage;
     public float rate;
     public BoxCollider meleeArea;
     public TrailRenderer trailEfeect;
 
-    //prefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    //prefabÀ» ÀúÀåÇÒ À§Ä¡
     public Transform bulletPos;
     public GameObject bullet;
 
@@ -30,12 +30,12 @@ public class Weapon : MonoBehaviour
 
         IEnumerator Shot()
         {
-            //#1. ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
+            //#1. ÃÑ¾Ë ¹ß»ç
             GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
             Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
             Ray ray = aimCam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             Vector3 targetPoint;
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 100))
+            if(Physics.Raycast(ray, out RaycastHit hitInfo, 100))
             {
                 targetPoint = hitInfo.point;
                 Debug.Log(hitInfo.collider.name);
@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
             bulletRigid.velocity = bulletDir * 10;
 
             yield return null;
-            //#2. Åºï¿½ï¿½ ï¿½ß»ï¿½
+            //#2. ÅºÇÇ ¹ß»ç
             GameObject intantCase = Instantiate(bulletCase, bulletCasePos.position, bulletCasePos.rotation);
             Rigidbody caseRigid = intantCase.GetComponent<Rigidbody>();
             Vector3 caseVec = bulletCasePos.forward * Random.Range(-2, -1) + Vector3.up * Random.Range(1, 2);
