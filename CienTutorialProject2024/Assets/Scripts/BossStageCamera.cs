@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BossStageCamera : MonoBehaviour
@@ -9,7 +10,22 @@ public class BossStageCamera : MonoBehaviour
     [SerializeField] Camera AllSceneCamera;
     [SerializeField] Camera MainCamera;
     [SerializeField] Camera MoveCamera;
+    [SerializeField] Camera AimCamera;
+
+    [SerializeField] CameraFollow cameraFollow;
+    [SerializeField] PlayerMovement playerMovement;
+
     [SerializeField] float cameraMoveSpeed = 1f;
+    [SerializeField] Animator bossAnimator;
+
+    Vector3 startPosition = new Vector3(8.5f, 5f, 0f);
+    Quaternion startRotation= Quaternion.Euler(20f, -90f, 0f);
+    Vector3 targetPosition = new Vector3(1.5f, 5.5f, 17f);
+    Quaternion targetRotation = Quaternion.Euler(-10f, -30f, 0f);
+    float elapsedTime = 0f;
+    bool isMove = false;
+    int prePage = 1;
+    int curPage = 1;
 
     int Scene = 1;
 
@@ -23,66 +39,32 @@ public class BossStageCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Scene ==1)
-        {
-            if (LCamera.transform.position.z >= -13)
-            {
-                Scene++;
-                LCamera.enabled = false;
-                NellCamera.enabled = true;
-            }
-            else
-            {
-                Vector3 currentPosition = LCamera.transform.position;
-                currentPosition.z += Time.deltaTime* cameraMoveSpeed;
-                LCamera.transform.position = currentPosition;
-            }
-        }
-       else if(Scene==2)
-        {
-            if (NellCamera.transform.position.z <= 13)
-            {
-                Scene++;
-                NellCamera.enabled = false;
-                AllSceneCamera.enabled = true;
-            }
-            else
-            {
-                Vector3 currentPosition = NellCamera.transform.position;
-                currentPosition.z -= Time.deltaTime* cameraMoveSpeed;
-                NellCamera.transform.position = currentPosition;
-            }
-        }
-       else if(Scene ==3)
-        {
-            if (AllSceneCamera.transform.position.y >= 20)
-            {
-                Scene++;
-                AllSceneCamera.enabled = false;
-                NellCamera.enabled = true;
-                LCamera.enabled = true;
-            }
-            else
-            {
-                Vector3 currentPosition = AllSceneCamera.transform.position;
-                currentPosition.y += Time.deltaTime * cameraMoveSpeed*3;
-                AllSceneCamera.transform.position = currentPosition;
-            }
-        }
-       else if(Scene==4)
-        {
-            Vector3 currentPosition = NellCamera.transform.position;
-            currentPosition.z = 14;
-            NellCamera.transform.position = currentPosition;
+        FirstScene();
+        curPage = BossStageController.instance.page;
 
-             currentPosition = LCamera.transform.position;
-            currentPosition.z = -14;
-            LCamera.transform.position = currentPosition;
+        if(prePage!=curPage)
+        {
+            if(!isMove && !MoveCamera.enabled)
+            {
+                StartCoroutine(PlayerMoveCamera());
+            }
+            else if(isMove && MoveCamera.enabled)
+            {
+                elapsedTime += Time.deltaTime;
 
-            LCamera.rect = new Rect(0, 0, 0.5f, 1);
-            NellCamera.rect = new Rect(0.5f, 0, 0.5f, 1);
+                // 위치와 회전 갱신
+                MoveCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (cameraMoveSpeed*2f));
+                MoveCamera.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / (cameraMoveSpeed * 2f));
 
-            Invoke("ChangeMainCamera", 5f);
+                // 목표에 도달했는지 확인
+                if (elapsedTime >= (cameraMoveSpeed * 2f))
+                {
+                    MoveCamera.transform.position = targetPosition; // 정확한 목표 위치로 이동
+                    MoveCamera.transform.rotation = targetRotation; // 정확한 목표 회전으로 회전
+
+                    StartCoroutine(BossMoveCamera());
+                }
+            }
         }
     }
 
@@ -93,13 +75,118 @@ public class BossStageCamera : MonoBehaviour
         AllSceneCamera.enabled = false;
         MainCamera.enabled = false;
         MoveCamera.enabled = false;
+        AimCamera.enabled = false;
+        cameraFollow.enabled = false;
+        playerMovement.enabled = false;
+    }
+
+    IEnumerator BossMoveCamera()
+    {
+        if(BossStageController.instance.page<=3)
+        {
+            bossAnimator.SetBool("getDamage", true);
+            bossAnimator.SetBool("recallMonster", false);
+        }
+        else
+        {
+            bossAnimator.SetBool("getDamage", false);
+            bossAnimator.SetBool("recallMonster", false);
+            bossAnimator.SetBool("isDown", true);
+        }
+        elapsedTime = 0;
+        prePage = curPage;
+        isMove = false;
+        yield return new WaitForSeconds(3f);
+        bossAnimator.SetBool("getDamage", false);
+        MoveCamera.enabled = false;
+        AllSceneCamera.enabled = true;
+        yield return new WaitForSeconds(3f);
+        ChangeMainCamera();
+    }
+
+    IEnumerator PlayerMoveCamera()
+    {
+        Init();
+        MoveCamera.enabled = true;
+        MoveCamera.transform.position = startPosition;
+        MoveCamera.transform.rotation = startRotation;
+        yield return new WaitForSeconds(1f);
+        isMove = true;
     }
 
     void ChangeMainCamera()
     {
-        Scene++;
         NellCamera.enabled = false;
         LCamera.enabled = false;
+        AllSceneCamera.enabled = false;
         MainCamera.enabled = true;
+        cameraFollow.enabled = true;
+        playerMovement.enabled = true;
+    }
+
+    void FirstScene()
+    {
+        if (Scene == 1)
+        {
+            if (LCamera.transform.position.z >= -19)
+            {
+                Scene++;
+                LCamera.enabled = false;
+                NellCamera.enabled = true;
+            }
+            else
+            {
+                Vector3 currentPosition = LCamera.transform.position;
+                currentPosition.z += Time.deltaTime * cameraMoveSpeed;
+                LCamera.transform.position = currentPosition;
+            }
+        }
+        else if (Scene == 2)
+        {
+            if (NellCamera.transform.position.z <= 19)
+            {
+                Scene++;
+                NellCamera.enabled = false;
+                AllSceneCamera.enabled = true;
+            }
+            else
+            {
+                Vector3 currentPosition = NellCamera.transform.position;
+                currentPosition.z -= Time.deltaTime * cameraMoveSpeed;
+                NellCamera.transform.position = currentPosition;
+            }
+        }
+        else if (Scene == 3)
+        {
+            if (AllSceneCamera.transform.position.y >= 27)
+            {
+                Scene++;
+                AllSceneCamera.enabled = false;
+                NellCamera.enabled = true;
+                LCamera.enabled = true;
+            }
+            else
+            {
+                Vector3 currentPosition = AllSceneCamera.transform.position;
+                currentPosition.y += Time.deltaTime * cameraMoveSpeed * 5;
+                AllSceneCamera.transform.position = currentPosition;
+            }
+        }
+        else if (Scene == 4)
+        {
+            Vector3 currentPosition = NellCamera.transform.position;
+            currentPosition.z = 20;
+            NellCamera.transform.position = currentPosition;
+
+            currentPosition = LCamera.transform.position;
+            currentPosition.z = -20;
+            LCamera.transform.position = currentPosition;
+
+            LCamera.rect = new Rect(0, 0, 0.5f, 1);
+            NellCamera.rect = new Rect(0.5f, 0, 0.5f, 1);
+
+            Scene++;
+            Invoke("ChangeMainCamera", 5f);
+        }
     }
 }

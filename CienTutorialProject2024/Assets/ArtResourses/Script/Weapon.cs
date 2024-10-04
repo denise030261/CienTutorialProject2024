@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     public Transform bulletCasePos;
     public GameObject bulletCase;
 
+    public Camera aimCam;
+
     public void Use()
     {
         if (type == Type.Range)
@@ -31,7 +33,19 @@ public class Weapon : MonoBehaviour
             //#1. ÃÑ¾Ë ¹ß»ç
             GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
             Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-            bulletRigid.velocity = bulletPos.forward * 10;
+            Ray ray = aimCam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            Vector3 targetPoint;
+            if(Physics.Raycast(ray, out RaycastHit hitInfo, 100, 1 << LayerMask.NameToLayer("Enemy")))
+            {
+                targetPoint = hitInfo.point;
+                Debug.Log(hitInfo.collider.name);
+            }
+            else
+            {
+                targetPoint = ray.GetPoint(1000);
+            }
+            Vector3 bulletDir = (targetPoint - bulletPos.position).normalized;
+            bulletRigid.velocity = bulletDir * 10;
 
             yield return null;
             //#2. ÅºÇÇ ¹ß»ç

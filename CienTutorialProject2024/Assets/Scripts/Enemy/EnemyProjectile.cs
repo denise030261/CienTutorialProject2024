@@ -7,11 +7,16 @@ public class EnemyProjectile : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Shield"))
+        if (other.CompareTag("Shield"))
         {
-            Debug.Log("ИэСп");
             Destroy(gameObject);
             Destroy(other.gameObject);
+        }
+        else if(other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            GameManager.Instance.GameOver();
         }
     }
 }

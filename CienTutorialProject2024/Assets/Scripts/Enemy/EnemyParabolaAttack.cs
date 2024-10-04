@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
+
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -22,16 +22,12 @@ public class EnemyParabolaAttack : MonoBehaviour
     private float firingAngle = 30f;
     Animator animator;
 
-    ParticleSystem particleSystem;
-
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         targetPoint = target.transform;
         startPoint = gameObject.transform;
         animator = GetComponent<Animator>();
-        particleSystem= particleObject.GetComponent<ParticleSystem>();
-        Invoke("StopParticle", 1f);
     }
 
 
@@ -51,6 +47,18 @@ public class EnemyParabolaAttack : MonoBehaviour
 
     void Update()
     {
+        if (BossStageController.instance != null)
+        {
+            if (BossStageController.instance.page == 3)
+            {
+                reloadTime = 4;
+            }
+            else if (BossStageController.instance.page == 4)
+            {
+                reloadTime = 3;
+            }
+        }
+
         reloadingTime += Time.deltaTime;
         if (reloadingTime>=reloadTime && readyShoot)
         {
@@ -82,26 +90,28 @@ public class EnemyParabolaAttack : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, shootPosition, Quaternion.identity);
 
         // 시작점과 목표점 사이의 거리 계산
-        float target_Distance = Vector3.Distance(startPoint.position, targetPoint.position);
+        float target_Distance = (Vector3.Distance(startPoint.position, targetPoint.position))/2;
 
-        // 초기 속도 계산
         float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
-        // XZ 평면에서의 속도 계산
         float Vx = Mathf.Sqrt(projectile_Velocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
         float Vy = Mathf.Sqrt(projectile_Velocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
 
-        // 비행 시간 계산
-        float flightDuration = target_Distance / Vx;
+        float flightDuration = (target_Distance*2) / Vx;
 
-        // 발사 방향 설정
         projectile.transform.rotation = Quaternion.LookRotation(targetPoint.position - startPoint.position);
 
-        // 비행 시간 동안 이동
         float elapse_time = 0;
         while (elapse_time < flightDuration)
         {
-            projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+            if(GameManager.Instance.isSlow)
+            {
+                projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime * 0.25f, Vx * Time.deltaTime * 0.5f);
+            }
+            else
+            {
+                projectile.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+            }
             elapse_time += Time.deltaTime;
             yield return null;
         }
@@ -138,10 +148,5 @@ public class EnemyParabolaAttack : MonoBehaviour
         head.transform.rotation = Quaternion.LookRotation(targetHeadDir);
 
         Debug.DrawLine(transform.position, target.transform.position, Color.blue);
-    }
-
-    void StopParticle()
-    {
-        particleSystem.Pause();
     }
 }

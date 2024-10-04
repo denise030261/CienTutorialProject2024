@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    bool getGlass = false;
+    bool putGlass = false;
+    public bool doneGlass;
+
+    GameObject glass;
+    GameObject glassEffect;
+    GameObject glassPlatform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,15 +21,85 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(getGlass && Input.GetKeyDown(KeyCode.E))
+        {
+            glass.transform.parent = transform;
+            glassEffect.transform.parent = transform;
+            glassEffect.transform.localPosition = new Vector3(0f, 0f, 0f);
+            glass.SetActive(false);
+            getGlass=false;
+        }
+        else if(glass != null && glassPlatform !=null)
+        {
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) ==
+                glass.name.Substring(0, (glass.name.Length - 5)) && Input.GetKeyDown(KeyCode.E))
+            {
+                glassEffect.transform.parent = glassPlatform.transform;
+                glass.transform.parent = glassPlatform.transform;
+                glass.SetActive(true);
+                glass.transform.localPosition = new Vector3(0, 2, 0);
+                glassEffect.transform.localPosition = new Vector3(0, 0, 0);
+
+                glassEffect = null;
+                glass = null;
+                putGlass = false;
+                if (BossStageController.instance != null)
+                {
+                    BossStageController.instance.page++;
+                }
+            }
+        }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
-        if (hit.collider.tag == "Platform")
+        if(other.gameObject.tag=="Glass" && !putGlass) 
         {
-            Platform platform = hit.collider.GetComponent<Platform>();
-            platform.Disappear();
+            getGlass = true;
+            glass = other.gameObject;
+            glassEffect = glass.transform.GetChild(0).gameObject;
+        }
+
+        if (glass != null && other.gameObject.tag != "Glass" && !putGlass)
+        {
+            glassPlatform = other.transform.parent.gameObject;
+            /*Debug.Log(glassPlatform);
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == 
+                glass.name.Substring(0, (glass.name.Length - 5)))
+            {
+                putGlass = true;
+            }*/
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (glass != null && other.gameObject.tag != "Glass" && !putGlass)
+        {
+            glassPlatform = other.transform.parent.gameObject;
+            /*Debug.Log(glassPlatform);
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == 
+                glass.name.Substring(0, (glass.name.Length - 5)))
+            {
+                putGlass = true;
+            }*/
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Glass")
+        {
+            getGlass = false;
+            glass = null;
+        }
+        if (glass != null)
+        {
+            glassPlatform = other.transform.parent.gameObject;
+            if (glassPlatform.name.Substring(0, (glassPlatform.name.Length - 4)) == glass.name.Substring(0, (glass.name.Length - 5)))
+            {
+                putGlass = false;
+            }
         }
     }
 }

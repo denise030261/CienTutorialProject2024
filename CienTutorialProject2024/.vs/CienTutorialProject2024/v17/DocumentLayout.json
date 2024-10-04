@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\ui_ingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\ui_ingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\ui_stagemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\timeslow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timeslow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\clearball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\clearball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|c:\\users\\bhero\\documents\\github\\cientutorialproject2024\\cientutorialproject2024\\assets\\scripts\\timerecall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timerecall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\artresourses\\script\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\artresourses\\script\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,29 +50,120 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerController.cs",
-              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerController.cs",
-              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\PlayerController.cs",
-              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerController.cs",
-              "RelativeToolTip": "Assets\\ArtResourses\\Script\\PlayerController.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAgwBEAAAAmAAAA",
+              "DocumentIndex": 8,
+              "Title": "TimeRecall.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\TimeRecall.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\TimeRecall.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\TimeRecall.cs",
+              "RelativeToolTip": "Assets\\Scripts\\TimeRecall.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAA6wEsAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-11T09:06:34.086Z"
+              "WhenOpened": "2024-08-29T21:48:37.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Button.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\Button.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\Button.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\Button.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\Button.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T21:29:58.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAYwGsBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T19:06:54.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TimeSlow.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\TimeSlow.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\TimeSlow.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\TimeSlow.cs",
+              "RelativeToolTip": "Assets\\Scripts\\TimeSlow.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAA3wDAAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T19:04:54.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClearBall.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\ClearBall.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\ClearBall.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\ClearBall.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\ClearBall.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T19:01:23.531Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UI_StageMenu.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\UI_StageMenu.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAADwvw4AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T15:25:53.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\GameManager.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\GameManager.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\GameManager.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAQwEkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T11:54:22.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Weapon.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\Weapon.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\Weapon.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\Weapon.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\Weapon.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAIwCgAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T10:50:16.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CameraFollow.cs",
               "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\CameraFollow.cs",
               "RelativeToolTip": "Assets\\ArtResourses\\Script\\CameraFollow.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAADwvyAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-10T04:11:19.257Z",
               "EditorCaption": ""
@@ -52,14 +171,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
-              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAACsAAAAXAAAA",
+              "Title": "UI_InGame.cs",
+              "DocumentMoniker": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_InGame.cs",
+              "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\UI_InGame.cs",
+              "ToolTip": "C:\\Users\\BHero\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\UI_InGame.cs",
+              "RelativeToolTip": "Assets\\ArtResourses\\Script\\UI_InGame.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAcwGUAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T02:37:16.421Z",
+              "WhenOpened": "2024-08-29T15:25:43.107Z",
               "EditorCaption": ""
             }
           ]

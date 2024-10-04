@@ -31,11 +31,11 @@ public class EnemyBomb : MonoBehaviour
 
     void SelfDestructEnd()
     {
-        isDamage = true;
         Debug.Log("Bomb");
         Effects[0].SetActive(false);
         Effects[1].SetActive(true);
         visualObject.SetActive(false);
+        isDamage = true;
         StartCoroutine(BombAnimation());
     }
 
@@ -48,10 +48,25 @@ public class EnemyBomb : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
-        if((other.CompareTag("Player") || other.CompareTag("Shield")) && isDamage)
+        if(isDamage)
         {
-            Destroy(other.gameObject);
+            if(other.CompareTag("Player"))
+            {
+                foreach (Transform child in other.gameObject.transform)
+                {
+                    if (child.gameObject.tag == "Shield")
+                    {
+                        Destroy(child.gameObject);
+                        isDamage = false;
+                        Debug.Log(other.name);
+                        return;
+                    }
+                }
+
+                other.gameObject.SetActive(false);
+                GameManager.Instance.GameOver();
+                isDamage = false;
+            }
         }
     }
 }

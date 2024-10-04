@@ -24,4 +24,16 @@ public class TimeSkill : MonoBehaviour
         Invoke("ReLoad", reloadTime);
         isReload = false;
     }
+
+    /*protected void SkillCharge()
+    {
+        if (isReload)
+        {
+            timeRecallcharge.SetActive(true);
+        }
+        else
+        {
+            timeRecallcharge.SetActive(false);
+        }
+    }*/
 }

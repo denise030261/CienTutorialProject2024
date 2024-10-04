@@ -73390,9 +73390,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.7333333
-    functionName: ResetRoll
+    functionName: EndRoll
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 918f69884bb82fd4c9d09d500654df4e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 using Debug = UnityEngine.Debug;
 
 public class EnemyAI : MonoBehaviour
@@ -22,6 +21,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float noMoveDist = 1f;
     public GameObject target;
 
+    float walkSpeed = 1f;
+
     Vector3 AngleToDir(float angle)
     {
         float radian = angle * Mathf.Deg2Rad;
@@ -36,10 +37,40 @@ public class EnemyAI : MonoBehaviour
         enemyLongAttack = GetComponent<EnemyLongAttack>();
         target = GameObject.Find("Player");
         targetMask = LayerMask.GetMask("Player");
+        walkSpeed = nav.speed;
     }
 
     private void Update()
     {
+        if(BossStageController.instance!=null)
+        {
+            if(BossStageController.instance.page==2)
+            {
+                ViewRadius = 7;
+                walkSpeed *= 2;
+                nav.speed = walkSpeed;
+            }
+            else if(BossStageController.instance.page == 3)
+            {
+                ViewRadius = 9;
+            }
+            else if(BossStageController.instance.page == 4)
+            {
+                ViewRadius = 15;
+                walkSpeed *= 3;
+                nav.speed = walkSpeed;
+            }
+        }
+
+        if(GameManager.Instance.isSlow)
+        {
+            nav.speed = walkSpeed / 4;
+        }
+        else
+        {
+            nav.speed = walkSpeed;
+        }
+
         isTarget = false;
         ViewOfField();
         ViewOfFieldDebug();
@@ -145,8 +176,16 @@ public class EnemyAI : MonoBehaviour
             }
             else if(enemyLongAttack!=null) 
             {
-                isTarget = false;
-                enemyLongAttack.isShoot = true;
+                if(enemyLongAttack.readyShoot)
+                {
+                    isTarget = false;
+                    enemyLongAttack.isShoot = true;
+                }
+                else
+                {
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isWalk", true);
+                }
             }
         }
         else if(!isTarget)

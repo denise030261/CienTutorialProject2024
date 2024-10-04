@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,6 +20,7 @@ public class PlayerAkane : MonoBehaviour
     bool sDown2;
     bool sDown3;
     int equipWeaponIndex = -1;
+    public List<GameObject> GunSelect = new List<GameObject>();
 
     //공격(키입력)
     bool fDown;
@@ -27,14 +29,17 @@ public class PlayerAkane : MonoBehaviour
 
     Vector3 moveVec;
 
+    //보호막 관련
+    public GameObject life2;
 
     //애니메이션
-    Animator anim;
+    Animator _animator;
+    public Transform model;
 
     void Awake()
     {
+        _animator = model.GetComponent<Animator>();
         hasWeapons = new bool[3];
-        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -47,7 +52,10 @@ public class PlayerAkane : MonoBehaviour
         Swap();
         Interaction();
         Attack();
+        Shield();
+
     }
+
     void GetInput()
     {
 
@@ -57,6 +65,7 @@ public class PlayerAkane : MonoBehaviour
         sDown3 = Input.GetButtonDown("Swap3");
 
         fDown = Input.GetButtonDown("Fire1");
+
     }
 
 
@@ -72,7 +81,7 @@ public class PlayerAkane : MonoBehaviour
         if (fDown && isFireReady)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doShot");
+            _animator.SetTrigger("doShot");
             fireDelay = 0;
         }
     }
@@ -95,10 +104,16 @@ public class PlayerAkane : MonoBehaviour
         if (sDown1 || sDown2 || sDown3)
         {
             if (equipWeapon != null)
+            {
                 equipWeapon.gameObject.SetActive(false);
+                GunSelect[1].SetActive(false);
+                GunSelect[2].SetActive(false);
+            }
+            
 
             equipWeaponIndex = weaponIndex;
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+            GunChoice(weaponIndex);
             equipWeapon.gameObject.SetActive(true);
         }
     }
@@ -122,16 +137,38 @@ public class PlayerAkane : MonoBehaviour
         }
     }
 
+    //무기 선택표시 관련
+    void GunChoice(int num)
+    {
+        GunSelect[num].SetActive(true);
+    }
 
+    //보호막 관련
+    void Shield()
+    {
+        bool have = false;
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Shield"))
+            {
+                have = true;
+                life2.SetActive(true);
+            }
+            else if (!have)
+            {
+                life2.SetActive(false);
+            }
+        }
+    }
 
     void OnTriggerStay(Collider other)
     {
+        
         if (other.tag == "Weapon")
         {
             nearObject = other.gameObject;
 
         }
-        Debug.Log(nearObject.name);
     }
 
     void OnTriggerExit(Collider other)

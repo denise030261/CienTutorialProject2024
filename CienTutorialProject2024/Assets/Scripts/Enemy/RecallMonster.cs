@@ -9,6 +9,7 @@ public class RecallMonster : MonoBehaviour
     [SerializeField] GameObject recallEffect;
     [SerializeField] GameObject recallingEffect;
     [SerializeField] GameObject recallFields;
+    int recallCount = 1;
     Animator animator;
 
 
@@ -21,32 +22,80 @@ public class RecallMonster : MonoBehaviour
         Invoke("OnAnimationStart", recallTime - 1f);
     }
 
+    private void Update()
+    {
+        if (BossStageController.instance != null)
+        {
+            if (BossStageController.instance.page == 3)
+            {
+                recallCount = 2;
+            }
+            else if (BossStageController.instance.page == 4)
+            {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+                foreach (GameObject enemy in enemies)
+                {
+                    Destroy(enemy);
+                }
+
+                this.enabled = false;
+            }
+        }
+    }
+
     void RecallingMonster()
     {
-        if(recallFields != null)
+        if(recallFields != null && BossStageController.instance.page != 4)
         {
-            for(int i=0;i< recallFields.transform.childCount;i++)
+            bool isCreate = false;
+            foreach(Transform fields in recallFields.transform)
             {
-                GameObject field = recallFields.transform.GetChild(i).gameObject;
-                if(field.transform.childCount == 0)
+                if(!isCreate)
                 {
-                    Debug.Log(field.transform.position);
-                    RecallField(field.transform.position);
-                    break;
+                    bool isNeed = true;
+                    int enemy = 0;
+                    foreach (Transform field in fields)
+                    {
+                        if(field.gameObject.tag=="Enemy")
+                        {
+                            enemy++;
+                        }
+
+                        if (enemy >= recallCount)
+                        {
+                            isNeed = false;
+                            break;
+                        }
+                    }
+
+                    if(isNeed)
+                    {
+                        Debug.Log("소환");
+                        isCreate = true;
+                        Transform recallField = fields.transform.GetChild(Random.RandomRange(0, fields.transform.childCount));
+                        RecallField(recallField.position, fields.gameObject);
+                    }
                 }
+            }
+
+            if(!isCreate)
+            {
+                Invoke("RecallingMonster", recallTime);
             }
         }
         else
         {
-            Debug.Log("필드를 선정하지 않았습니다");
+            Debug.LogError("필드를 선정하지 않았습니다");
         }
     }
 
-    void RecallField(Vector3 recallPosition)
+    void RecallField(Vector3 recallPosition, GameObject recallObject)
     {
         animator.SetBool("recallMonster", true);
         Invoke("OnAnimationEnd", 2.33f);
-        Instantiate(Enemy, recallPosition, Quaternion.identity);
+        GameObject instance = Instantiate(Enemy, recallPosition, Quaternion.identity);
+        instance.transform.parent = recallObject.transform;
         Instantiate(recallEffect, recallPosition, Quaternion.identity);
         Invoke("RecallingMonster", recallTime);
     }
@@ -61,6 +110,7 @@ public class RecallMonster : MonoBehaviour
     {
         animator.SetBool("recallMonster", false);
         recallingEffect.SetActive(false);
+        Destroy(recallingEffect);
     }
 
 }
