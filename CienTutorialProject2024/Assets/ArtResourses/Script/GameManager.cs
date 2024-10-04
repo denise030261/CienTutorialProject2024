@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         isSlow = false;
         isClearStage = true;
         Time.timeScale = 0;
+        Debug.Log(stage);
         stageRecord[stage] = playTime;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -81,6 +82,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Init()
+    {
+        isClearStage = false;
+        isGameOver = false;
+        isPause = false;
+        isSlow = false;
+        previousTime = Time.time;
+        wasInBattle = isBattle;
+    }
+
     //인게임
     private void Awake()
     {
@@ -97,12 +108,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        isClearStage = false;
-        isGameOver = false;
-        isPause = false;
-        isSlow = false;
-        previousTime = Time.time;
-        wasInBattle = isBattle;
+        Init();
     }
     void Update()
     {
@@ -149,5 +155,9 @@ public class GameManager : MonoBehaviour
         //현재 전투 상태 저장
         wasInBattle = isBattle;
 
+        if(isClearStage) 
+        {
+            Debug.Log("1");
+        }
     }
 }

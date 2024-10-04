@@ -8,6 +8,7 @@ public class EnemyPhysicalController : MonoBehaviour
     GameObject floor = null;
     Rigidbody rb;
     NavMeshAgent nav;
+    RaycastHit hit;
     
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,9 @@ public class EnemyPhysicalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (floor != null) 
+        if(Physics.Raycast(transform.position, transform.up * -1, out hit))
         {
-            if (!floor.activeSelf)
+            if(!(hit.collider.gameObject.tag == "Platform"))
             {
                 rb.isKinematic = false;
                 nav.enabled = false;

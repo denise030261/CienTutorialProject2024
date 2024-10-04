@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.RUNNING: { InputMovement(); } break;
             case PlayerState.FALLING: { Falling(); } break;
             case PlayerState.FALLTOHANG: { TurnFallToHang(); } break;
-            case PlayerState.HANGING: { Hang(); } break;
+            case PlayerState.HANGING: { Hang(); } break; 
             case PlayerState.ROLLING: { Roll(); } break;
             case PlayerState.HURDLING: { Hurdle(); } break;
         }
@@ -89,8 +89,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 state = PlayerState.RUNNING;
             }
-        }
-        else if (state == PlayerState.RUNNING)
+        }else if(state == PlayerState.RUNNING)
         {
             state = PlayerState.FALLING;
         }
@@ -107,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetBool("isZoom", true);
             crosshairUI.gameObject.SetActive(true);
-            toggleCameraRotation = true; //ï¿½ï¿½ï¿½Ó½ï¿½
+            toggleCameraRotation = true; //¿¡ÀÓ½Ã
             _camera.enabled = false;
             _aimCamera.enabled = true;
         }
@@ -115,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetBool("isZoom", false);
             crosshairUI.gameObject.SetActive(false);
-            toggleCameraRotation = false; //ï¿½ï¿½ï¿½ï¿½
+            toggleCameraRotation = false; //Æò»ó½Ã
             _camera.enabled = true;
             _aimCamera.enabled = false;
         }
@@ -148,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
         characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
 
-        if (jumpDown)
+        if(jumpDown)
         {
             playerVelocity.y = jumpPower;
 
@@ -159,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             state = PlayerState.FALLING;
 
         }
-
+        
 
         _rb.velocity = playerVelocity;
 
@@ -173,10 +172,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("isJump", true);
         _animator.SetBool("isHang", false);
-        _animator.SetBool("isHurdle", false);
+        _animator.SetBool("isHurdle", false );
         move = new Vector3(h, 0, v);
         move = _camera.transform.TransformDirection(move);
-        if (jumpDown && Physics.Raycast(transform.position, transform.forward, 0.3f, 1 << 8))
+        if (jumpDown && Physics.Raycast(transform.position, transform.forward, 0.3f, 1<<8))
         {
             state = PlayerState.FALLTOHANG;
             Debug.Log("goto hang");
@@ -186,16 +185,16 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerRotation()
     {
-        if (state != PlayerState.HANGING)
+        if(state != PlayerState.HANGING)
         {
-            if (toggleCameraRotation)//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+            if (toggleCameraRotation)//ÁÜ ÇßÀ» ½Ã Áï½Ã
             {
-                Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));//Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
+                Vector3 playerRotate = Vector3.Scale(_camera.transform.forward, new Vector3(1, 0, 1));//Ä«¸Þ¶ó ¹æÇâÀ¸·Î Ä³¸¯ÅÍ È¸Àü
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
             }
             else
             {
-                if (move.magnitude > 0.05f)//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                if (move.magnitude > 0.05f)//ÁÜ ÇÏÁö ¾Ê°í ¿òÁ÷ÀÏ ½Ã
                 {
 
                     characterRotation = Vector3.Scale(move, new Vector3(1, 0, 1));
@@ -211,8 +210,24 @@ public class PlayerMovement : MonoBehaviour
         //_rb.useGravity = false;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, hangable))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 1f, hangable))
         {
+            /*if(hit.collider.gameObject.layer==8)
+            {
+                isTurn = false;
+                Vector3 playerVelocity = new Vector3(h, 0, 0);
+                _rb.velocity = transform.TransformDirection(playerVelocity) * 1f;
+                _animator.SetFloat("Hang Blend", h);
+                if (jumpDown)
+                {
+                    if (backDown)
+                    {
+                        _rb.velocity = Vector3.up * 5f + hit.normal * 2f;
+                    }
+
+                    state = PlayerState.FALLING;
+                }
+            }*/
             isTurn = false;
             Vector3 playerVelocity = new Vector3(h, 0, 0);
             _rb.velocity = transform.TransformDirection(playerVelocity) * 1f;
@@ -237,10 +252,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
-
-
-
         //int layerMask;
         //layerMask = 1 << 8;
         //RaycastHit hit;
@@ -248,8 +259,8 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    Transform hangPosition = hit.collider.transform.Find("ParkourPoint");
 
-        //    float distance = Vector3.Distance(hangPosition.position, handPosition.position);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Õ°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
-
+        //    float distance = Vector3.Distance(hangPosition.position, handPosition.position);//º®¿¡¼­ Àâ´Â °÷, ¼Õ°úÀÇ °Å¸®
+            
         //    if (!isHang) 
         //    { 
         //        if (jumpDown && distance < 0.2f)
@@ -319,10 +330,10 @@ public class PlayerMovement : MonoBehaviour
             transform.forward = -hit.normal;
             Vector3 grabPostion = hit.point + hit.normal * 0.18f;
             grabPostion.y = hit.collider.transform.position.y + hit.collider.transform.localScale.y / 2 - 0.15f;
-            Debug.Log((grabPostion - _rb.position).magnitude);
+            Debug.Log((grabPostion-_rb.position).magnitude);
             _rb.position = Vector3.Lerp(_rb.position, grabPostion, 10f);
             transform.forward = Vector3.Lerp(transform.forward, -hit.normal, 10f * Time.fixedDeltaTime);
-            if ((grabPostion - _rb.position).magnitude < 0.1f)
+            if((grabPostion - _rb.position).magnitude <0.1f)
             {
                 ready = true;
             }
@@ -338,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position,
+        if(Physics.Raycast(transform.position,
             Vector3.down,
             out hit, 0.57f))
         {
@@ -350,11 +361,11 @@ public class PlayerMovement : MonoBehaviour
     void IsRoll()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 5f))
+        if(Physics.Raycast(transform.position, Vector3.down, out hit,5f))
         {
-            if (hit.distance > 3f)
+            if(hit.distance > 3f)
             {
-                isRoll = true;
+                isRoll =  true;
                 _animator.SetBool("isRoll", true);
             }
         }
@@ -389,7 +400,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(hurdlePosition.position, hurdlePosition.forward, out hit, 5f, layerMask))
         {
             Debug.Log("Go Hurdle");
-            if (hit.distance >= 1f && hit.distance < 2.5f)
+            if(hit.distance >= 1f && hit.distance < 2.5f)
                 return true;
         }
         return false;

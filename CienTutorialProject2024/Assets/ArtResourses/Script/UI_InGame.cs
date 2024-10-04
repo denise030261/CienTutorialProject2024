@@ -11,6 +11,7 @@ public class UI_InGame : MonoBehaviour
     bool isPauseActive;
     public GameObject gameclearPanel;
     public GameObject gameoverPanel;
+    public GameObject gameaudioPanel;
     public PlayerAkane player;
     public Image gun1Img;
     public Image gun2Img;
@@ -24,6 +25,7 @@ public class UI_InGame : MonoBehaviour
 
     bool isGameOverActive;
     bool isClearStageActive;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class UI_InGame : MonoBehaviour
     void Update()
     {
         playTime = GameManager.Instance.playTime;
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && (!GameManager.Instance.isClearStage && !GameManager.Instance.isGameOver))
         {
             GetPauseMenu();
         }
@@ -81,6 +83,11 @@ public class UI_InGame : MonoBehaviour
         gameoverPanel.SetActive(true);
     }
 
+    public void GetAudioMenu(bool on)
+    {
+        gameaudioPanel.SetActive(on);
+    }
+
     public void GetClearMenu()
     {
         gameclearPanel.SetActive(true);
@@ -98,9 +105,10 @@ public class UI_InGame : MonoBehaviour
     public void ResetScene()
     {
         int curStage = GameManager.Instance.stage;
-        GameManager.Instance.stage = 0;
         SceneManager.LoadScene("stage" + curStage.ToString());
         AudioManager.Instance.PlayBGM("stage" + curStage.ToString());
+        GameManager.Instance.isBattle = true;
+        GameManager.Instance.Init();
     }
 
     //¹«±âÈ¹µæ ½Ã ¾ÆÀÌÄÜ°ü·Ã

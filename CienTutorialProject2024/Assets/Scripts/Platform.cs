@@ -14,11 +14,16 @@ public class Platform : MonoBehaviour
 
     Color originColor;
 
+    Vector3 originPos;
+    Vector3 downPos;
+
     // Start is called before the first frame update
     void Start()
     {
         platformMaterial = GetComponent<MeshRenderer>().material;
         originColor = platformMaterial.color;
+        originPos = transform.position;
+        downPos = new Vector3 (originPos.x,originPos.y -1000,originPos.z);
         if (shield == null)
         {
             Debug.LogError("쉴드 배치 바람");
@@ -44,8 +49,8 @@ public class Platform : MonoBehaviour
                      }
                      else 
                      {
-                        gameObject.SetActive(false);
-                         Invoke("HaveShield", createSpeed);
+                        gameObject.transform.position = downPos;
+                        Invoke("HaveShield", createSpeed);
                      }
                 }
             }
@@ -59,13 +64,16 @@ public class Platform : MonoBehaviour
 
     void HaveShield()
     {
-        if (ShieldProbability())
+        if(disappearing) 
         {
-            Instantiate(shield, transform);
+            if (ShieldProbability())
+            {
+                Instantiate(shield, transform);
+            }
+            platformMaterial.color = originColor;
+            gameObject.transform.position = originPos;
+            disappearing = false;
         }
-        platformMaterial.color = originColor;
-        gameObject.SetActive(true);
-        disappearing = false;
     }
 
     private void OnCollisionEnter(Collision collision)

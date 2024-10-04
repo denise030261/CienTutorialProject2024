@@ -20,6 +20,5 @@ public class ClearBall : MonoBehaviour
     {
         Debug.Log("Clear!");
         GameManager.Instance.Clear();
-
     }
 }
