@@ -7,22 +7,6 @@
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\ienemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\ienemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\idlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\idlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\chasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\chasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\attackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\attackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\enemybomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemybomb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,6 +21,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\bossstagecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bossstagecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\attackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\attackstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\chasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\chasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\idlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\idlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\ienemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\ienemystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{397C3255-AE82-D477-787E-C77017E21826}|Assembly-CSharp.csproj|C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\assets\\scripts\\enemy\\enemyphysicalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,46 +70,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AttackState.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\AttackState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\AttackState.cs",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\AttackState.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\AttackState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T08:34:04.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T08:34:04.579Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "ChaseState.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\ChaseState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\ChaseState.cs",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\ChaseState.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\ChaseState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T08:33:27.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T08:33:27.323Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "IdleState.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\IdleState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\IdleState.cs",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\IdleState.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\IdleState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAIwBEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T08:31:27.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T08:31:27.191Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "IEnemyState.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\IEnemyState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\IEnemyState.cs",
@@ -117,8 +114,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\IEnemyState.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T08:30:10.565Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T08:30:10.565Z"
             },
             {
               "$type": "Document",
@@ -128,14 +124,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyAI.cs",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\EnemyAI.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyAI.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAAwEQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-13T15:36:14.996Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "BossStageCamera.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\BossStageCamera.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BossStageCamera.cs",
@@ -147,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\ArtResourses\\Script\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\ArtResourses\\Script\\PlayerMovement.cs",
@@ -159,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "RecallMonster.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\RecallMonster.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\RecallMonster.cs",
@@ -171,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "EnemyBomb.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CienTutorialProject2024\\CienTutorialProject2024\\Assets\\Scripts\\Enemy\\EnemyBomb.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyBomb.cs",

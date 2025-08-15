@@ -16879,10 +16879,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b58861dd0fe01b4e92335f10fd74c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewAngle: 140
-  ViewRadius: 5
-  noMoveDist: 3
-  target: {fileID: 0}
+  NavAgent: {fileID: 4686593827478238104}
+  Animator: {fileID: 5140852983797988812}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  viewAngle: 90
+  viewRadius: 5
+  attackRange: 2
 --- !u!95 &5140852983797988812
 Animator:
   serializedVersion: 5

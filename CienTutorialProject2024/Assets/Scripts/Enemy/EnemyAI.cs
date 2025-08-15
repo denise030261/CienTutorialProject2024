@@ -1,220 +1,147 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
-using Debug = UnityEngine.Debug;
 
 public class EnemyAI : MonoBehaviour
 {
-    NavMeshAgent nav;
-    Animator animator;
-    LayerMask targetMask;
-    float playerDist;
-    bool isTarget;
-    bool isWall = false;
-    float doubleSpeed;
-    float tripleSpeed;
-    EnemyBomb enemyBomb = null;
-    EnemyLongAttack enemyLongAttack = null;
+    public NavMeshAgent NavAgent;
+    public Animator Animator;
+    public EnemyBomb BombComponent { get; private set; }
+    public EnemyLongAttack LongAttackComponent { get; private set; }
 
-    [Range(0f, 360f)][SerializeField] float ViewAngle = 0f;
-    [SerializeField] float ViewRadius = 1f;
-    [SerializeField] float noMoveDist = 1f;
-    public GameObject target;
+    [SerializeField] private LayerMask targetMask;
+    [SerializeField, Range(0, 360)] private float viewAngle = 90f;
+    [SerializeField] private float viewRadius = 5f;
+    [SerializeField] private float attackRange = 2f;
+    public Transform Target { get; private set; }
 
-    float walkSpeed = 1f;
+    public float ViewAngle => viewAngle;
+    public float ViewRadius => viewRadius;
+    public float AttackRange => attackRange;
 
-    Vector3 AngleToDir(float angle)
+
+    private IState currentState;
+    public IdleState IdleState { get; private set; }
+    public ChaseState ChaseState { get; private set; }
+    public AttackState AttackState { get; private set; }
+
+    private float initialSpeed;
+    private float doubleSpeed;
+    private float tripleSpeed;
+
+
+    private void Awake()
     {
-        float radian = angle * Mathf.Deg2Rad;
-        return new Vector3(Mathf.Sin(radian), 0f, Mathf.Cos(radian));
+        NavAgent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<Animator>();
+        BombComponent = GetComponent<EnemyBomb>();
+        LongAttackComponent = GetComponent<EnemyLongAttack>();
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        initialSpeed = NavAgent.speed;
+        doubleSpeed = initialSpeed * 2;
+        tripleSpeed = initialSpeed * 3;
+
+        IdleState = new IdleState(this);
+        ChaseState = new ChaseState(this);
+        AttackState = new AttackState(this);
     }
 
     private void Start()
     {
-        nav = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        enemyBomb = GetComponent<EnemyBomb>();
-        enemyLongAttack = GetComponent<EnemyLongAttack>();
-        target = GameObject.Find("Player");
-        targetMask = LayerMask.GetMask("Player");
-        walkSpeed = nav.speed;
-        doubleSpeed = walkSpeed * 2;
-        tripleSpeed = walkSpeed * 3;
+        ChangeState(IdleState);
     }
 
     private void Update()
     {
-        if(BossStageController.instance!=null)
-        {
-            if(BossStageController.instance.page==2)
-            {
-                ViewRadius = 7;
-                nav.speed = doubleSpeed;
-            }
-            else if(BossStageController.instance.page == 3)
-            {
-                ViewRadius = 9;
-            }
-            else if(BossStageController.instance.page == 4)
-            {
-                ViewRadius = 15;
-                nav.speed = tripleSpeed;
-            }
-        }
-
-        if(GameManager.Instance.isSlow)
-        {
-            nav.speed = walkSpeed / 4f;
-        }
-        else
-        {
-            nav.speed = walkSpeed;
-        }
-
-        isTarget = false;
-        ViewOfField();
-        ViewOfFieldDebug();
+        CurrentEnemy();
+        currentState?.Tick();
     }
 
-    void ViewOfFieldDebug()
+    // 상태를 전환하는 핵심 메서드
+    public void ChangeState(IState newState)
     {
-        Vector3 viewAngleA = DirFromAngle(-ViewAngle / 2, false);
-        Vector3 viewAngleB = DirFromAngle(ViewAngle / 2, false);
-        Debug.DrawLine(transform.position, transform.position + viewAngleA * ViewRadius, Color.yellow);
-        Debug.DrawLine(transform.position, transform.position + viewAngleB * ViewRadius, Color.yellow);
+        currentState?.OnExit();
+        currentState = newState;
+        currentState.OnEnter();
     }
 
-    private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    private void CurrentEnemy()
     {
-        if (!angleIsGlobal)
+        // Boss Stage에 따른 변화
+        if (BossStageController.instance != null)
         {
-            angleInDegrees += transform.eulerAngles.y;
+            switch (BossStageController.instance.page)
+            {
+                case 2:
+                    viewRadius = 7f;
+                    NavAgent.speed = doubleSpeed;
+                    break;
+                case 3:
+                    viewRadius = 9f;
+                    break;
+                case 4:
+                    viewRadius = 15f;
+                    NavAgent.speed = tripleSpeed;
+                    break;
+                default:
+                    viewRadius = 5f;
+                    NavAgent.speed = initialSpeed;
+                    break;
+            }
         }
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
 
-    void ViewOfField()
-    {
-        float lookingAngle = transform.eulerAngles.y;  // 캐릭터가 바라보는 방향의 각도
-        Vector3 lookDir = AngleToDir(lookingAngle);
-
-        Collider[] Targets = Physics.OverlapSphere(transform.position, ViewRadius, targetMask);
-
-        if (Targets.Length == 0)
+        if (GameManager.Instance != null && GameManager.Instance.isSlow)
         {
-            animator.SetBool("isWalk", false);
-            return;
-        }
-        foreach (Collider targetCollider in Targets)
-        {
-            Vector3 targetPos = targetCollider.transform.position;
-            Vector3 targetDir = (targetPos - transform.position).normalized;
-            float targetDist = Vector3.Distance(transform.position, targetCollider.gameObject.transform.position);
-            float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
-
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, targetDir, out hit,targetDist) && hit.collider.tag == "Wall")
-            {
-                isWall = true;
-            }
-            else
-            {
-                isWall = false;
-            }
-
-            if (targetAngle <= ViewAngle * 0.5f && !isWall)
-            {
-                isTarget = true;
-                ChaseTarget();
-            }
-            else if(targetAngle> ViewAngle * 0.5f)
-            {
-                nav.SetDestination(transform.position);
-                animator.SetBool("isWalk", false);
-                animator.SetBool("isAttack", false);
-            }
-            else if(enemyLongAttack != null)
-            {
-                enemyLongAttack.isShoot = false;
-            }
+            NavAgent.speed = initialSpeed / 4f;
         }
     }
 
-    void ChaseTarget()
+    // 플레이어가 시야 내에 있고, 장애물에 가려지지 않았는지 확인
+    public bool CanSeePlayer()
     {
-        playerDist = Vector3.Distance(transform.position, target.transform.position);
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
-        if (playerDist >= noMoveDist && isTarget)
+        if (targetsInViewRadius.Length > 0)
         {
-            bool isAttack = animator.GetBool("isAttack");
-            if (!animator.GetBool("isAttack"))
+            Transform playerTransform = targetsInViewRadius[0].transform;
+            Vector3 dirToPlayer = (playerTransform.position - transform.position).normalized;
+
+            // 시야각 안에 있는지 확인
+            if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
             {
-                nav.SetDestination(target.transform.position);
-                animator.SetBool("isWalk", true);
-                nav.autoBraking = false;
-            }
-            else
-            {
-                ChaseRotation();
-                animator.SetBool("isWalk", false);
-                animator.SetBool("isAttack", false);
-                nav.SetDestination(transform.position);
-            }
-        }
-        else if (playerDist < noMoveDist && isTarget)
-        {
-            ChaseRotation();
-            animator.SetBool("isAttack", true);
-            animator.SetBool("isWalk", false);
-            nav.SetDestination(transform.position);
-            
-            if(enemyBomb!=null)
-            {
-                enemyBomb.Bomb();
-                isTarget = false;
-                this.enabled = false;
-            }
-            else if(enemyLongAttack!=null) 
-            {
-                if(enemyLongAttack.readyShoot)
+                float distToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+                // 플레이어 사이에 벽(Wall)이 없는지 
+                if (!Physics.Raycast(transform.position, dirToPlayer, distToPlayer, LayerMask.GetMask("Wall")))
                 {
-                    isTarget = false;
-                    enemyLongAttack.isShoot = true;
-                }
-                else
-                {
-                    animator.SetBool("isAttack", false);
-                    animator.SetBool("isWalk", true);
+                    return true;
                 }
             }
         }
-        else if(!isTarget)
-        {
-            ChaseRotation();
-            nav.SetDestination(transform.position);
-            animator.SetBool("isWalk", false);
-            nav.autoBraking = true;
-        }
+        return false;
     }
 
-    void ChaseRotation()
+    public void RotateTowardsTarget()
     {
-        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Vector3 direction = (Target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    void OnDisable()
+    private void OnDrawGizmosSelected()
     {
-        if (nav != null)
-        {
-            nav.updateRotation = false;
-        } // 자동 회전 끄기
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
 
-        Quaternion currentRotation = transform.rotation;
-        transform.rotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0f);
-        // 회전 상태 고정
-    } // When bomb Transform
+        Vector3 fovLine1 = Quaternion.AngleAxis(viewAngle / 2, transform.up) * transform.forward * viewRadius;
+        Vector3 fovLine2 = Quaternion.AngleAxis(-viewAngle / 2, transform.up) * transform.forward * viewRadius;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + fovLine1);
+        Gizmos.DrawLine(transform.position, transform.position + fovLine2);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }
